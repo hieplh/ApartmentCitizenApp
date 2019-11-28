@@ -3,6 +3,7 @@ package com.example.apartmentcitizen.home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         lbTitle = findViewById(R.id.lbTitle);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navNewsfeed);
+        loadFragment(new NewsfeedFragment());
         mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,21 +38,38 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.navSurvey:
                         lbTitle.setText("Khảo sát");
+                        fragment = new SurveyFragment();
+                        loadFragment(fragment);
                         return true;
                     case R.id.navNewsfeed:
                         lbTitle.setText("Bảng tin");
+                        fragment = new NewsfeedFragment();
+                        loadFragment(fragment);
                         return true;
                     case R.id.navDBoard:
                         lbTitle.setText("Bảng điều khiển");
+                        fragment = new DashboardFragment();
+                        loadFragment(fragment);
                         return true;
                     case R.id.navNoti:
                         lbTitle.setText("Thông báo");
+                        fragment = new NotificationFragment();
+                        loadFragment(fragment);
                         return true;
                 }
                 return false;
             }
         };
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+
+    private void loadFragment(Fragment fragment) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
 

@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <TableLayout
+        android:id="@+id/header"
         android:stretchColumns="0"
         android:layout_width="match_parent"
         android:layout_height="80dp">
@@ -33,6 +34,14 @@
         </TableRow>
 
     </TableLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/header"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
