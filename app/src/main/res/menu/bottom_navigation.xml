@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navHome"
+        android:icon="@drawable/icsurvey"
+        android:title="Khảo sát"/>
+        />
+
+    <item
+        android:id="@+id/navNewsfeed"
+        android:icon="@drawable/icnf"
+        android:title="Bảng tin"/>
+
+    <item
+        android:id="@+id/navDBoard"
+        android:icon="@drawable/icdashboard"
+        android:title="Bảng điều khiển"/>
+
+
+    <item
+        android:id="@+id/navNoti"
+        android:icon="@drawable/icnoti"
+        android:title="Thông báo" />
+
+
+</menu>

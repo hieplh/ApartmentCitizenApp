@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.HomeActivity;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EasySplashScreen config = new EasySplashScreen(SplashActivity.this)
                 .withFullScreen()
-                .withTargetActivity(LoginActivity.class)
+                .withTargetActivity(HomeActivity.class)
                 .withSplashTimeOut(SPLASH_TIME)
                 .withLogo(R.drawable.logoapartment)
                 .withBackgroundColor(Color.parseColor("#FFFFFF"));
