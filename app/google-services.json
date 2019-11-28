@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374072781354",
+    "firebase_url": "https://apartmentcitizen.firebaseio.com",
+    "project_id": "apartmentcitizen",
+    "storage_bucket": "apartmentcitizen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374072781354:android:c64906d099410a1891b153",
+        "android_client_info": {
+          "package_name": "com.example.apartmentcitizen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374072781354-fa4mr9iqvv9i6r1aj9ebus35d23940uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apartmentcitizen",
+            "certificate_hash": "ffa9637a0cde490e44ae02b00eb4b0d18f1307bf"
+          }
+        },
+        {
+          "client_id": "374072781354-ab1rnbf3unn8bmsquruiego75i0mlqh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATG8Ught1G021xP-YDreyHjhc8Whc7IPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374072781354-ab1rnbf3unn8bmsquruiego75i0mlqh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
