@@ -9,4 +9,5 @@
     <color name="black">#000000</color>
     <color name="blue_app">#0A84FF</color>
     <color name="color_appbar">#F0F0F5</color>
+    <color name="nocolor">#00000000</color>
 </resources>

@@ -3,13 +3,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.recyclerview.widget.RecyclerView
+    <TableLayout
+        android:stretchColumns="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dp">
+
+        <TableRow android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/lbTitle"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/telex"
+                android:text="Bảng tin"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <ImageButton
+                android:id="@+id/btnInfo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/nocolor"
+                android:src="@drawable/roundbuttoninfo" />
+
+        </TableRow>
+
+    </TableLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
