@@ -25,7 +25,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/imgservice" />
+                android:background="@drawable/imgpayment" />
 
         </TableRow>
 
@@ -36,7 +36,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/imgservice" />
+                android:background="@drawable/imghistorypayment" />
 
         </TableRow>
 
@@ -47,7 +47,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/imgservice" />
+                android:background="@drawable/imgsetupapartment" />
 
         </TableRow>
 
