@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AHT Apartment</string>
+    <string name="default_notification_channel_id">Bills</string>
+    <string name="bill_house_topic">Bill</string>
 </resources>
