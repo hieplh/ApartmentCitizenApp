@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.HomeActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -121,5 +122,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signInGoogle();
                 break;
         }
+    }
+
+    public void clickToLogin(View view) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }
