@@ -28,8 +28,10 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/nocolor"
-                android:src="@drawable/roundbuttoninfo" />
+                android:scaleType="centerCrop"
+                android:background="@drawable/roundbuttoninfo"
+                android:src="@drawable/test"
+                />
 
         </TableRow>
 

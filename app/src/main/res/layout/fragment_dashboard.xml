@@ -1,15 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".home.DashboardFragment">
+<androidx.core.widget.NestedScrollView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Dashboard Fragment"
-        android:textColor="@color/black"/>
+    <TableLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-</FrameLayout>
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btnService"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/imgservice" />
+
+        </TableRow>
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btnPayment"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/imgservice" />
+
+        </TableRow>
+
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btnHistoryPayment"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/imgservice" />
+
+        </TableRow>
+
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btnSetUpApartment"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/imgservice" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</androidx.core.widget.NestedScrollView>
