@@ -1,4 +1,4 @@
-package com.example.apartmentcitizen.home;
+package com.example.apartmentcitizen.home.newsfeed;
 
 import android.content.Context;
 import android.net.Uri;

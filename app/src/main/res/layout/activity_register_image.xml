@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_reg_frame"
+    tools:context=".register.RegisterImageActivity">
+
+    <TableLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:stretchColumns="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow android:layout_marginTop="25dp">
+            <TextView
+                android:id="@+id/label_title"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/telex"
+                android:text="Đăng kí"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <ImageButton
+                android:id="@+id/button_avatar_info"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="fitCenter"
+                android:background="@color/no_color"
+                android:src="@drawable/logo_apartment_login" />
+
+        </TableRow>
+
+    </TableLayout>
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/image_profile_register"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/image_avatar_default"
+                app:civ_border_color="@color/gray_holder_login"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/label_fullname_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nguyễn Văn A"
+                android:layout_marginTop="10dp"
+                android:textSize="22dp"
+                android:gravity="center"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/label_email_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="nguyenvana@gmail.com"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textColor="@color/gray_holder_login"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_register_activity"
+                android:layout_marginTop="20dp"
+                android:text="Chỉnh sửa ảnh đại diện"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:fontFamily="@font/telex"
+                android:gravity="center_vertical"
+                android:padding="10dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_register_activity"
+                android:text="Quét Chứng minh thư/Thẻ căn cước"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:fontFamily="@font/telex"
+                android:gravity="center_vertical"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notice_register_2"
+                android:textColor="@color/gray_holder_login"
+                android:gravity="left|center_horizontal"
+                android:padding="20dp"
+                android:layout_marginTop="55dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_register_activity"
+                android:text="Tạo mã QR"
+                android:textColor="@color/blue_app"
+                android:textAllCaps="false"
+                android:fontFamily="@font/telex"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:drawableRight="@drawable/image_qr_resize"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

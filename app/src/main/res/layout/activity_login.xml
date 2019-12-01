@@ -9,17 +9,17 @@
 
 
     <ImageView
-        android:id="@+id/imgLogoLogin"
+        android:id="@+id/image_logo_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logoapartmentlogin" />
+        app:srcCompat="@drawable/logo_apartment_login" />
 
     <EditText
-        android:id="@+id/edtLogin"
+        android:id="@+id/edit_login"
         android:layout_width="266dp"
         android:layout_height="46dp"
         android:layout_marginTop="50dp"
@@ -31,13 +31,13 @@
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/gray_holder_login"
-        android:textCursorDrawable="@drawable/cursorlogin"
+        android:textCursorDrawable="@drawable/cursor_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogoLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/image_logo_login" />
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edit_password"
         android:layout_width="266dp"
         android:layout_height="46dp"
         android:layout_marginTop="5dp"
@@ -49,10 +49,10 @@
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/gray_holder_login"
-        android:textCursorDrawable="@drawable/cursorlogin"
+        android:textCursorDrawable="@drawable/cursor_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_login" />
 
     <ProgressBar
         android:id="@+id/progress_circular"
@@ -65,47 +65,46 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/button_login"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/buttonlogin"
+        android:background="@drawable/button_login"
         android:fontFamily="@font/telex"
-        android:stateListAnimator="@null"
         android:text="Đăng nhập"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/btnLoginFb"
+        app:layout_constraintBottom_toTopOf="@+id/button_login_facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:onClick="clickToLogin"/>
 
     <Button
-        android:id="@+id/btnLoginFb"
+        android:id="@+id/button_login_facebook"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/loginfb"
+        android:background="@drawable/login_facebook"
         android:fontFamily="@font/telex"
         android:stateListAnimator="@null"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnLoginGg"
+        app:layout_constraintBottom_toTopOf="@+id/button_login_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnLoginGg"
+        android:id="@+id/button_login_google"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/logingg"
+        android:background="@drawable/login_google"
         android:stateListAnimator="@null"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintBottom_toTopOf="@+id/button_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/button_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -118,6 +117,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="clickToRegister"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

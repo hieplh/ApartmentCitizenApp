@@ -15,7 +15,7 @@
         <TableRow android:layout_marginTop="25dp">
 
             <TextView
-                android:id="@+id/lbTitle"
+                android:id="@+id/label_title"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/telex"
@@ -24,12 +24,12 @@
                 android:textSize="30dp" />
 
             <ImageButton
-                android:id="@+id/btnInfo"
+                android:id="@+id/button_avatar_info"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:scaleType="centerCrop"
-                android:background="@drawable/roundbuttoninfo"
+                android:background="@drawable/button_round"
                 android:src="@drawable/test"
                 />
 
@@ -54,8 +54,8 @@
         android:background="@color/color_appbar"
         app:itemIconSize="20dp"
         app:itemTextAppearanceActive="@font/telex"
-        app:itemIconTint="@drawable/stateiconappbar"
-        app:itemTextColor="@drawable/stateiconappbar"
+        app:itemIconTint="@drawable/icon_appnav_state"
+        app:itemTextColor="@drawable/icon_appnav_state"
         app:menu="@menu/bottom_navigation" />
 
 

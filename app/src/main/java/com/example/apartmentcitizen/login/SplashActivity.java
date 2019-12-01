@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.HomeActivity;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
@@ -22,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
                 .withFullScreen()
                 .withTargetActivity(LoginActivity.class)
                 .withSplashTimeOut(SPLASH_TIME)
-                .withLogo(R.drawable.logoapartment)
+                .withLogo(R.drawable.logo_apartment)
                 .withBackgroundColor(Color.parseColor("#FFFFFF"));
 
         View splashScreen = config.create();

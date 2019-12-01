@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navSurvey"
-        android:icon="@drawable/icsurvey"
+        android:icon="@drawable/icon_survey"
         android:title="Khảo sát"/>
 
     <item
         android:id="@+id/navNewsfeed"
-        android:icon="@drawable/icnf"
+        android:icon="@drawable/icon_newsfeed"
         android:title="Bảng tin"/>
 
     <item
         android:id="@+id/navDBoard"
-        android:icon="@drawable/icdashboard"
+        android:icon="@drawable/icon_dashboard"
         android:title="Bảng điều khiển"/>
 
 
     <item
         android:id="@+id/navNoti"
-        android:icon="@drawable/icnoti"
+        android:icon="@drawable/icon_notification"
         android:title="Thông báo" />
 
 

@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
+import com.example.apartmentcitizen.home.newsfeed.NewsfeedFragment;
+import com.example.apartmentcitizen.home.notification.NotificationFragment;
+import com.example.apartmentcitizen.home.survey.SurveyFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -27,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void setupView(){
-        lbTitle = findViewById(R.id.lbTitle);
+        lbTitle = findViewById(R.id.label_title);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navNewsfeed);
         loadFragment(new NewsfeedFragment());

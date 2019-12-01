@@ -3,14 +3,17 @@
     package="com.example.apartmentcitizen">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logoapartmentlogin"
+        android:icon="@drawable/logo_apartment_login"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".register.RegisterImageActivity"></activity>
+        <activity android:name=".register.RegisterActivity" />
+
         <service
             android:name=".service.FirebaseService"
             android:exported="false">
@@ -35,7 +38,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/logoapartmentlogin" />
+            android:resource="@drawable/logo_apartment_login" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />

@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.register.RegisterActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setVisibility(View.GONE);
-        sign_in_google_btn = findViewById(R.id.btnLoginGg);
+        sign_in_google_btn = findViewById(R.id.button_login_google);
         sign_in_google_btn.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -118,7 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnLoginGg:
+            case R.id.button_login_google:
                 signInGoogle();
                 break;
         }
@@ -126,6 +127,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void clickToLogin(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void clickToRegister(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 }

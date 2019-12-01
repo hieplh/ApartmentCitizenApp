@@ -1,6 +1,5 @@
 package com.example.apartmentcitizen.service;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -66,7 +65,7 @@ public class FirebaseService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.logoapartmentlogin)
+                        .setSmallIcon(R.drawable.logo_apartment_login)
                         .setContentTitle(title)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
