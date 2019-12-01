@@ -60,7 +60,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/image_avatar_default"
-                app:civ_border_color="@color/gray_holder_login"
                 android:layout_marginTop="20dp"/>
 
             <TextView

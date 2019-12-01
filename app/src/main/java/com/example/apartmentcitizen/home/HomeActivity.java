@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
@@ -14,6 +16,7 @@ import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
 import com.example.apartmentcitizen.home.newsfeed.NewsfeedFragment;
 import com.example.apartmentcitizen.home.notification.NotificationFragment;
 import com.example.apartmentcitizen.home.survey.SurveyFragment;
+import com.example.apartmentcitizen.information.InformationActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -74,6 +77,11 @@ public class HomeActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void clickToAccessInfo(View view) {
+        Intent intent = new Intent(this, InformationActivity.class);
+        startActivity(intent);
     }
 }
 
