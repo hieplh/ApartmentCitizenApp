@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/gray_reg_frame"
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +10,9 @@
         android:id="@+id/header"
         android:stretchColumns="0"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="70dp">
 
-        <TableRow android:layout_marginTop="25dp">
+        <TableRow android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/label_title"
@@ -20,18 +20,20 @@
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/telex"
                 android:text="Bảng tin"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="30dp" />
 
-            <ImageButton
-                android:id="@+id/button_avatar_info"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="15dp"
-                android:scaleType="centerCrop"
-                android:background="@drawable/button_round"
-                android:src="@drawable/test"
-                />
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/image_profile_home"
+                android:layout_gravity="center"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/image_avatar_default"
+                android:layout_marginRight="20dp"
+                android:onClick="clickToAccessInfo"/>
+
 
         </TableRow>
 
