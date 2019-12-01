@@ -63,7 +63,7 @@
                 android:layout_marginTop="25dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"
+
                 />
             <EditText
                 android:id="@+id/edit_register_username"
@@ -86,7 +86,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
                 android:id="@+id/edit_register_password"
                 android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
                 android:id="@+id/edit_register_confirmpassword"
                 android:layout_width="match_parent"
@@ -133,12 +133,23 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
-                android:id="@+id/edit_register_fullname"
+                android:id="@+id/edit_register_firstname"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="Ví dụ: Nguyễn Văn A"
+                android:hint="Họ"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:fontFamily="@font/telex"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_holder_login"
+                android:background="@drawable/edittext_frame"/>
+            <EditText
+                android:id="@+id/edit_register_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Tên"
                 android:paddingLeft="15dp"
                 android:textSize="14dp"
                 android:fontFamily="@font/telex"
@@ -155,7 +166,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <RadioGroup
                         android:background="@drawable/edittext_frame"
                         android:layout_width="match_parent"
@@ -193,7 +204,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <Button
                 android:id="@+id/edit_register_birthday"
                 android:layout_width="match_parent"
@@ -217,7 +228,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
                 android:id="@+id/edit_register_email"
                 android:layout_width="match_parent"
@@ -239,7 +250,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+            />
             <EditText
                 android:id="@+id/edit_register_phone"
                 android:layout_width="match_parent"
@@ -262,7 +273,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+          />
             <EditText
                 android:id="@+id/edit_register_country"
                 android:layout_width="match_parent"
@@ -284,7 +295,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
                 android:id="@+id/edit_register_job"
                 android:layout_width="match_parent"
@@ -306,7 +317,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <Spinner
                 android:id="@+id/spinner_relationship"
                 android:layout_width="match_parent"
@@ -327,7 +338,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
-                android:layout_marginLeft="50dp"/>
+                />
             <EditText
                 android:id="@+id/edit_register_identity_card_number"
                 android:layout_width="match_parent"
