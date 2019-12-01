@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_reg_frame"
     tools:context=".register.RegisterActivity">
 
     <TableLayout
@@ -67,7 +67,7 @@
                 />
             <EditText
                 android:id="@+id/edit_register_username"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Ví dụ: nguoidung123"
                 android:textSize="14dp"
@@ -83,13 +83,13 @@
                 android:layout_height="wrap_content"
                 android:text="Mật khẩu*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_password"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="⋅⋅⋅⋅⋅⋅"
                 android:textSize="14dp"
@@ -107,13 +107,13 @@
                 android:layout_height="wrap_content"
                 android:text="Xác nhận lại mật khẩu*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_confirmpassword"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="⋅⋅⋅⋅⋅⋅"
                 android:inputType="textPassword"
@@ -130,13 +130,13 @@
                 android:layout_height="wrap_content"
                 android:text="Họ và tên*"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_fullname"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Ví dụ: Nguyễn Văn A"
                 android:paddingLeft="15dp"
@@ -152,13 +152,13 @@
                 android:layout_height="wrap_content"
                 android:text="Giới tính*"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <RadioGroup
                         android:background="@drawable/edittext_frame"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:id="@+id/rdGender"
                         android:orientation="horizontal"
@@ -190,13 +190,13 @@
                 android:layout_height="wrap_content"
                 android:text="Ngày sinh"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <Button
                 android:id="@+id/edit_register_birthday"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="ngày/tháng/năm"
                 android:gravity="left|center_vertical"
@@ -214,13 +214,13 @@
                 android:layout_height="wrap_content"
                 android:text="Email*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_email"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Ví dụ example@gmail.com"
                 android:textSize="15dp"
@@ -236,13 +236,13 @@
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_phone"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Số điện thoại 10-12 chữ số"
                 android:inputType="number"
@@ -259,13 +259,13 @@
                 android:layout_height="wrap_content"
                 android:text="Nguyên quán*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_country"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Nguyên quán"
                 android:textSize="14dp"
@@ -281,13 +281,13 @@
                 android:layout_height="wrap_content"
                 android:text="Nghề nghiệp"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_job"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Ví dụ: Công nhân viên chức"
                 android:textSize="15dp"
@@ -303,13 +303,13 @@
                 android:layout_height="wrap_content"
                 android:text="Quan hệ với chủ hộ*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <Spinner
                 android:id="@+id/spinner_relationship"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:spinnerMode="dropdown"
                 android:background="@drawable/edittext_frame"
@@ -324,13 +324,13 @@
                 android:layout_height="wrap_content"
                 android:text="Số chứng minh thư/thẻ căn cước*"
                 android:textColor="@color/black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="50dp"/>
             <EditText
                 android:id="@+id/edit_register_identity_card_number"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Số chứng minh/thẻ căn cước"
                 android:inputType="number"
