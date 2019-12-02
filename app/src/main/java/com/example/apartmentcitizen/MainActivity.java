@@ -1,16 +1,39 @@
 package com.example.apartmentcitizen;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import vn.semicolon.filepicker.FilePicker;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.apartmentcitizen.component.ImageUploadAdapter;
 import com.example.apartmentcitizen.home.HomeActivity;
 import com.example.apartmentcitizen.login.LoginActivity;
+import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.example.apartmentcitizen.network.UploadMultipartImageService;
 import com.example.apartmentcitizen.service.FirebaseService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -20,12 +43,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public final int BILL_HOUSE = 1;
 
     GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    String[] pathImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         subscribeTopics(BILL_HOUSE);
+
+        recyclerView = findViewById(R.id.image_recyclerview_main_activity);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     @Override
@@ -64,6 +99,26 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         super.onStart();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            pathImages = FilePicker.Companion.getResult(data);
+
+            for (String file : pathImages) {
+                uploadImageToServer(file);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1000) {
+            Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void subscribeTopics(int topic) {
@@ -81,5 +136,44 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
         }
+    }
+
+    public void uploadImage(View view) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        }
+
+        new FilePicker.Builder()
+                .maxSelect(20)
+                .typesOf(FilePicker.TYPE_IMAGE)
+                .start(this, 100);
+    }
+
+    private void uploadImageToServer(String filePath) {
+        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
+
+        UploadMultipartImageService upload = retrofit.create(UploadMultipartImageService.class);
+
+        File file = new File(filePath);
+
+        RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
+
+        MultipartBody.Part part = MultipartBody.Part.createFormData("upload", file.getName(), fileRequestBody);
+
+        RequestBody desc = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+
+        Call call = upload.uploadImage(part, desc);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                Toast.makeText(MainActivity.this, response.code() + " - " + response.message(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
