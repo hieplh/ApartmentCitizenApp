@@ -75,7 +75,6 @@
                 android:textColorHint="@color/gray_holder_login"
                 android:textSize="14dp" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,7 +119,6 @@
                 android:textColorHint="@color/gray_holder_login"
                 android:textSize="14dp" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,6 +135,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Họ"
+                android:imeOptions="actionNext"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -149,6 +148,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Tên"
+                android:imeOptions="actionNext"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -233,6 +233,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Ví dụ example@gmail.com"
+                android:imeOptions="actionNext"
                 android:paddingLeft="14dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -255,6 +256,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Số điện thoại 10-12 chữ số"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
@@ -278,6 +280,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Nguyên quán"
+                android:imeOptions="actionNext"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -299,6 +302,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Ví dụ: Công nhân viên chức"
+                android:imeOptions="actionNext"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -339,6 +343,7 @@
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="Số chứng minh/thẻ căn cước"
+                android:imeOptions="actionDone"
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"

@@ -5,12 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,7 +16,6 @@ import com.example.apartmentcitizen.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -68,10 +63,11 @@ public class RegisterActivity extends AppCompatActivity {
         return Integer.parseInt(date.split("/")[index]);
     }
 
-    private long convertYearToMiliseconds(int year) {
-        Date date = new Date(System.currentTimeMillis());
+    private long getPastMilisecondsFromNow(int year) {
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(date.getTime() - (1000 * 60 * 60 * 24 * 365 * year));
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        cal.set(Calendar.MONTH, 11);
+        cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - year);
         return cal.getTimeInMillis();
     }
 
@@ -98,8 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }, curYear, curMonth, curDay);
 
-        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-//        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - convertYearToMiliseconds(70));
+        datePickerDialog.getDatePicker().setMaxDate(getPastMilisecondsFromNow(16));
+        datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(70));
         datePickerDialog.show();
     }
 
