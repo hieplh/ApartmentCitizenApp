@@ -2,6 +2,47 @@
     <string name="app_name">AHT Apartment</string>
     <string name="default_notification_channel_id">Bills</string>
     <string name="bill_house_topic">Bill</string>
+
+    <!-- login -->
+    <string name="login_hint_edit_username">Tên đăng nhập</string>
+    <string name="login_hint_edit_password">Mật khẩu</string>
+    <string name="login_button_login">Đăng nhập</string>
+    <string name="login_button_register">Đăng kí tài khoản</string>
+
+
+    <!-- register -->
+    <string name="register_title">Đăng kí</string>
+        <!-- register_info -->
+        <string name="register_label_email">Email*</string>
+        <string name="register_edit_email">Ví dụ: example@gmail.com</string>
+        <string name="register_label_fullname">Họ và Tên*</string>
+        <string name="register_edit_first_name">Họ</string>
+        <string name="register_edit_last_name">Tên</string>
+        <string name="register_label_gender">Giới tính</string>
+        <string name="register_select1_gender">Nam</string>
+        <string name="register_select2_gender">Nữ</string>
+        <string name="register_label_birthday">Ngày sinh</string>
+        <string name="register_button_birthday">Ngày/Tháng/Năm</string>
+        <string name="register_label_phone">Số điện thoại</string>
+        <string name="register_edit_phone">10 chữ số</string>
+        <string name="register_label_country">Nguyên quán</string>
+        <string name="register_edit_country">Nguyên quán</string>
+        <string name="register_label_job">Nghề nghiệp</string>
+        <string name="register_edit_job">Ví dụ: Công nhân viên chức</string>
+        <string name="register_label_relationship">Quan hệ với chủ hộ*</string>
+        <string name="register_label_identity_card">Số chứng minh thư/Thẻ căn cước*</string>
+        <string name="register_edit_identity_card">Số chứng minh thư/Thẻ căn cước</string>
+        <string name="register_butotn_next">Tiếp</string>
+
+        <!-- register_image -->
+        <string name="register2_label_fullname">Nguyễn Văn A</string>
+        <string name="register2_label_email">nguyenvana@gmail.com</string>
+        <string name="register2_button_edit_avatar">Sửa ảnh đại diện</string>
+        <string name="register2_button_scan_identity_card">Quét Chứng minh thư/Thẻ căn cước</string>
+        <string name="register2_button_generate">Tạo mã QR</string>
+
+
+<!--    Notice-->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
     <string name="base_url">http://ahtapartment.ddns.net/api</string>

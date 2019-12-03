@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
         }, curYear, curMonth, curDay);
 
         datePickerDialog.getDatePicker().setMaxDate(getPastMilisecondsFromNow(16));
-        datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(70));
+        datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(720));
         datePickerDialog.show();
     }
 
@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private enum Relationship{
-        PARTNER("Chồng/Vợ"),
+        PARTNER("Vợ/Chồng"),
         PARENT("Bố/Mẹ"),
         GRANDPA("Ông/Bà"),
         SIBLING("Anh/Chị/Em"),
