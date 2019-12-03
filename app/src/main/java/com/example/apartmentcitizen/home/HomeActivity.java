@@ -19,22 +19,27 @@ import com.example.apartmentcitizen.home.survey.SurveyFragment;
 import com.example.apartmentcitizen.information.InformationActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     TextView lbTitle;
+    View headerHome;
+    CircleImageView imgAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         setupView();
     }
 
     public void setupView(){
-        lbTitle = findViewById(R.id.label_title);
+        headerHome = findViewById(R.id.header_home);
+        lbTitle = headerHome.findViewById(R.id.label_title);
+        System.out.println("LABEL TITLE: " + lbTitle);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navNewsfeed);
         loadFragment(new NewsfeedFragment());
@@ -68,6 +73,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        //set up avatar button
+        imgAvatar = headerHome.findViewById(R.id.button_avatar);
+        imgAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), InformationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -79,9 +95,6 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void clickToAccessInfo(View view) {
-        Intent intent = new Intent(this, InformationActivity.class);
-        startActivity(intent);
-    }
+
 }
 
