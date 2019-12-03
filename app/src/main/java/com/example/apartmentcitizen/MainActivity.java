@@ -29,11 +29,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.component.ImageUploadAdapter;
 import com.example.apartmentcitizen.home.HomeActivity;
 import com.example.apartmentcitizen.login.LoginActivity;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UploadMultipartImageService;
+import com.example.apartmentcitizen.register.CaptureQRcodeActivity;
 import com.example.apartmentcitizen.service.FirebaseService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -42,10 +44,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
-
+import com.google.zxing.BarcodeFormat;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+//        adapter = new ImageUploadAdapter(this, )
         super.onStart();
     }
 
@@ -111,6 +113,16 @@ public class MainActivity extends AppCompatActivity {
                 uploadImageToServer(file);
             }
         }
+
+//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+//        if(result != null) {
+//            Log.d("QR", "Content: " + result.getContents());
+//            if(result.getContents() == null) {
+//                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 
     @Override
@@ -120,6 +132,34 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void uploadImage(View view) {
+        grantPermission();
+
+        new FilePicker.Builder()
+                .maxSelect(20)
+                .typesOf(FilePicker.TYPE_IMAGE)
+                .start(this, 100);
+    }
+
+//    public void generateQrcode(View view) {
+//        try {
+//            BarcodeEncoder encoder = new BarcodeEncoder();
+//            Bitmap bitmap = encoder.encodeBitmap("Hello World", BarcodeFormat.QR_CODE, 400, 400);
+//            adapter = new ImageUploadAdapter(this, bitmap);
+//            recyclerView.setAdapter(adapter);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void scanQrcode(View view) {
+//        grantPermission();
+//
+//        IntentIntegrator integrator = new IntentIntegrator(this);
+//
+//        integrator.setCaptureActivity(CaptureQRcodeActivity.class).initiateScan();
+//    }
 
     private void subscribeTopics(int topic) {
         switch (topic) {
@@ -136,17 +176,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
         }
-    }
-
-    public void uploadImage(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        }
-
-        new FilePicker.Builder()
-                .maxSelect(20)
-                .typesOf(FilePicker.TYPE_IMAGE)
-                .start(this, 100);
     }
 
     private void uploadImageToServer(String filePath) {
@@ -175,5 +204,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void grantPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1000);
+        }
+
     }
 }

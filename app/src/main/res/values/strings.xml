@@ -4,4 +4,6 @@
     <string name="bill_house_topic">Bill</string>
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
+    <string name="base_url">http://ahtapartment.ddns.net/api</string>
+    <string name="version_api">/v1/</string>
 </resources>

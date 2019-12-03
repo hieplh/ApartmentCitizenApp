@@ -3,11 +3,13 @@ package com.example.apartmentcitizen.component;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.zxing.common.BitMatrix;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.ViewHolder> {
 
     Context context;
-    String[] mList;
+    Bitmap bitmap;
 
-    public ImageUploadAdapter(Context context, String[] mList) {
+    public ImageUploadAdapter(Context context, Bitmap bitmap) {
         this.context = context;
-        this.mList = mList;
+        this.bitmap = bitmap;
     }
 
     @NonNull
@@ -31,17 +33,15 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Bitmap bitmap = BitmapFactory.decodeFile(mList[position]);
-
         Glide.with(context)
                 .load(bitmap)
-                .override(500, 500)
+                .override(bitmap.getWidth(), bitmap.getHeight())
                 .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return mList.length;
+        return 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

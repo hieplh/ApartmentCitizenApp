@@ -29,8 +29,16 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/refresh_image_recyclerview_btn"
-            android:text="Refresh"
+            android:id="@+id/generate_qrcode_btn"
+            android:text="Generate"
+            android:onClick="generateQrcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/scan_qrcode_btn"
+            android:text="Scan"
+            android:onClick="scanQrcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
