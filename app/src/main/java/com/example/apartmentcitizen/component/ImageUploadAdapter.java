@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.google.zxing.common.BitMatrix;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,11 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.ViewHolder> {
 
     Context context;
-    Bitmap bitmap;
+    ArrayList<String> mListPathImage;
 
-    public ImageUploadAdapter(Context context, Bitmap bitmap) {
+    public ImageUploadAdapter(Context context, ArrayList<String> mListPathImage) {
         this.context = context;
-        this.bitmap = bitmap;
+        this.mListPathImage = mListPathImage;
     }
 
     @NonNull
@@ -34,8 +38,9 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context)
-                .load(bitmap)
-                .override(bitmap.getWidth(), bitmap.getHeight())
+                .load(RetrofitInstance.BASE_URL + RetrofitInstance.VERSION_API
+                        + RetrofitInstance.GET_POSTIMAGE_IMAGE + mListPathImage.get(position))
+                .override(500, 500)
                 .into(holder.imageView);
     }
 

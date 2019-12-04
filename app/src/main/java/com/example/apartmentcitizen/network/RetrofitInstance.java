@@ -7,6 +7,7 @@ public class RetrofitInstance {
     private static Retrofit retrofit;
     public static final String BASE_URL = "http://ahtapartment.ddns.net/api/";
     public static final String VERSION_API = "v1/";
+    public static final String GET_POSTIMAGE_IMAGE = "postImages/image/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

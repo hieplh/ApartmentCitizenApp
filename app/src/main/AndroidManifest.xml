@@ -11,6 +11,8 @@
     <uses-permission android:name="android.hardware.camera" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
 
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_apartment_login"
@@ -39,14 +41,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".register.CaptureQRcodeActivity"
-            android:clearTaskOnLaunch="true"
+        <activity android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:stateNotNeeded="true"
-            android:theme="@style/AppCompatCaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            tools:replace="screenOrientation"/>
 
         <meta-data
             android:name="preloaded_fonts"
