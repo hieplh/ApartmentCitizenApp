@@ -1,29 +1,26 @@
 package com.example.apartmentcitizen.component;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.network.RetrofitInstance;
-import com.google.zxing.common.BitMatrix;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.ViewHolder> {
+public class LoadImageAdapter extends RecyclerView.Adapter<LoadImageAdapter.ViewHolder> {
 
     Context context;
     ArrayList<String> mListPathImage;
 
-    public ImageUploadAdapter(Context context, ArrayList<String> mListPathImage) {
+    public LoadImageAdapter(Context context, ArrayList<String> mListPathImage) {
         this.context = context;
         this.mListPathImage = mListPathImage;
     }
@@ -40,13 +37,13 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
         Glide.with(context)
                 .load(RetrofitInstance.BASE_URL + RetrofitInstance.VERSION_API
                         + RetrofitInstance.GET_POSTIMAGE_IMAGE + mListPathImage.get(position))
-                .override(500, 500)
+//                .override(500, 500)
                 .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return mListPathImage.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

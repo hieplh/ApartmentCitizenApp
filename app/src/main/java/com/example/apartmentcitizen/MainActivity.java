@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.apartmentcitizen.component.ImageUploadAdapter;
+import com.example.apartmentcitizen.component.DecorationRecyclerview;
+import com.example.apartmentcitizen.component.LoadImageAdapter;
 import com.example.apartmentcitizen.login.LoginActivity;
 import com.example.apartmentcitizen.network.LoadImageService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
@@ -32,7 +33,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -88,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
         subscribeTopics(BILL_HOUSE);
 
         recyclerView = findViewById(R.id.image_recyclerview_main_activity);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2 , GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(new DecorationRecyclerview(20));
     }
 
     @Override
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PathImage> call, Response<PathImage> response) {
                 ArrayList<String> list = initPathImageList(response.body().getPath());
-                adapter = new ImageUploadAdapter(MainActivity.this, list);
+                adapter = new LoadImageAdapter(MainActivity.this, list);
                 recyclerView.setAdapter(adapter);
             }
 
@@ -234,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PathImage> call, Response<PathImage> response) {
                 ArrayList<String> list = initPathImageList(response.body().getPath());
-                adapter = new ImageUploadAdapter(MainActivity.this, list);
+                adapter = new LoadImageAdapter(MainActivity.this, list);
                 recyclerView.setAdapter(adapter);
             }
 
