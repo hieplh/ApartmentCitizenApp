@@ -21,7 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".information.InformationActivity"></activity>
-        <activity android:name=".register.RegisterImageActivity" />
         <activity android:name=".register.RegisterActivity" />
 
         <service

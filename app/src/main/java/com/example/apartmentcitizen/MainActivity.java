@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 .start(this, 100);
     }
 
-    public void generateQrcode(View view) {
+    public void generateQrcodeMainActivity(View view) {
         try {
             BarcodeEncoder encoder = new BarcodeEncoder();
             Bitmap bitmap = encoder.encodeBitmap("Hello World", BarcodeFormat.QR_CODE, 400, 400);

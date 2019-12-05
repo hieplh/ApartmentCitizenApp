@@ -3,11 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/gray_reg_frame"
     tools:context=".register.RegisterActivity">
-
-    <include layout="@layout/header_register" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,57 +25,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
                 android:text="@string/register_label_email"
-                android:layout_marginLeft="15dp"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/edit_register_username"
+                android:id="@+id/edit_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_email"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
                 android:textSize="14sp" />
-
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/register_label_fullname"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/edit_register_firstname"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
-                android:fontFamily="@font/telex"
-                android:hint="@string/register_edit_first_name"
-                android:imeOptions="actionNext"
-                android:paddingLeft="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray_holder_login"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/edit_register_lastname"
+                android:id="@+id/edit_register_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edittext_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_last_name"
                 android:imeOptions="actionNext"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_holder_login"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edit_register_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_frame"
+                android:fontFamily="@font/telex"
+                android:hint="@string/register_edit_first_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -88,14 +88,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_gender"
                 android:textColor="@color/black"
-                android:layout_marginLeft="15dp"
                 android:textSize="12sp" />
 
             <RadioGroup
-                android:id="@+id/rdGender"
+                android:id="@+id/gender_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edittext_frame"
@@ -103,34 +103,33 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/rbMale"
+                    android:id="@+id/male_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/blue_app"
                     android:checked="true"
                     android:text="@string/register_select1_gender"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <RadioButton
-                    android:id="@+id/rbFemale"
+                    android:id="@+id/female_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:buttonTint="@color/blue_app"
                     android:checked="false"
                     android:text="@string/register_select2_gender"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
             </RadioGroup>
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/register_label_birthday"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
@@ -149,17 +148,15 @@
                 android:textColorHint="@color/gray_holder_login"
                 android:textSize="14sp" />
 
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_phone"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_register_phone"
@@ -175,16 +172,15 @@
                 android:textColorHint="@color/gray_holder_login"
                 android:textSize="14sp" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_country"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_register_country"
@@ -194,6 +190,7 @@
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_country"
                 android:imeOptions="actionNext"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -203,11 +200,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_job"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_register_job"
@@ -217,6 +214,7 @@
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_job"
                 android:imeOptions="actionNext"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
@@ -226,11 +224,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_relationship"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="12sp" />
 
             <Spinner
                 android:id="@+id/spinner_relationship"
@@ -245,11 +243,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_identity_card"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_register_identity_card_number"
@@ -274,7 +272,7 @@
                 android:padding="20dp"
                 android:text="@string/notice_register_1"
                 android:textColor="@color/gray_holder_login"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/button_register_next"
@@ -282,15 +280,15 @@
                 android:layout_height="40dp"
                 android:layout_marginBottom="35dp"
                 android:background="@drawable/button_register_activity"
+                android:drawableRight="@drawable/icon_next_resize"
                 android:fontFamily="@font/telex"
                 android:onClick="clickToNextRegister"
+                android:padding="10dp"
                 android:stateListAnimator="@null"
-                android:text="@string/register_butotn_next"
-                android:textSize="14sp"
+                android:text="@string/register_button_next"
                 android:textAllCaps="false"
                 android:textColor="@color/blue_app"
-                android:padding="10dp"
-                android:drawableRight="@drawable/icon_next_resize"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>
