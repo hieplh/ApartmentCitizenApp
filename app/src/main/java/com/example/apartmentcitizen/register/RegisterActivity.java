@@ -1,128 +1,113 @@
 package com.example.apartmentcitizen.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
-import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
+import com.google.zxing.BarcodeFormat;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private final int DAY_OF_MONTH_INDEX = 0;
-    private final int MONTH_INDEX = 1;
-    private final int YEAR_INDEX = 2;
+    public final String FRAGMENT_INFO_TAG = "fragment_info";
+    public final String FRAGMENT_IMAGE_TAG = "fragment_image";
 
-    TextView edtBirthDay;
-    Spinner spnRelationship;
-    List<String> listRelationship;
+    FragmentManager fm;
+    Fragment registerInfo, registerImage;
 
+    TextView birthdate;
+    EditText email, lastName, firstName;
+    EditText phone, country, job, icn;
+    RadioGroup genderGroup;
+    RadioButton gender;
+    Spinner relationship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_info);
-        setUpView();
-    }
+        setContentView(R.layout.activity_register);
 
-    public void setUpView(){
-        //set up spinner relationship
-        listRelationship = new ArrayList<>();
-        for (Relationship x: Relationship.values()) {
-            listRelationship.add(x.getDescription());
+        fm = getSupportFragmentManager();
+
+        registerInfo = fm.findFragmentByTag(FRAGMENT_INFO_TAG);
+
+        if (registerInfo == null) {
+            registerInfo = new RegisterInfoFragment();
         }
 
-        spnRelationship = findViewById(R.id.spinner_relationship);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listRelationship);
-        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        spnRelationship.setAdapter(adapter);
-
-        //set up edtBirthday
-        edtBirthDay = findViewById(R.id.edit_register_birthday);
-        edtBirthDay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseDateOfBirth(((TextView)v).getText().toString());
-            }
-        });
-    }
-
-    private int splitStringDate(String date, int index) {
-        return Integer.parseInt(date.split("/")[index]);
-    }
-
-    private long getPastMilisecondsFromNow(int year) {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_MONTH, 31);
-        cal.set(Calendar.MONTH, 11);
-        cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - year);
-        return cal.getTimeInMillis();
-    }
-
-    private void chooseDateOfBirth(String date){
-        final Calendar calendar = Calendar.getInstance();
-        int curDay, curMonth, curYear;
-
-        if (date.isEmpty()) {
-            curDay = calendar.get(Calendar.DATE);
-            curMonth = calendar.get(Calendar.MONTH);
-            curYear = calendar.get(Calendar.YEAR);
-        } else {
-            curDay = splitStringDate(date, DAY_OF_MONTH_INDEX);
-            curMonth = splitStringDate(date, MONTH_INDEX) - 1;
-            curYear = splitStringDate(date, YEAR_INDEX);
-        }
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year, month, dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                edtBirthDay.setText(simpleDateFormat.format(calendar.getTime()));
-            }
-        }, curYear, curMonth, curDay);
-
-        datePickerDialog.getDatePicker().setMaxDate(getPastMilisecondsFromNow(16));
-        datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(720));
-        datePickerDialog.show();
+        fm.beginTransaction().add(R.id.frame_layout_register_activity, registerInfo, FRAGMENT_INFO_TAG).commit();
     }
 
     public void clickToNextRegister(View view) {
-        Intent intent = new Intent(this, RegisterImageActivity.class);
-        startActivity(intent);
-    }
+        birthdate = findViewById(R.id.edit_register_birthday);
+        email = findViewById(R.id.edit_register_email);
+        lastName = findViewById(R.id.edit_register_last_name);
+        firstName = findViewById(R.id.edit_register_first_name);
+        phone = findViewById(R.id.edit_register_phone);
+        country = findViewById(R.id.edit_register_country);
+        job = findViewById(R.id.edit_register_job);
+        icn = findViewById(R.id.edit_register_identity_card_number);
 
-    private enum Relationship{
-        PARTNER("Vợ/Chồng"),
-        PARENT("Bố/Mẹ"),
-        GRANDPA("Ông/Bà"),
-        SIBLING("Anh/Chị/Em"),
-        UNCLE("Cô/Chú"),
-        CHILDREN("Con trai/Con gái"),
-        GRANDCHILDREN("Cháu trai/cháu gái"),
-        FRIEND("Bạn Bè");
+        genderGroup = findViewById(R.id.gender_radio_group);
+        int genderId = genderGroup.getCheckedRadioButtonId();
+        gender = findViewById(genderId);
 
-        private String description;
+        relationship = findViewById(R.id.spinner_relationship);
 
-        Relationship(String description) {
-            this.description = description;
+        registerImage = fm.findFragmentByTag(FRAGMENT_IMAGE_TAG);
+        if (registerImage == null) {
+            registerImage = new RegisterImageFragment();
         }
 
-        public String getDescription() {
-            return description;
+        fm.beginTransaction()
+                .replace(R.id.frame_layout_register_activity, registerImage)
+                .addToBackStack(FRAGMENT_INFO_TAG)
+                .commit();
+    }
+
+    public void generateQrcode(View view) {
+        try {
+            String qr_content = generateQrcodeContent();
+
+            ImageView imageView = findViewById(R.id.qrcode_image_register);
+            int height = imageView.getHeight() >= 500? 500 : imageView.getHeight();
+            int width = height;
+
+
+            BarcodeEncoder encoder = new BarcodeEncoder();
+            Bitmap bitmap = encoder.encodeBitmap(qr_content, BarcodeFormat.QR_CODE, width, height);
+            imageView.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    private String generateQrcodeContent() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getString(R.string.register_email) + ":" + email.getText().toString() + "\n"
+                + getString(R.string.register_first_name) + ":" + firstName.getText().toString() + "\n"
+                + getString(R.string.register_last_name) + ":" + lastName.getText().toString() + "\n"
+                + getString(R.string.register_phone) + ":" + phone.getText().toString() + "\n"
+                + getString(R.string.register_birthdate) + ":" + birthdate.getText().toString() + "\n"
+                + getString(R.string.register_country) + ":" + country.getText().toString() + "\n"
+                + getString(R.string.register_job) + ":" + job.getText().toString() + "\n"
+                + getString(R.string.register_identity_card_number) + ":" + icn.getText().toString() + "\n"
+                + getString(R.string.register_gender) + ":" + gender.getText().toString() + "\n"
+                + getString(R.string.register_gender) + ":" + relationship.getSelectedItem());
+        Log.d("QRCODE", "QRCODE: " + sb.toString());
+        return sb.toString();
+    }
 }

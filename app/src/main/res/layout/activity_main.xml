@@ -51,7 +51,7 @@
         <Button
             android:id="@+id/generate_qrcode_btn"
             android:text="Generate"
-            android:onClick="generateQrcode"
+            android:onClick="generateQrcodeMainActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

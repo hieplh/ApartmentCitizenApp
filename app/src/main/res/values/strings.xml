@@ -9,13 +9,11 @@
     <string name="login_button_login">Đăng nhập</string>
     <string name="login_button_register">Đăng kí tài khoản</string>
 
-
     <!-- home -->
     <string name="home_label_nav_transaction">Giao dịch</string>
     <string name="home_label_nav_dashboard">Trung tâm</string>
     <string name="home_label_nav_notification">Thông báo</string>
     <string name="home_label_nav_me">Tài khoản</string>
-
 
     <!-- account -->
     <string name="information_label_fullname">Nguyễn Duy Anh</string>
@@ -23,6 +21,7 @@
     <string name="information_label_individual">Cá nhân</string>
     <string name="information_label_family">Gia đình</string>
     <string name="information_label_wall">Tường</string>
+
     <!-- item_list_1 -->
     <string name="information_title_item1">Ví của tôi</string>
     <string name="information_desc_item1">Thanh toán dễ dàng, không dùng tiền mặt.</string>
@@ -45,11 +44,12 @@
     <!-- register -->
     <string name="register_title">Đăng kí</string>
     <!-- register_info -->
+    <string name="register_title">Đăng kí</string>
     <string name="register_label_email">Email*</string>
     <string name="register_edit_email">Ví dụ: example@gmail.com</string>
     <string name="register_label_fullname">Họ và Tên*</string>
-    <string name="register_edit_first_name">Họ</string>
-    <string name="register_edit_last_name">Tên</string>
+    <string name="register_edit_first_name">Tên</string>
+    <string name="register_edit_last_name">Họ</string>
     <string name="register_label_gender">Giới tính</string>
     <string name="register_select1_gender">Nam</string>
     <string name="register_select2_gender">Nữ</string>
@@ -64,7 +64,7 @@
     <string name="register_label_relationship">Quan hệ với chủ hộ*</string>
     <string name="register_label_identity_card">Số chứng minh thư/Thẻ căn cước*</string>
     <string name="register_edit_identity_card">Số chứng minh thư/Thẻ căn cước</string>
-    <string name="register_butotn_next">Tiếp</string>
+    <string name="register_button_next">Tiếp</string>
 
     <!-- register_image -->
     <string name="register2_label_fullname">Nguyễn Duy Anh</string>
@@ -73,6 +73,17 @@
     <string name="register2_button_scan_identity_card">Quét Chứng minh thư/Thẻ căn cước</string>
     <string name="register2_button_generate">Tạo mã QR</string>
 
+    <!-- register field -->
+    <string name="register_email">email</string>
+    <string name="register_first_name">firstname</string>
+    <string name="register_last_name">lastname</string>
+    <string name="register_birthdate">birthdate</string>
+    <string name="register_phone">phone</string>
+    <string name="register_country">country</string>
+    <string name="register_job">job</string>
+    <string name="register_identity_card_number">identity_card_number</string>
+    <string name="register_gender">gender</string>
+    <string name="register_relationship">relationship</string>
 
     <!--    Notice-->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>

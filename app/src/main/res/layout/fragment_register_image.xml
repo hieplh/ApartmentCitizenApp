@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_reg_frame"
+    android:orientation="vertical"
+    tools:context=".register.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/image_profile_register"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/image_avatar_default"
+            app:civ_border_color="@color/gray_holder_login" />
+
+        <TextView
+            android:id="@+id/label_fullname_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/register2_label_fullname"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/label_email_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/register2_label_email"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_register_activity"
+            android:drawableRight="@drawable/icon_next_resize"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/register2_button_edit_avatar"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_register_activity"
+            android:drawableRight="@drawable/icon_next_resize"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/register2_button_scan_identity_card"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_horizontal"
+            android:padding="20dp"
+            android:text="@string/notice_register_2"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_register_activity"
+            android:drawableRight="@drawable/image_qr_resize"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/register2_button_generate"
+            android:textAllCaps="false"
+            android:onClick="generateQrcode"
+            android:textColor="@color/blue_app"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/qrcode_image_register"
+            android:layout_width="500px"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>
