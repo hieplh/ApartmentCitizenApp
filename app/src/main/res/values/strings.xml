@@ -44,7 +44,7 @@
     <!-- register -->
     <string name="register_title">Đăng kí</string>
     <!-- register_info -->
-    <string name="register_title">Đăng kí</string>
+
     <string name="register_label_email">Email*</string>
     <string name="register_edit_email">Ví dụ: example@gmail.com</string>
     <string name="register_label_fullname">Họ và Tên*</string>
