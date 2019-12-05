@@ -4,16 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
 import com.example.apartmentcitizen.home.account.AccountFragment;
@@ -21,7 +17,6 @@ import com.example.apartmentcitizen.home.notification.NotificationFragment;
 import com.example.apartmentcitizen.home.transaction.TransactionFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity  {
 
@@ -30,7 +25,7 @@ public class HomeActivity extends AppCompatActivity  {
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     TextView lbTitle;
     View headerHome;
-    CircleImageView imgAvatar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

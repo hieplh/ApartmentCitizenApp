@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="14dp"/>
+    <stroke android:width="0.1dp" android:color="@color/gray_unselect_icon"/>
+    <gradient android:startColor="@color/card_gradient1"
+        android:centerColor="@color/card_gradient2"
+        android:endColor="@color/card_gradient3"/>
+
+</shape>

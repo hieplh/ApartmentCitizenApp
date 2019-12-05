@@ -1,6 +1,7 @@
 package com.example.apartmentcitizen.home.account;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +95,16 @@ class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         holder.txtTitle.setText(listCard.get(position).getTitle());
         holder.txtDesc.setText(listCard.get(position).getDesc());
         holder.imgBackground.setImageResource(listCard.get(position).getImgPath());
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if(listCard.get(position).getTitle()==R.string.information_title_item1){
+                    intent = new Intent(context, WalletActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
