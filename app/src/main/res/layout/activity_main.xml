@@ -18,6 +18,26 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
+        android:layout_height="400px">
+
+        <Button
+            android:id="@+id/refresh"
+            android:text="Refresh"
+            android:onClick="loadImageFromServer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/qrcode_image_main_activity"
+            android:layout_width="400px"
+            android:layout_height="400px"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1">
 
@@ -29,8 +49,16 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/refresh_image_recyclerview_btn"
-            android:text="Refresh"
+            android:id="@+id/generate_qrcode_btn"
+            android:text="Generate"
+            android:onClick="generateQrcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/scan_qrcode_btn"
+            android:text="Scan"
+            android:onClick="scanQrcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

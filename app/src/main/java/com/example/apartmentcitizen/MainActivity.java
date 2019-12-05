@@ -1,5 +1,39 @@
 package com.example.apartmentcitizen;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.apartmentcitizen.component.DecorationRecyclerview;
+import com.example.apartmentcitizen.component.LoadImageAdapter;
+import com.example.apartmentcitizen.login.LoginActivity;
+import com.example.apartmentcitizen.network.LoadImageService;
+import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.example.apartmentcitizen.network.UploadMultipartImageService;
+import com.example.apartmentcitizen.service.FirebaseService;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.annotations.SerializedName;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.io.File;
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,37 +50,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import vn.semicolon.filepicker.FilePicker;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.example.apartmentcitizen.component.ImageUploadAdapter;
-import com.example.apartmentcitizen.home.HomeActivity;
-import com.example.apartmentcitizen.login.LoginActivity;
-import com.example.apartmentcitizen.network.RetrofitInstance;
-import com.example.apartmentcitizen.network.UploadMultipartImageService;
-import com.example.apartmentcitizen.service.FirebaseService;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     public final int BILL_HOUSE = 1;
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     String[] pathImages;
+
+    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
         subscribeTopics(BILL_HOUSE);
 
         recyclerView = findViewById(R.id.image_recyclerview_main_activity);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2 , GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(new DecorationRecyclerview(20));
     }
 
     @Override
@@ -98,6 +104,25 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+        retrofit = RetrofitInstance.getRetrofitInstance();
+
+        LoadImageService loadImageService = retrofit.create(LoadImageService.class);
+        Call<PathImage> call = loadImageService.getPathImage();
+        call.enqueue(new Callback<PathImage>() {
+            @Override
+            public void onResponse(Call<PathImage> call, Response<PathImage> response) {
+                ArrayList<String> list = initPathImageList(response.body().getPath());
+                adapter = new LoadImageAdapter(MainActivity.this, list);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<PathImage> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Load image failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         super.onStart();
     }
 
@@ -111,6 +136,16 @@ public class MainActivity extends AppCompatActivity {
                 uploadImageToServer(file);
             }
         }
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            Log.d("QR", "Content: " + result.getContents());
+            if(result.getContents() == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -119,6 +154,33 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1000) {
             Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void uploadImage(View view) {
+        grantPermission();
+
+        new FilePicker.Builder()
+                .maxSelect(20)
+                .typesOf(FilePicker.TYPE_IMAGE)
+                .start(this, 100);
+    }
+
+    public void generateQrcode(View view) {
+        try {
+            BarcodeEncoder encoder = new BarcodeEncoder();
+            Bitmap bitmap = encoder.encodeBitmap("Hello World", BarcodeFormat.QR_CODE, 400, 400);
+            ((ImageView) findViewById(R.id.qrcode_image_main_activity)).setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void scanQrcode(View view) {
+        grantPermission();
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setOrientationLocked(false);
+        integrator.initiateScan();
     }
 
     private void subscribeTopics(int topic) {
@@ -136,17 +198,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
         }
-    }
-
-    public void uploadImage(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        }
-
-        new FilePicker.Builder()
-                .maxSelect(20)
-                .typesOf(FilePicker.TYPE_IMAGE)
-                .start(this, 100);
     }
 
     private void uploadImageToServer(String filePath) {
@@ -175,5 +226,54 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void loadImageFromServer(View view) {
+        LoadImageService loadImageService = retrofit.create(LoadImageService.class);
+        Call<PathImage> call = loadImageService.getPathImage();
+        call.enqueue(new Callback<PathImage>() {
+            @Override
+            public void onResponse(Call<PathImage> call, Response<PathImage> response) {
+                ArrayList<String> list = initPathImageList(response.body().getPath());
+                adapter = new LoadImageAdapter(MainActivity.this, list);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<PathImage> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Load image failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void grantPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1000);
+        }
+
+    }
+
+    private ArrayList<String> initPathImageList(String[] path) {
+        ArrayList<String> list = new ArrayList<>();
+        for (String x : path) {
+            list.add(x);
+        }
+        return list;
+    }
+
+    public class PathImage {
+        @SerializedName("path")
+        private String[] path;
+
+        public String[] getPath() {
+            return path;
+        }
+
+        public void setPath(String[] path) {
+            this.path = path;
+        }
     }
 }
