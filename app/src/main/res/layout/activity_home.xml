@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
-        android:background="@color/color_appbar"
+        android:background="@color/gray_reg_frame"
         app:itemIconSize="20dp"
         app:itemTextAppearanceActive="@font/telex"
         app:itemIconTint="@drawable/icon_appnav_state"

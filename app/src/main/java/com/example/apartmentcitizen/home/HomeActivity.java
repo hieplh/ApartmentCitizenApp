@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class HomeActivity extends AppCompatActivity  {
         setupView();
     }
 
+    //set up View
     public void setupView(){
         headerHome = findViewById(R.id.header_home);
         lbTitle = headerHome.findViewById(R.id.label_title);
@@ -76,17 +79,8 @@ public class HomeActivity extends AppCompatActivity  {
         };
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-//        //set up avatar button
-//        imgAvatar = headerHome.findViewById(R.id.button_avatar);
-//        imgAvatar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getBaseContext(), InformationActivity.class);
-//                startActivity(intent);
-//            }
-//        });
     }
+
 
     @Override
     public void onBackPressed() {
