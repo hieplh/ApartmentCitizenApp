@@ -9,9 +9,31 @@
     <string name="login_button_login">Đăng nhập</string>
     <string name="login_button_register">Đăng kí tài khoản</string>
 
-    <!-- register -->
-    <string name="register_title">Đăng kí</string>
+    <!-- home -->
+    <string name="home_label_nav_transaction">Giao dịch</string>
+    <string name="home_label_nav_dashboard">Trung tâm</string>
+    <string name="home_label_nav_notification">Thông báo</string>
+    <string name="home_label_nav_me">Tài khoản</string>
+
+    <!-- account -->
+    <string name="information_label_fullname">Nguyễn Văn A</string>
+    <string name="information_label_housecode">B1-203</string>
+    <string name="information_label_individual">Cá nhân</string>
+    <string name="information_label_family">Gia đình</string>
+    <string name="information_label_wall">Tường</string>
+
+    <!-- item_list_1 -->
+    <string name="information_title_item1">Ví của tôi</string>
+    <string name="information_desc_item1">Thanh toán dễ dàng, không dùng tiền mặt.</string>
+    <string name="information_title_item2">Thông tin</string>
+    <string name="information_desc_item2">Xem và chỉnh sửa thông tin cá nhân.</string>
+    <string name="information_title_item3">Thành viên</string>
+    <string name="information_desc_item3">Thông tin thành viên gia đình.</string>
+    <string name="information_title_item4">Hoạt động</string>
+    <string name="information_desc_item4">Xem hoạt động của gia đình bạn.</string>
+
     <!-- register_info -->
+    <string name="register_title">Đăng kí</string>
     <string name="register_label_email">Email*</string>
     <string name="register_edit_email">Ví dụ: example@gmail.com</string>
     <string name="register_label_fullname">Họ và Tên*</string>
@@ -55,6 +77,7 @@
     <!--    Notice-->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
+
     <string name="base_url">http://ahtapartment.ddns.net/api</string>
     <string name="version_api">/v1/</string>
 

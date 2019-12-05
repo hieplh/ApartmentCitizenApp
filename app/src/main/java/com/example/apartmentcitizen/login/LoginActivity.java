@@ -128,6 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void clickToLogin(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void clickToRegister(View view) {

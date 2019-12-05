@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navSurvey"
-        android:icon="@drawable/icon_survey"
-        android:title="Khảo sát"/>
+        android:id="@+id/navTrans"
+        android:icon="@drawable/icon_transaction"
+        android:title="@string/home_label_nav_transaction"/>
 
     <item
-        android:id="@+id/navNewsfeed"
-        android:icon="@drawable/icon_newsfeed"
-        android:title="Bảng tin"/>
-
-    <item
-        android:id="@+id/navDBoard"
+        android:id="@+id/navDashBoard"
         android:icon="@drawable/icon_dashboard"
-        android:title="Bảng điều khiển"/>
-
+        android:title="@string/home_label_nav_dashboard"/>
 
     <item
         android:id="@+id/navNoti"
         android:icon="@drawable/icon_notification"
-        android:title="Thông báo" />
+        android:title="@string/home_label_nav_notification"/>
+
+
+    <item
+        android:id="@+id/navAcc"
+        android:icon="@drawable/icon_account"
+        android:title="@string/home_label_nav_me" />
 
 
 </menu>

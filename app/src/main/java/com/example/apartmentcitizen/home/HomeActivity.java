@@ -5,24 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
-import com.example.apartmentcitizen.home.newsfeed.NewsfeedFragment;
+import com.example.apartmentcitizen.home.account.AccountFragment;
 import com.example.apartmentcitizen.home.notification.NotificationFragment;
-import com.example.apartmentcitizen.home.survey.SurveyFragment;
-import com.example.apartmentcitizen.information.InformationActivity;
+import com.example.apartmentcitizen.home.transaction.TransactionFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity  {
 
+    boolean doubleBackToExitPressedOnce = false;
     BottomNavigationView bottomNavigationView;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     TextView lbTitle;
@@ -36,36 +39,38 @@ public class HomeActivity extends AppCompatActivity {
         setupView();
     }
 
+    //set up View
     public void setupView(){
         headerHome = findViewById(R.id.header_home);
         lbTitle = headerHome.findViewById(R.id.label_title);
         System.out.println("LABEL TITLE: " + lbTitle);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navNewsfeed);
-        loadFragment(new NewsfeedFragment());
+        bottomNavigationView.setSelectedItemId(R.id.navDashBoard);
+        lbTitle.setText(R.string.home_label_nav_dashboard);
+        loadFragment(new DashboardFragment());
         mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment;
                 switch (item.getItemId()){
-                    case R.id.navSurvey:
-                        lbTitle.setText("Khảo sát");
-                        fragment = new SurveyFragment();
+                    case R.id.navTrans:
+                        lbTitle.setText(R.string.home_label_nav_transaction);
+                        fragment = new TransactionFragment();
                         loadFragment(fragment);
                         return true;
-                    case R.id.navNewsfeed:
-                        lbTitle.setText("Bảng tin");
-                        fragment = new NewsfeedFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.navDBoard:
-                        lbTitle.setText("Bảng điều khiển");
+                    case R.id.navDashBoard:
+                        lbTitle.setText(R.string.home_label_nav_dashboard);
                         fragment = new DashboardFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navNoti:
-                        lbTitle.setText("Thông báo");
+                        lbTitle.setText(R.string.home_label_nav_notification);
                         fragment = new NotificationFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.navAcc:
+                        lbTitle.setText(R.string.home_label_nav_me);
+                        fragment = new AccountFragment();
                         loadFragment(fragment);
                         return true;
                 }
@@ -74,17 +79,28 @@ public class HomeActivity extends AppCompatActivity {
         };
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-        //set up avatar button
-        imgAvatar = headerHome.findViewById(R.id.button_avatar);
-        imgAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), InformationActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            finish();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
+
 
 
     private void loadFragment(Fragment fragment) {
@@ -96,5 +112,5 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-}
 
+}

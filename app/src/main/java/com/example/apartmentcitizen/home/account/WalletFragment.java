@@ -1,4 +1,4 @@
-package com.example.apartmentcitizen.home.survey;
+package com.example.apartmentcitizen.home.account;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,18 +13,21 @@ import android.view.ViewGroup;
 import com.example.apartmentcitizen.R;
 
 
-public class SurveyFragment extends Fragment {
+public class WalletFragment extends Fragment {
 
-
-    public SurveyFragment() {
+    public WalletFragment() {
         // Required empty public constructor
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_survey, container, false);
+        return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
+
 
 }
