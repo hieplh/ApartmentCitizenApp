@@ -1,7 +1,5 @@
-package com.example.apartmentcitizen.home.newsfeed;
+package com.example.apartmentcitizen.home.transaction;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +11,10 @@ import android.view.ViewGroup;
 import com.example.apartmentcitizen.R;
 
 
-public class NewsfeedFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
 
-    public NewsfeedFragment() {
+    public TransactionFragment() {
         // Required empty public constructor
     }
 
@@ -24,8 +22,7 @@ public class NewsfeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newsfeed, container, false);
+        return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
-
 
 }
