@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.apartmentcitizen">
 
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.hardware.camera" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
-
-    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
     <application
         android:allowBackup="true"
@@ -20,8 +19,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity android:name=".information.InformationActivity"></activity>-->
-
+        <activity android:name=".home.account.information.InformationActivity"></activity>
+        <activity android:name=".home.account.wallet.WalletActivity" />
+        <activity android:name=".register.RegisterImageActivity" /> <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <activity android:name=".register.RegisterActivity" />
 
         <service

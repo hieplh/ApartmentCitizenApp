@@ -16,7 +16,7 @@
     <string name="home_label_nav_me">Tài khoản</string>
 
     <!-- account -->
-    <string name="information_label_fullname">Nguyễn Văn A</string>
+    <string name="information_label_fullname">Nguyễn Duy Anh</string>
     <string name="information_label_housecode">B1-203</string>
     <string name="information_label_individual">Cá nhân</string>
     <string name="information_label_family">Gia đình</string>
@@ -32,8 +32,19 @@
     <string name="information_title_item4">Hoạt động</string>
     <string name="information_desc_item4">Xem hoạt động của gia đình bạn.</string>
 
-    <!-- register_info -->
+    <!-- wallet -->
+    <string name="wallet_title_money_in_wallet">Số dư trong ví</string>
+    <string name="wallet_money_in_wallet">25490000</string>
+    <string name="wallet_currency_unit">VND</string>
+    <string name="wallet_title_history_trans">Giao dịch cũ</string>
+    <string name="wallet_history_tran_value">-0</string>
+    <string name="wallet_title_pay_now">Thanh toán ngay</string>
+    <string name="wallet_title_recharge">Nạp tiền vào ví</string>
+
+    <!-- register -->
     <string name="register_title">Đăng kí</string>
+    <!-- register_info -->
+
     <string name="register_label_email">Email*</string>
     <string name="register_edit_email">Ví dụ: example@gmail.com</string>
     <string name="register_label_fullname">Họ và Tên*</string>
@@ -56,7 +67,7 @@
     <string name="register_button_next">Tiếp</string>
 
     <!-- register_image -->
-    <string name="register2_label_fullname">Nguyễn Văn A</string>
+    <string name="register2_label_fullname">Nguyễn Duy Anh</string>
     <string name="register2_label_email">nguyenvana@gmail.com</string>
     <string name="register2_button_edit_avatar">Sửa ảnh đại diện</string>
     <string name="register2_button_scan_identity_card">Quét Chứng minh thư/Thẻ căn cước</string>
@@ -78,7 +89,5 @@
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
 
-    <string name="base_url">http://ahtapartment.ddns.net/api</string>
-    <string name="version_api">/v1/</string>
 
 </resources>
