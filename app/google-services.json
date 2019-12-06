@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "374072781354-fhmsn99l3349soi22ik8aq761dibv8u7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apartmentcitizen",
+            "certificate_hash": "c64dc2244bcd87bab968a6f6bfb19ea4ffffd340"
+          }
+        },
+        {
           "client_id": "374072781354-fa4mr9iqvv9i6r1aj9ebus35d23940uc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

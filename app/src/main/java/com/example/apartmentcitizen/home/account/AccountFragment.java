@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
 
 import java.util.ArrayList;
@@ -101,6 +102,10 @@ class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                 Intent intent;
                 if(listCard.get(position).getTitle()==R.string.information_title_item1){
                     intent = new Intent(context, WalletActivity.class);
+                    context.startActivity(intent);
+                }
+                if(listCard.get(position).getTitle()==R.string.information_title_item2){
+                    intent = new Intent(context, InformationActivity.class);
                     context.startActivity(intent);
                 }
             }
