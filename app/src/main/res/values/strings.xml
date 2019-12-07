@@ -17,7 +17,7 @@
 
     <!-- account fragment-->
     <string name="information_label_fullname">Nguyễn Duy Anh</string>
-    <string name="information_label_housecode">B1-203</string>
+    <string name="information_label_housecode">A-1-103</string>
     <string name="information_label_individual">Cá nhân</string>
     <string name="information_label_family">Gia đình</string>
     <string name="information_label_wall">Tường</string>
@@ -27,10 +27,14 @@
     <string name="information_desc_item1">Thanh toán dễ dàng, không dùng tiền mặt.</string>
     <string name="information_title_item2">Thông tin</string>
     <string name="information_desc_item2">Xem và chỉnh sửa thông tin cá nhân.</string>
+    <string name="information_title_item5">Tường</string>
+    <string name="information_desc_item5">Truy cập các bài viết cá nhân.</string>
+
+    <!-- item_list_2 -->
     <string name="information_title_item3">Thành viên</string>
     <string name="information_desc_item3">Thông tin thành viên gia đình.</string>
     <string name="information_title_item4">Hoạt động</string>
-    <string name="information_desc_item4">Xem hoạt động của gia đình bạn.</string>
+    <string name="information_desc_item4">Hoạt động của gia đình bạn.</string>
 
     <!-- wallet activity -->
     <string name="wallet_title_money_in_wallet">Số dư trong ví</string>
@@ -42,6 +46,16 @@
     <string name="wallet_title_recharge">Nạp tiền vào ví</string>
     <string name="wallet_title_history_trans">Lịch sử giao dịch</string>
 
+    <!-- member_family_activity -->
+    <string name="member_family_activity_title">Thành viên gia đình</string>
+    <string name="member_family_activity_button_access_wall">Truy cập trang cá nhân</string>
+    <string name="house_code_block_title">Toà</string>
+    <string name="house_code_floor_title">Tầng</string>
+    <string name="house_code_block">A</string>
+    <string name="house_code_floor">1</string>
+    <string name="member_count_title">Thành viên</string>
+    <string name="member_count">6</string>
+
 
     <!-- information activity -->
     <string name="information_activity_title">Thông tin cá nhân</string>
@@ -49,7 +63,7 @@
     <string name="information_activity_label_house_code">Số nhà</string>
     <string name="information_activity_label_householder">Chủ hộ</string>
     <string name="information_activity_desc_householder">Hồ Quang Bảo</string>
-    <string name="information_activity_label_relation">Quan hệ với chủ hộ</string>
+    <string name="information_activity_label_relation">Với chủ hộ</string>
     <string name="information_activity_desc_relation">Con trai/Con gái</string>
     <string name="information_activity_desc_birthday">16/09/1996</string>
     <string name="information_activity_desc_job">Học sinh</string>

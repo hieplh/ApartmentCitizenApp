@@ -114,7 +114,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
@@ -194,6 +194,7 @@
                     android:gravity="center_vertical"
                     android:background="@color/white"
                     android:fontFamily="@font/telex"
+                    android:inputType="number"
                     android:hint="@string/register_button_birthday"
                     android:stateListAnimator="@null"
                     android:textColor="@color/end_gradient"
@@ -377,6 +378,7 @@
                     android:stateListAnimator="@null"
                     android:textColor="@color/end_gradient"
                     android:text="@string/information_activity_desc_phone_number"
+                    android:inputType="number"
                     android:textSize="15sp"
                     android:paddingRight="10dp"
                     android:drawableTint="@color/end_gradient"
@@ -387,7 +389,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
@@ -403,7 +405,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="15dp"

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/background_card_wallet"
+    android:stretchColumns="*"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableRow
+        android:layout_height="55dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/member_avatar"
+            android:layout_height="50dp"
+            android:layout_width="20dp"
+            android:src="@drawable/image_avatar_default"/>
+        <TextView
+            android:layout_width="120dp"
+            android:id="@+id/member_full_name"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/telex"
+            android:text="@string/information_label_fullname"
+            android:textColor="@color/end_gradient"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/information_activity_label_relation"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="120dp"
+            android:id="@+id/member_relation"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="35dp"
+            android:fontFamily="@font/telex"
+            android:text="@string/information_activity_desc_relation"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </TableRow>
+    <TableRow
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:text="@string/information_activity_label_email"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:id="@+id/member_email"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="35dp"
+            android:fontFamily="@font/telex"
+            android:text="@string/register2_label_email"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:text="@string/register_label_phone"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/member_phone_number"
+            android:layout_width="120dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="35dp"
+            android:fontFamily="@font/telex"
+            android:text="@string/information_activity_desc_phone_number"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </TableRow>
+    <TableRow
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="@font/telex"
+            android:gravity="center_vertical"
+            android:text="@string/register_label_birthday"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/member_birth_day"
+            android:layout_width="120dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="35dp"
+            android:fontFamily="@font/telex"
+            android:text="@string/information_activity_desc_birthday"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </TableRow>
+    <ImageView android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:background="@color/gray_unselect_icon"/>
+    <TableRow
+        android:layout_height="35dp">
+
+        <Button
+            android:layout_span="2"
+            android:layout_height="35dp"
+            android:background="@color/no_color"
+            android:text="@string/member_family_activity_button_access_wall"
+            android:textColor="@color/end_gradient"
+            android:textAllCaps="false"
+            android:drawableTint="@color/end_gradient"
+            android:drawableRight="@drawable/icon_next_resize"
+            android:paddingRight="10dp"
+            android:paddingLeft="20dp"
+            />
+    </TableRow>
+</TableLayout>

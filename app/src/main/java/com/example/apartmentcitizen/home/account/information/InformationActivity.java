@@ -15,7 +15,6 @@ import java.util.Calendar;
 
 public class InformationActivity extends AppCompatActivity {
 
-    View header;
     TextView title, edtBirthDay;
 
     private final int DAY_OF_MONTH_INDEX = 0;
@@ -30,7 +29,6 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     public void setUpView(){
-        header = findViewById(R.id.header_standard);
         title = findViewById(R.id.label_title_standard);
         title.setText(R.string.information_activity_title);
 

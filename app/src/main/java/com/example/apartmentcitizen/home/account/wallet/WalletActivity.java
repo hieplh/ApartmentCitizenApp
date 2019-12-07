@@ -23,7 +23,11 @@ public class WalletActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
+        setUpView();
 
+    }
+
+    public void setUpView(){
         ViewTreeObserver treeObserver = findViewById(R.id.constraint_layout_wallet_activity).getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -33,7 +37,7 @@ public class WalletActivity extends AppCompatActivity {
                 float height = walletCardView.getHeight();
                 Animation animation = new TranslateAnimation(0, 0, (0f - height), 0f);
 
-                animation.setDuration(500);
+                animation.setDuration(400);
                 walletCardView.startAnimation(animation);
             }
         });
