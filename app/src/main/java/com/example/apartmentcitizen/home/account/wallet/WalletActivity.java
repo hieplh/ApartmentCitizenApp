@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -36,5 +37,14 @@ public class WalletActivity extends AppCompatActivity {
                 walletCardView.startAnimation(animation);
             }
         });
+    }
+
+    public void clickToPayNow(View view) {
+    }
+
+    public void clickToRecharge(View view) {
+    }
+
+    public void clickToShowHistoryTrans(View view) {
     }
 }

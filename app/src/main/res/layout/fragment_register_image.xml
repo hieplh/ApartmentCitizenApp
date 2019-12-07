@@ -30,6 +30,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/register2_label_fullname"
+            android:fontFamily="@font/poly"
             android:textColor="@color/black"
             android:textSize="22sp" />
 
@@ -38,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/poly"
             android:text="@string/register2_label_email"
             android:textColor="@color/gray_holder_login"
             android:textSize="14sp" />
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:gravity="left|center_horizontal"
             android:padding="20dp"
+            android:fontFamily="@font/telex"
             android:text="@string/notice_register_2"
             android:textColor="@color/gray_holder_login"
             android:textSize="14sp" />

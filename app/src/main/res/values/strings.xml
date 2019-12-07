@@ -3,19 +3,19 @@
     <string name="default_notification_channel_id">Bills</string>
     <string name="bill_house_topic">Bill</string>
 
-    <!-- login -->
+    <!-- login activity-->
     <string name="login_hint_edit_username">Tên đăng nhập</string>
     <string name="login_hint_edit_password">Mật khẩu</string>
     <string name="login_button_login">Đăng nhập</string>
     <string name="login_button_register">Đăng kí tài khoản</string>
 
-    <!-- home -->
+    <!-- home activity-->
     <string name="home_label_nav_transaction">Giao dịch</string>
     <string name="home_label_nav_dashboard">Trung tâm</string>
     <string name="home_label_nav_notification">Thông báo</string>
     <string name="home_label_nav_me">Tài khoản</string>
 
-    <!-- account -->
+    <!-- account fragment-->
     <string name="information_label_fullname">Nguyễn Duy Anh</string>
     <string name="information_label_housecode">B1-203</string>
     <string name="information_label_individual">Cá nhân</string>
@@ -32,16 +32,36 @@
     <string name="information_title_item4">Hoạt động</string>
     <string name="information_desc_item4">Xem hoạt động của gia đình bạn.</string>
 
-    <!-- wallet -->
+    <!-- wallet activity -->
     <string name="wallet_title_money_in_wallet">Số dư trong ví</string>
     <string name="wallet_money_in_wallet">25490000</string>
     <string name="wallet_currency_unit">VND</string>
-    <string name="wallet_title_history_trans">Giao dịch cũ</string>
-    <string name="wallet_history_tran_value">-0</string>
+    <string name="wallet_title_debt">Chưa thanh toán</string>
+    <string name="wallet_history_tran_value">12540000</string>
     <string name="wallet_title_pay_now">Thanh toán ngay</string>
     <string name="wallet_title_recharge">Nạp tiền vào ví</string>
+    <string name="wallet_title_history_trans">Lịch sử giao dịch</string>
 
-    <!-- register -->
+
+    <!-- information activity -->
+    <string name="information_activity_title">Thông tin cá nhân</string>
+    <string name="information_activity_label_full_name">Họ Tên</string>
+    <string name="information_activity_label_house_code">Số nhà</string>
+    <string name="information_activity_label_householder">Chủ hộ</string>
+    <string name="information_activity_desc_householder">Hồ Quang Bảo</string>
+    <string name="information_activity_label_relation">Quan hệ với chủ hộ</string>
+    <string name="information_activity_desc_relation">Con trai/Con gái</string>
+    <string name="information_activity_desc_birthday">16/09/1996</string>
+    <string name="information_activity_desc_job">Học sinh</string>
+    <string name="information_activity_desc_country">Hà Nội</string>
+    <string name="information_activity_label_email">Email</string>
+    <string name="information_activity_label_identity_card">CMND</string>
+    <string name="information_activity_desc_identity_card">272888999</string>
+    <string name="information_activity_desc_phone_number">0909090909</string>
+    <string name="information_activity_button_save">Cập nhật thông tin</string>
+    <string name="information_activity_button_cancel">Huỷ</string>
+
+    <!-- register activity-->
     <string name="register_title">Đăng kí</string>
     <!-- register_info -->
 
@@ -68,7 +88,7 @@
 
     <!-- register_image -->
     <string name="register2_label_fullname">Nguyễn Duy Anh</string>
-    <string name="register2_label_email">nguyenvana@gmail.com</string>
+    <string name="register2_label_email">duyanhnguyen@gmail.com</string>
     <string name="register2_button_edit_avatar">Sửa ảnh đại diện</string>
     <string name="register2_button_scan_identity_card">Quét Chứng minh thư/Thẻ căn cước</string>
     <string name="register2_button_generate">Tạo mã QR</string>
