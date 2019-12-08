@@ -51,6 +51,16 @@ public class RegisterActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frame_layout_register_activity, registerInfo, FRAGMENT_INFO_TAG).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    public void clickToCreateDialogBirthdate(View view) {
+        BirthdateListener birthdateListener = new RegisterInfoFragment();
+        birthdateListener.initBirthdateDialog(view);
+    }
+
     public void clickToNextRegister(View view) {
         birthdate = findViewById(R.id.edit_register_birthday);
         email = findViewById(R.id.edit_register_email);
@@ -83,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
             String qr_content = generateQrcodeContent();
 
             ImageView imageView = findViewById(R.id.qrcode_image_register);
-            int height = imageView.getHeight() >= 500? 500 : imageView.getHeight();
+            int height = imageView.getHeight() >= 500 ? 500 : imageView.getHeight();
             int width = height;
 
 

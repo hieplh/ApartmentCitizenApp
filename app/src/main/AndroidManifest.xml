@@ -21,8 +21,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".home.account.information.InformationActivity"></activity>
         <activity android:name=".home.account.wallet.WalletActivity" />
-        <activity android:name=".register.RegisterImageActivity" /> <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <activity android:name=".register.RegisterActivity" />
+        <!-- <activity android:name=".information.InformationActivity"></activity> -->
 
         <service
             android:name=".service.FirebaseService"

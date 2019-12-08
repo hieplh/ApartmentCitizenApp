@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
 
 import java.text.SimpleDateFormat;
@@ -26,16 +28,15 @@ import androidx.fragment.app.Fragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterInfoFragment extends Fragment {
+public class RegisterInfoFragment extends Fragment implements BirthdateListener {
 
     private final int DAY_OF_MONTH_INDEX = 0;
     private final int MONTH_INDEX = 1;
     private final int YEAR_INDEX = 2;
 
-    TextView edtBirthDay;
+    TextView birthdate;
     Spinner spnRelationship;
     List<String> listRelationship;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,13 +65,6 @@ public class RegisterInfoFragment extends Fragment {
         spnRelationship.setAdapter(adapter);
 
         //set up edtBirthday
-        edtBirthDay = view.findViewById(R.id.edit_register_birthday);
-        edtBirthDay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseDateOfBirth(((TextView) v).getText().toString());
-            }
-        });
     }
 
     private int splitStringDate(String date, int index) {
@@ -104,13 +98,18 @@ public class RegisterInfoFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 calendar.set(year, month, dayOfMonth);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                edtBirthDay.setText(simpleDateFormat.format(calendar.getTime()));
+                birthdate.setText(simpleDateFormat.format(calendar.getTime()));
             }
         }, curYear, curMonth, curDay);
 
         datePickerDialog.getDatePicker().setMaxDate(getPastMilisecondsFromNow(16));
         datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(720));
         datePickerDialog.show();
+    }
+
+    @Override
+    public void initBirthdateDialog(View view) {
+        chooseDateOfBirth(((EditText)view).getText().toString());
     }
 
     private enum Relationship {
