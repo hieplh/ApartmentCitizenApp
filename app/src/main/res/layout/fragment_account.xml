@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_reg_frame"
-    tools:context=".register.RegisterImageActivity">
-
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 
@@ -24,64 +12,96 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TableLayout
-                android:stretchColumns="*"
+            <LinearLayout
+                android:layout_gravity="right"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="100dp">
 
-                <TableRow android:layout_marginTop="5dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image_avatar_default"/>
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="@string/information_label_fullname"/>
 
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/image_profile_information"
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/image_avatar_default"
-                        app:civ_border_color="@color/gray_holder_login"/>
+                <Button
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/label_house_code_gradient"
+                    android:text="@string/information_label_housecode"
+                    android:textColor="@color/end_gradient"
+                    android:translationX="-148dp" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+            </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/label_fullname_information"
-                            android:layout_width="250dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_horizontal"
-                            android:text="@string/information_label_fullname"
-                            android:textColor="@color/black"
-                            android:textSize="22sp"
-                            android:fontFamily="@font/telex"/>
 
-                        <Button
-                            android:layout_height="30dp"
-                            android:layout_width="80dp"
-                            android:textSize="12sp"
-                            android:gravity="center"
-                            android:fontFamily="@font/telex"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/information_label_housecode"
-                            android:textStyle="bold"
-                            android:textColor="@color/end_gradient"
-                            android:background="@drawable/label_house_code_gradient"
-                            android:stateListAnimator="@null"/>
 
-                    </LinearLayout>
 
-                </TableRow>
+<!--            <TableLayout-->
+<!--                android:stretchColumns="*"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="110dp"-->
+<!--                android:layout_gravity="center_horizontal">-->
 
-            </TableLayout>
+<!--                <TableRow android:layout_marginTop="5dp">-->
 
-            <ImageView
-                android:layout_marginTop="25dp"
-                android:layout_width="350dp"
-                android:layout_height="0.25dp"
-                android:background="@color/gray_holder_login"/>
+<!--                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                        android:id="@+id/image_profile_information"-->
+<!--                        android:layout_marginLeft="15dp"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:src="@drawable/image_avatar_default"-->
+<!--                        app:civ_border_color="@color/gray_holder_login"/>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/label_fullname_information"-->
+<!--                            android:layout_width="250dp"-->
+<!--                            android:layout_marginTop="15dp"-->
+<!--                            android:layout_marginLeft="15dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="left|center_horizontal"-->
+<!--                            android:text="@string/information_label_fullname"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="22sp"-->
+<!--                            android:fontFamily="@font/telex"/>-->
+
+<!--                        <Button-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:layout_width="80dp"-->
+<!--                            android:textSize="12sp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:fontFamily="@font/telex"-->
+<!--                            android:layout_marginLeft="15dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:text="@string/information_label_housecode"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textColor="@color/end_gradient"-->
+<!--                            android:background="@drawable/label_house_code_gradient"-->
+<!--                            android:stateListAnimator="@null"/>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </TableRow>-->
+
+<!--            </TableLayout>-->
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,6 +142,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>

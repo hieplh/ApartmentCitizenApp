@@ -22,7 +22,20 @@
     <string name="information_label_family">Gia đình</string>
     <string name="information_label_wall">Tường</string>
 
-    <!-- item_list_1 -->
+    <!-- item_list_button2 -->
+    <string name="dashboard_newsfeed_title">Mạng xã hội</string>
+    <string name="dashboard_newsfeed_desc">Thông tin hằng ngày dành cho cư dân AHT Apartment.</string>
+    <string name="dashboard_service_nearby_title">Dịch vụ quanh đây</string>
+    <string name="dashboard_service_nearby_desc">Tìm kiếm quán ăn, nhà hàng... thật dễ dàng.</string>
+    <string name="dashboard_fix_title">Sửa chữa</string>
+    <string name="dashboard_fix_desc">Tìm kiếm và yêu cầu sửa chữa nhanh chóng.</string>
+    <string name="dashboard_survey_title">Khảo sát</string>
+    <string name="dashboard_survey_desc">Góp phần nâng cao chất lượng cuộc sống của bạn.</string>
+
+
+
+
+    <!-- item_list_button1_1 -->
     <string name="information_title_item1">Ví của tôi</string>
     <string name="information_desc_item1">Thanh toán dễ dàng, không dùng tiền mặt.</string>
     <string name="information_title_item2">Thông tin</string>
@@ -30,7 +43,7 @@
     <string name="information_title_item5">Tường</string>
     <string name="information_desc_item5">Truy cập các bài viết cá nhân.</string>
 
-    <!-- item_list_2 -->
+    <!-- item_list_button1_2 -->
     <string name="information_title_item3">Thành viên</string>
     <string name="information_desc_item3">Thông tin thành viên gia đình.</string>
     <string name="information_title_item4">Hoạt động</string>
@@ -53,8 +66,7 @@
     <string name="house_code_floor_title">Tầng</string>
     <string name="house_code_block">A</string>
     <string name="house_code_floor">1</string>
-    <string name="member_count_title">Thành viên</string>
-    <string name="member_count">6</string>
+    <string name="member_count">6 Thành viên</string>
 
 
     <!-- information activity -->
