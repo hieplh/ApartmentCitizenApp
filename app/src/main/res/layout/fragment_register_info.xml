@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:layout_marginTop="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:fontFamily="@font/telex"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
                 android:text="@string/register_label_email"
@@ -35,7 +37,7 @@
                 android:id="@+id/edit_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_email"
                 android:imeOptions="actionNext"
@@ -49,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:fontFamily="@font/telex"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_fullname"
@@ -59,7 +62,7 @@
                 android:id="@+id/edit_register_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_last_name"
                 android:imeOptions="actionNext"
@@ -73,7 +76,7 @@
                 android:id="@+id/edit_register_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_first_name"
                 android:imeOptions="actionNext"
@@ -89,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
+                android:fontFamily="@font/telex"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_gender"
                 android:textColor="@color/black"
@@ -98,7 +102,7 @@
                 android:id="@+id/gender_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -106,8 +110,9 @@
                     android:id="@+id/male_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/blue_app"
+                    android:buttonTint="@color/end_gradient"
                     android:checked="true"
+                    android:fontFamily="@font/telex"
                     android:text="@string/register_select1_gender"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -117,8 +122,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:buttonTint="@color/blue_app"
+                    android:buttonTint="@color/end_gradient"
                     android:checked="false"
+                    android:fontFamily="@font/telex"
                     android:text="@string/register_select2_gender"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -131,6 +137,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_birthday"
+                android:fontFamily="@font/telex"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -138,7 +145,7 @@
                 android:id="@+id/edit_register_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/button_register_state"
                 android:fontFamily="@font/telex"
                 android:gravity="left|center_vertical"
                 android:hint="@string/register_button_birthday"
@@ -156,6 +163,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_phone"
+                android:fontFamily="@font/telex"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -163,7 +171,7 @@
                 android:id="@+id/edit_register_phone"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_phone"
                 android:imeOptions="actionNext"
@@ -180,6 +188,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_country"
+                android:fontFamily="@font/telex"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -187,7 +196,7 @@
                 android:id="@+id/edit_register_country"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_country"
                 android:imeOptions="actionNext"
@@ -204,6 +213,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_job"
+                android:fontFamily="@font/telex"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -211,7 +221,7 @@
                 android:id="@+id/edit_register_job"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_job"
                 android:imeOptions="actionNext"
@@ -225,6 +235,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:fontFamily="@font/telex"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_relationship"
@@ -235,12 +246,13 @@
                 android:id="@+id/spinner_relationship"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/edittext_frame"
-                android:backgroundTint="@color/blue_hover"
+                android:background="@drawable/button_register_state"
+                android:backgroundTint="@color/end_gradient"
                 android:popupBackground="@color/gray_holder_login"
                 android:spinnerMode="dropdown" />
 
             <TextView
+                android:fontFamily="@font/telex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -255,7 +267,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_frame"
+                android:background="@drawable/edit_text_frame"
                 android:fontFamily="@font/telex"
                 android:hint="@string/register_edit_identity_card"
                 android:imeOptions="actionDone"
@@ -271,6 +283,7 @@
                 android:layout_marginBottom="25dp"
                 android:gravity="left|center_horizontal"
                 android:padding="20dp"
+                android:fontFamily="@font/telex"
                 android:text="@string/notice_register_1"
                 android:textColor="@color/gray_holder_login"
                 android:textSize="14sp" />

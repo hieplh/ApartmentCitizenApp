@@ -2,7 +2,6 @@ package com.example.apartmentcitizen.home.account;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,9 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
 import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
 
@@ -32,6 +30,7 @@ public class AccountFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2;
     List<CardDTO> listCard1, listCard2;
+
     public AccountFragment() {
 
     }
@@ -51,6 +50,8 @@ public class AccountFragment extends Fragment {
         listCard1 = new ArrayList<>();
         listCard1.add(new CardDTO(R.drawable.background_my_wallet_trans,R.string.information_title_item1,R.string.information_desc_item1));
         listCard1.add(new CardDTO(R.drawable.background_information_trans,R.string.information_title_item2,R.string.information_desc_item2));
+        listCard1.add(new CardDTO(R.drawable.background_my_wall_trans, R.string.information_title_item5, R.string.information_desc_item5));
+
         CardAdapter adapter = new CardAdapter(getContext(), listCard1);
         recyclerView1.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -87,7 +88,7 @@ class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     @NonNull
     @Override
     public CardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_button, parent, false);
         return new ViewHolder(view);
     }
 
@@ -106,6 +107,10 @@ class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                 }
                 if(listCard.get(position).getTitle()==R.string.information_title_item2){
                     intent = new Intent(context, InformationActivity.class);
+                    context.startActivity(intent);
+                }
+                if(listCard.get(position).getTitle()==R.string.information_title_item3){
+                    intent = new Intent(context, FamilyInformationActivity.class);
                     context.startActivity(intent);
                 }
             }

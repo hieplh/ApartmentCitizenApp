@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_reg_frame"
+    tools:context=".home.account.familymember.FamilyInformationActivity">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/header_standard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_height="60dp"
+                    android:background="@drawable/label_house_code_gradient"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center"
+                    android:text="@string/information_label_housecode"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/telex"
+                    android:text="@string/house_code_block_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:text="@string/house_code_block"
+                    android:textColor="@color/start_gradient"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:fontFamily="@font/telex"
+                    android:text="@string/house_code_floor_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:gravity="right"
+                    android:text="@string/house_code_floor"
+                    android:textColor="@color/start_gradient"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingLeft="10dp"
+                android:layout_marginRight="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/member_count"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/member_count_title"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_family_member"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+</ScrollView>

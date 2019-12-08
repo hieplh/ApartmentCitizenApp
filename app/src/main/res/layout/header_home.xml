@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/label_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
@@ -17,6 +17,22 @@
         android:text="@string/register_title"
         android:textColor="@color/black"
         android:textSize="30sp" />
+
+
+    <Button
+        android:id="@+id/button_log_out"
+        android:visibility="invisible"
+        android:layout_alignEnd="@+id/label_title"
+        android:layout_marginRight="15dp"
+        android:gravity="bottom"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:paddingBottom="14dp"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
+        android:textColor="@color/end_gradient"
+        android:background="@color/no_color"
+        android:text="Đăng xuất"/>
 
 
 

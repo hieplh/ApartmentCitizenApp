@@ -28,7 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
     FragmentManager fm;
     Fragment registerInfo, registerImage;
 
-    TextView birthdate;
+    View header;
+    TextView birthdate, title;
     EditText email, lastName, firstName;
     EditText phone, country, job, icn;
     RadioGroup genderGroup;
@@ -39,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        setUpView();
         fm = getSupportFragmentManager();
 
         registerInfo = fm.findFragmentByTag(FRAGMENT_INFO_TAG);
@@ -59,6 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
     public void clickToCreateDialogBirthdate(View view) {
         BirthdateListener birthdateListener = new RegisterInfoFragment();
         birthdateListener.initBirthdateDialog(view);
+    }
+
+    public void setUpView(){
+        header = findViewById(R.id.header_standard);
+        title = header.findViewById(R.id.label_title_standard);
+        title.setText(R.string.register_title);
     }
 
     public void clickToNextRegister(View view) {

@@ -2,7 +2,9 @@ package com.example.apartmentcitizen.home.account;
 
 import android.graphics.drawable.Drawable;
 
-public class CardDTO {
+import java.io.Serializable;
+
+public class CardDTO implements Serializable {
     private int title;
     private int desc;
     private int imgPath;

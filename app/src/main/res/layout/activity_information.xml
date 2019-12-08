@@ -1,9 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.account.information.InformationActivity">
+    android:background="@color/gray_reg_frame"
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/header_standard" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/background_card_wallet"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_full_name"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:text="@string/information_label_fullname"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_house_code"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/label_house_code_gradient"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_label_housecode"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_householder"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:text="@string/information_activity_desc_householder"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_relation"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:fontFamily="@font/telex"
+                    android:text="@string/information_activity_desc_relation"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/background_card_wallet"
+            android:drawableRight="@drawable/icon_next_resize"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/register2_button_edit_avatar"
+            android:textAllCaps="false"
+            android:textColor="@color/end_gradient"
+            android:textSize="15sp" />
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/background_card_wallet"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_email"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/infor_edit_text_email"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:fontFamily="@font/telex"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/register2_label_email"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/information_activity_label_identity_card"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/infor_edit_text_identity_card"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:fontFamily="@font/telex"
+                    android:inputType="number"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/information_activity_desc_identity_card"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/register_label_gender"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+
+                <RadioGroup
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/gender_radio_group_info"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:background="@color/white"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/male_radio_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/end_gradient"
+                        android:checked="true"
+                        android:fontFamily="@font/telex"
+                        android:text="@string/register_select1_gender"
+                        android:textColor="@color/gray_holder_login"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/female_radio_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:buttonTint="@color/end_gradient"
+                        android:checked="false"
+                        android:fontFamily="@font/telex"
+                        android:text="@string/register_select2_gender"
+                        android:textColor="@color/gray_holder_login"
+                        android:textSize="15sp" />
+                </RadioGroup>
+
+            </TableRow>
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/register_label_birthday"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/infor_edit_text_birth_date"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:fontFamily="@font/telex"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/information_activity_desc_birthday"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/register_label_job"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/infor_edit_text_job"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:fontFamily="@font/telex"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/information_activity_desc_job"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/register_label_country"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/infor_edit_text_country"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:fontFamily="@font/telex"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/information_activity_desc_country"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:text="@string/register_label_phone"
+                    android:textColor="@color/gray_holder_login"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/infor_edit_text_phone_number"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/telex"
+                    android:hint="@string/register_button_birthday"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/end_gradient"
+                    android:text="@string/information_activity_desc_phone_number"
+                    android:inputType="number"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:drawableTint="@color/end_gradient"
+                    android:drawableRight="@drawable/icon_edit_resize"/>
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/background_card_wallet"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/information_activity_button_save"
+            android:textAllCaps="false"
+            android:textColor="@color/end_gradient"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/background_card_wallet"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/button_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/wallet_gradient1"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
