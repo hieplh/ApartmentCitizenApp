@@ -28,19 +28,15 @@ public class RegisterActivity extends AppCompatActivity {
     FragmentManager fm;
     Fragment registerInfo, registerImage;
 
-    View header;
-    TextView birthdate, title;
-    EditText email, lastName, firstName;
-    EditText phone, country, job, icn;
+    String email, lastName, firstName, birthdate;
+    String phone, country, job, icn, gender, relationship;
     RadioGroup genderGroup;
-    RadioButton gender;
-    Spinner relationship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        setUpView();
+
         fm = getSupportFragmentManager();
 
         registerInfo = fm.findFragmentByTag(FRAGMENT_INFO_TAG);
@@ -55,34 +51,31 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-    }
-
-    public void clickToCreateDialogBirthdate(View view) {
-        BirthdateListener birthdateListener = new RegisterInfoFragment();
-        birthdateListener.initBirthdateDialog(view);
-    }
-
-    public void setUpView(){
-        header = findViewById(R.id.header_standard);
-        title = header.findViewById(R.id.label_title_standard);
-        title.setText(R.string.register_title);
+        ((TextView) findViewById(R.id.edit_register_birthday)).setText(birthdate);
+        ((EditText) findViewById(R.id.edit_register_email)).setText(email);
+        ((EditText) findViewById(R.id.edit_register_last_name)).setText(lastName);
+        ((EditText) findViewById(R.id.edit_register_first_name)).setText(firstName);
+        ((EditText) findViewById(R.id.edit_register_phone)).setText(phone);
+        ((EditText) findViewById(R.id.edit_register_country)).setText(country);
+        ((EditText) findViewById(R.id.edit_register_job)).setText(job);
+        ((EditText) findViewById(R.id.edit_register_identity_card_number)).setText(icn);
     }
 
     public void clickToNextRegister(View view) {
-        birthdate = findViewById(R.id.edit_register_birthday);
-        email = findViewById(R.id.edit_register_email);
-        lastName = findViewById(R.id.edit_register_last_name);
-        firstName = findViewById(R.id.edit_register_first_name);
-        phone = findViewById(R.id.edit_register_phone);
-        country = findViewById(R.id.edit_register_country);
-        job = findViewById(R.id.edit_register_job);
-        icn = findViewById(R.id.edit_register_identity_card_number);
+        birthdate = ((TextView) findViewById(R.id.edit_register_birthday)).getText().toString();
+        email = ((EditText) findViewById(R.id.edit_register_email)).getText().toString();
+        lastName = ((EditText) findViewById(R.id.edit_register_last_name)).getText().toString();
+        firstName = ((EditText) findViewById(R.id.edit_register_first_name)).getText().toString();
+        phone = ((EditText) findViewById(R.id.edit_register_phone)).getText().toString();
+        country = ((EditText) findViewById(R.id.edit_register_country)).getText().toString();
+        job = ((EditText) findViewById(R.id.edit_register_job)).getText().toString();
+        icn = ((EditText) findViewById(R.id.edit_register_identity_card_number)).getText().toString();
 
         genderGroup = findViewById(R.id.gender_radio_group);
         int genderId = genderGroup.getCheckedRadioButtonId();
-        gender = findViewById(genderId);
+        gender = ((RadioButton) findViewById(genderId)).getText().toString();
 
-        relationship = findViewById(R.id.spinner_relationship);
+        relationship = (String) ((Spinner) findViewById(R.id.spinner_relationship)).getSelectedItem();
 
         registerImage = fm.findFragmentByTag(FRAGMENT_IMAGE_TAG);
         if (registerImage == null) {
@@ -114,16 +107,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private String generateQrcodeContent() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getString(R.string.register_email) + ":" + email.getText().toString() + "\n"
-                + getString(R.string.register_first_name) + ":" + firstName.getText().toString() + "\n"
-                + getString(R.string.register_last_name) + ":" + lastName.getText().toString() + "\n"
-                + getString(R.string.register_phone) + ":" + phone.getText().toString() + "\n"
-                + getString(R.string.register_birthdate) + ":" + birthdate.getText().toString() + "\n"
-                + getString(R.string.register_country) + ":" + country.getText().toString() + "\n"
-                + getString(R.string.register_job) + ":" + job.getText().toString() + "\n"
-                + getString(R.string.register_identity_card_number) + ":" + icn.getText().toString() + "\n"
-                + getString(R.string.register_gender) + ":" + gender.getText().toString() + "\n"
-                + getString(R.string.register_gender) + ":" + relationship.getSelectedItem());
+        sb.append(getString(R.string.register_email) + ":" + email + "\n"
+                + getString(R.string.register_first_name) + ":" + firstName + "\n"
+                + getString(R.string.register_last_name) + ":" + lastName + "\n"
+                + getString(R.string.register_phone) + ":" + phone + "\n"
+                + getString(R.string.register_birthdate) + ":" + birthdate + "\n"
+                + getString(R.string.register_country) + ":" + country + "\n"
+                + getString(R.string.register_job) + ":" + job + "\n"
+                + getString(R.string.register_identity_card_number) + ":" + icn + "\n"
+                + getString(R.string.register_gender) + ":" + gender + "\n"
+                + getString(R.string.register_gender) + ":" + relationship);
         Log.d("QRCODE", "QRCODE: " + sb.toString());
         return sb.toString();
     }

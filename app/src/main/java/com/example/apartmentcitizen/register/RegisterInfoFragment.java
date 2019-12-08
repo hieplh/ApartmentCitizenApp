@@ -2,18 +2,21 @@ package com.example.apartmentcitizen.register;
 
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +31,7 @@ import androidx.fragment.app.Fragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterInfoFragment extends Fragment implements BirthdateListener {
+public class RegisterInfoFragment extends Fragment {
 
     private final int DAY_OF_MONTH_INDEX = 0;
     private final int MONTH_INDEX = 1;
@@ -37,6 +40,7 @@ public class RegisterInfoFragment extends Fragment implements BirthdateListener 
     TextView birthdate;
     Spinner spnRelationship;
     List<String> listRelationship;
+    InputMethodManager imm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,10 +53,24 @@ public class RegisterInfoFragment extends Fragment implements BirthdateListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("FRAGMENT", "onViewCreated: ");
-        setUpView(view);
+
+        imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        birthdate = view.findViewById(R.id.edit_register_birthday);
+
+        handleRelationshipSpinner(view);
+
+        handleActionNext(view);
+
+        birthdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseDateOfBirth(birthdate.getText().toString());
+            }
+        });
     }
 
-    public void setUpView(View view) {
+    private void handleRelationshipSpinner(View view) {
         //set up spinner relationship
         listRelationship = new ArrayList<>();
         for (RegisterInfoFragment.Relationship x : RegisterInfoFragment.Relationship.values()) {
@@ -63,8 +81,20 @@ public class RegisterInfoFragment extends Fragment implements BirthdateListener 
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, listRelationship);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnRelationship.setAdapter(adapter);
+    }
 
-        //set up edtBirthday
+    private void handleActionNext(View view) {
+        final EditText firstNameEdit = view.findViewById(R.id.edit_register_first_name);
+        firstNameEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    imm.hideSoftInputFromWindow(firstNameEdit.getWindowToken(), 0);
+                    chooseDateOfBirth(birthdate.getText().toString());
+                }
+                return true;
+            }
+        });
     }
 
     private int splitStringDate(String date, int index) {
@@ -105,11 +135,6 @@ public class RegisterInfoFragment extends Fragment implements BirthdateListener 
         datePickerDialog.getDatePicker().setMaxDate(getPastMilisecondsFromNow(16));
         datePickerDialog.getDatePicker().setMinDate(getPastMilisecondsFromNow(720));
         datePickerDialog.show();
-    }
-
-    @Override
-    public void initBirthdateDialog(View view) {
-        chooseDateOfBirth(((EditText)view).getText().toString());
     }
 
     private enum Relationship {

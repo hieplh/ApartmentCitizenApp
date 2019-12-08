@@ -153,8 +153,7 @@
                 android:stateListAnimator="@null"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_holder_login"
-                android:textSize="14sp"
-                android:onClick="clickToCreateDialogBirthdate"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
