@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:paddingBottom="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -68,7 +69,75 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_desc"
-        android:background="@color/gray_unselect_icon"/>
+        android:background="@color/gray_reg_frame"/>
+    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/post_button_like"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/button_unlike"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_image"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        />
+    <TextView
+        android:id="@+id/post_count_like"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="120"
+        android:textColor="@color/gray_unselect_icon"
+        app:layout_constraintLeft_toRightOf="@id/post_button_like"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_image"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:paddingLeft="10dp"
+        />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/post_icon_comment"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/button_comment"
+        app:layout_constraintLeft_toRightOf="@id/post_count_like"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_image"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:id="@+id/post_count_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="120"
+        android:textColor="@color/gray_unselect_icon"
+        app:layout_constraintLeft_toRightOf="@id/post_icon_comment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_image"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:paddingLeft="10dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_height="30dp"
+        android:text="Viết bình luận"
+        android:background="@color/white"
+        android:textColor="@color/gray_holder_login"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/post_count_comment"
+        app:layout_constraintRight_toRightOf="parent"
+        android:stateListAnimator="@null"
+        app:layout_constraintTop_toBottomOf="@id/post_image"
+        android:layout_marginTop="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
