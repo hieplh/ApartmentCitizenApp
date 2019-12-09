@@ -17,7 +17,7 @@ import com.example.apartmentcitizen.R;
 
 public class WalletActivity extends AppCompatActivity {
 
-    CardView walletCardView;
+    View walletCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
