@@ -29,7 +29,7 @@ import java.util.List;
 public class AccountFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2;
-    List<CardDTO> listCard1, listCard2;
+    List<ButtonCard1DTO> listCard1, listCard2;
 
     public AccountFragment() {
 
@@ -38,6 +38,15 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        listCard1 = new ArrayList<>();
+        listCard1.add(new ButtonCard1DTO(R.drawable.background_my_wallet_trans,R.string.information_title_item1,R.string.information_desc_item1));
+        listCard1.add(new ButtonCard1DTO(R.drawable.background_information_trans,R.string.information_title_item2,R.string.information_desc_item2));
+        listCard1.add(new ButtonCard1DTO(R.drawable.background_my_wall_trans, R.string.information_title_item5, R.string.information_desc_item5));
+
+        //
+        listCard2 = new ArrayList<>();
+        listCard2.add(new ButtonCard1DTO(R.drawable.background_member_trans,R.string.information_title_item3, R.string.information_desc_item3));
+        listCard2.add(new ButtonCard1DTO(R.drawable.background_family_activities_trans,R.string.information_title_item4, R.string.information_desc_item4));
     }
 
     @Override
@@ -47,11 +56,6 @@ public class AccountFragment extends Fragment {
 
         //set up recyclerView1
         recyclerView1 = view.findViewById(R.id.list_button_1);
-        listCard1 = new ArrayList<>();
-        listCard1.add(new CardDTO(R.drawable.background_my_wallet_trans,R.string.information_title_item1,R.string.information_desc_item1));
-        listCard1.add(new CardDTO(R.drawable.background_information_trans,R.string.information_title_item2,R.string.information_desc_item2));
-        listCard1.add(new CardDTO(R.drawable.background_my_wall_trans, R.string.information_title_item5, R.string.information_desc_item5));
-
         CardAdapter adapter = new CardAdapter(getContext(), listCard1);
         recyclerView1.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -59,9 +63,6 @@ public class AccountFragment extends Fragment {
 
         //set up recyclerView2
         recyclerView2 = view.findViewById(R.id.list_button_2);
-        listCard2 = new ArrayList<>();
-        listCard2.add(new CardDTO(R.drawable.background_member_trans,R.string.information_title_item3, R.string.information_desc_item3));
-        listCard2.add(new CardDTO(R.drawable.background_family_activities_trans,R.string.information_title_item4, R.string.information_desc_item4));
         CardAdapter adapter2 = new CardAdapter(getContext(), listCard2);
         recyclerView2.setAdapter(adapter2);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -77,10 +78,10 @@ public class AccountFragment extends Fragment {
 
 class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     Context context;
-    List<CardDTO> listCard;
+    List<ButtonCard1DTO> listCard;
 
 
-    public CardAdapter(Context context, List<CardDTO> listCard) {
+    public CardAdapter(Context context, List<ButtonCard1DTO> listCard) {
         this.context = context;
         this.listCard = listCard;
     }

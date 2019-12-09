@@ -4,12 +4,12 @@ import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 
-public class CardDTO implements Serializable {
+public class ButtonCard1DTO implements Serializable {
     private int title;
     private int desc;
     private int imgPath;
 
-    public CardDTO(int imgPath, int title, int desc) {
+    public ButtonCard1DTO(int imgPath, int title, int desc) {
         this.imgPath = imgPath;
         this.title = title;
         this.desc = desc;

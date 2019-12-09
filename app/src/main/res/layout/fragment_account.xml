@@ -1,127 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_reg_frame"
-    tools:context=".register.RegisterImageActivity">
+    android:background="@color/gray_reg_frame">
 
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:src="@drawable/image_avatar_default" />
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/telex"
+            android:gravity="center"
+            android:text="@string/information_label_fullname"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/label_house_code_gradient"
+            android:stateListAnimator="@null"
+            android:text="@string/information_label_housecode"
+            android:textColor="@color/end_gradient" />
+
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="20dp"
+            android:text="@string/information_label_individual"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
-            <TableLayout
-                android:stretchColumns="*"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_gravity="center_horizontal">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_button_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" />
 
-                <TableRow android:layout_marginTop="5dp">
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="0.25dp"
+            android:layout_marginTop="35dp"
+            android:background="@color/gray_holder_login" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/image_profile_information"
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/image_avatar_default"
-                        app:civ_border_color="@color/gray_holder_login"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/telex"
+            android:paddingLeft="20dp"
+            android:text="@string/information_label_family"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_button_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
 
-                        <TextView
-                            android:id="@+id/label_fullname_information"
-                            android:layout_width="250dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_horizontal"
-                            android:text="@string/information_label_fullname"
-                            android:textColor="@color/black"
-                            android:textSize="22sp"
-                            android:fontFamily="@font/telex"/>
+    </LinearLayout>
 
-                        <Button
-                            android:layout_height="30dp"
-                            android:layout_width="80dp"
-                            android:textSize="12sp"
-                            android:gravity="center"
-                            android:fontFamily="@font/telex"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/information_label_housecode"
-                            android:textStyle="bold"
-                            android:textColor="@color/end_gradient"
-                            android:background="@drawable/label_house_code_gradient"
-                            android:stateListAnimator="@null"/>
+</androidx.core.widget.NestedScrollView>
 
-                    </LinearLayout>
-
-                </TableRow>
-
-            </TableLayout>
-
-            <ImageView
-                android:layout_marginTop="25dp"
-                android:layout_width="350dp"
-                android:layout_height="0.25dp"
-                android:background="@color/gray_holder_login"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/information_label_individual"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/telex"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="10dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="5dp"
-                android:id="@+id/list_button_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-
-            <ImageView
-                android:layout_marginTop="35dp"
-                android:layout_width="350dp"
-                android:layout_height="0.25dp"
-                android:background="@color/gray_holder_login"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/information_label_family"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/telex"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="10dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_button_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
