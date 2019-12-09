@@ -83,7 +83,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         FirebaseUser user = mAuth.getCurrentUser();
-        updateUI(sharedPreferences.getString(getString(R.string.key_email), FAIL));
+        String checkedEmail = sharedPreferences.getString(getString(R.string.key_email), null);
+
+        if (checkedEmail != null && checkedEmail.equals(user.getEmail())) {
+            updateUI(SUCCESS);
+        } else {
+            updateUI(FAIL);
+        }
     }
 
     @Override
@@ -95,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
-                Log.d(TAG, "signInResult:failed code= " + e.getStatusCode());
                 progressBar.setVisibility(View.GONE);
             }
         }
@@ -128,7 +133,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void firebaseAuthWithGoogle(final GoogleSignInAccount account) {
-        Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
 
         mAuth.signInWithCredential(credential)
@@ -146,7 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 @Override
                                 public void onResponse(Call<Login> call, Response<Login> response) {
                                     Log.d(TAG, "onResponse: " + response.body().getSuccess());
-                                    updateUI(response.body().getSuccess());
+                                    if (response.body().getSuccess()) {
+                                        updateUI(SUCCESS);
+                                    } else {
+                                        updateUI(FAIL);
+                                    }
                                 }
 
                                 @Override
