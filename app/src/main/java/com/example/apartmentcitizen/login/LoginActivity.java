@@ -3,17 +3,23 @@ package com.example.apartmentcitizen.login;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.network.LoginService;
+import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.register.RegisterActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -32,17 +38,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public static final int GOOGLE_SIGNIN_CODE = 1000;
     private final String TAG = "GOOGLE";
-
-    Button sign_in_google_btn;
+    private final String SUCCESS = "true";
+    private final String FAIL = "false";
 
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
+    Button sign_in_google_btn;
     ProgressBar progressBar;
+
+    Retrofit retrofit;
+    LoginService service;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        retrofit = RetrofitInstance.getRetrofitInstance();
+
+        sharedPreferences = getSharedPreferences(getString(R.string.shared_email), MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setVisibility(View.GONE);
@@ -63,8 +81,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseUser user = mAuth.getCurrentUser();
-        updateUI(user);
+        updateUI(sharedPreferences.getString(getString(R.string.key_email), FAIL));
     }
 
     @Override
@@ -79,40 +98,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d(TAG, "signInResult:failed code= " + e.getStatusCode());
                 progressBar.setVisibility(View.GONE);
             }
-        }
-    }
-
-    private void signInGoogle() {
-        progressBar.setVisibility(View.VISIBLE);
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, GOOGLE_SIGNIN_CODE);
-    }
-
-    private void firebaseAuthWithGoogle(final GoogleSignInAccount account) {
-        Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            Log.d(TAG, "signInWithCredential:failure", task.getException());
-                            progressBar.setVisibility(View.GONE);
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-
-    private void updateUI(FirebaseUser account) {
-        if (account != null) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
         }
     }
 
@@ -134,5 +119,61 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void clickToRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    private void signInGoogle() {
+        progressBar.setVisibility(View.VISIBLE);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, GOOGLE_SIGNIN_CODE);
+    }
+
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount account) {
+        Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            service = retrofit.create(LoginService.class);
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            Call<Login> call = service.executeLogin(user.getEmail());
+
+                            call.enqueue(new Callback<Login>() {
+                                @Override
+                                public void onResponse(Call<Login> call, Response<Login> response) {
+                                    Log.d(TAG, "onResponse: " + response.body().getSuccess());
+                                    updateUI(response.body().getSuccess());
+                                }
+
+                                @Override
+                                public void onFailure(Call<Login> call, Throwable t) {
+
+                                }
+                            });
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void updateUI(String response) {
+        switch (response) {
+            case SUCCESS:
+                editor.putString(getString(R.string.key_email), response);
+                editor.commit();
+
+                startActivity(new Intent(this, HomeActivity.class));
+                finish();
+                break;
+            case FAIL:
+                progressBar.setVisibility(View.GONE);
+                break;
+        }
     }
 }

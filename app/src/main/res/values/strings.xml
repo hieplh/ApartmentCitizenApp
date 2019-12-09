@@ -119,9 +119,11 @@
     <string name="register_gender">gender</string>
     <string name="register_relationship">relationship</string>
 
-    <!--    Notice-->
+    <!-- Notice -->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
 
-
+    <!-- Shared Preferences -->
+    <string name="shared_email">email_loged_shared</string>
+    <string name="key_email">email</string>
 </resources>
