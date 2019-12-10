@@ -1,19 +1,15 @@
 package com.example.apartmentcitizen.home.account.wallet;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ScrollView;
 
 import com.example.apartmentcitizen.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class WalletActivity extends AppCompatActivity {
 
@@ -27,7 +23,7 @@ public class WalletActivity extends AppCompatActivity {
 
     }
 
-    public void setUpView(){
+    public void setUpView() {
         ViewTreeObserver treeObserver = findViewById(R.id.constraint_layout_wallet_activity).getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

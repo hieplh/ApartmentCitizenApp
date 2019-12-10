@@ -32,8 +32,7 @@
         android:layout_height="65dp"
         android:textColor="@color/end_gradient"
         android:background="@color/no_color"
+        android:onClick="logoutAccount"
         android:text="Đăng xuất"/>
-
-
 
 </RelativeLayout>

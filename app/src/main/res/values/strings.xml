@@ -32,14 +32,12 @@
     <string name="dashboard_survey_title">Khảo sát</string>
     <string name="dashboard_survey_desc">Góp phần nâng cao chất lượng cuộc sống của bạn.</string>
 
-
     <!-- post -->
     <string name="post_time">08/12/2019</string>
     <string name="post_desc">Xin chào cô chú xin chào các bạn.</string>
     <string name="post_count_like">123</string>
     <string name="post_count_comment">20</string>
     <string name="post_button_comment">Viết bình luận</string>
-
 
     <!-- item_list_button1_1 -->
     <string name="information_title_item1">Ví của tôi</string>
@@ -74,7 +72,6 @@
     <string name="house_code_floor">1</string>
     <string name="member_count">6 Thành viên</string>
 
-
     <!-- information activity -->
     <string name="information_activity_title">Thông tin cá nhân</string>
     <string name="information_activity_label_full_name">Họ Tên</string>
@@ -95,8 +92,18 @@
 
     <!-- register activity-->
     <string name="register_title">Đăng kí</string>
-    <!-- register_info -->
+    <string name="bundle_key_email">bundle_email_register</string>
+    <string name="bundle_key_firstname">bundle_first_register</string>
+    <string name="bundle_key_lastname">bundle_lastname_register</string>
+    <string name="bundle_key_birthdate">bundle_birthdate_register</string>
+    <string name="bundle_key_phone">bundle_phone_register</string>
+    <string name="bundle_key_country">bundle_country_register</string>
+    <string name="bundle_key_job">bundle_job_register</string>
+    <string name="bundle_key_cif">bundle_cif_register</string>
+    <string name="bundle_key_gender">bundle_gender_register</string>
+    <string name="bundle_key_relationship">bundle_relationship_register</string>
 
+    <!-- register_info -->
     <string name="register_label_email">Email*</string>
     <string name="register_edit_email">Ví dụ: example@gmail.com</string>
     <string name="register_label_fullname">Họ và Tên*</string>
@@ -136,6 +143,8 @@
     <string name="register_identity_card_number">identity_card_number</string>
     <string name="register_gender">gender</string>
     <string name="register_relationship">relationship</string>
+    <string name="register_avatar">avatar_path_image</string>
+    <string name="register_cif">cif_path_image</string>
 
     <!-- Notice -->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
@@ -144,4 +153,7 @@
     <!-- Shared Preferences -->
     <string name="shared_email">email_loged_shared</string>
     <string name="key_email">email</string>
+
+    <!-- error -->
+    <string name="login_failed_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>
 </resources>

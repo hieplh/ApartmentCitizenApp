@@ -1,10 +1,6 @@
-package com.example.apartmentcitizen.home;
+package com.example.apartmentcitizen;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -13,12 +9,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
 import com.example.apartmentcitizen.home.account.AccountFragment;
+import com.example.apartmentcitizen.home.dashboard.DashboardFragment;
 import com.example.apartmentcitizen.home.notification.NotificationFragment;
 import com.example.apartmentcitizen.home.transaction.TransactionFragment;
+import com.example.apartmentcitizen.login.LoginActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -28,8 +35,6 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     TextView lbTitle;
-    View headerHome;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,9 @@ public class HomeActivity extends AppCompatActivity {
 
     //set up View
     public void setupView() {
-        headerHome = findViewById(R.id.header_home);
-        lbTitle = headerHome.findViewById(R.id.label_title);
-        btnLogOut = headerHome.findViewById(R.id.button_log_out);
-        System.out.println("LABEL TITLE: " + lbTitle);
+//        headerHome = findViewById(R.id.header_home);
+        lbTitle = findViewById(R.id.label_title);
+        btnLogOut = findViewById(R.id.button_log_out);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navDashBoard);
         lbTitle.setText(R.string.home_label_nav_dashboard);
@@ -85,7 +89,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -105,14 +108,31 @@ public class HomeActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    public void logoutAccount(View view) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        mAuth.signOut();
+
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(HomeActivity.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                });
+    }
 
     private void loadFragment(Fragment fragment) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
 
 }

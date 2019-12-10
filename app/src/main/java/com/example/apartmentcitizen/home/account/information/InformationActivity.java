@@ -1,7 +1,5 @@
 package com.example.apartmentcitizen.home.account.information;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -13,13 +11,14 @@ import com.example.apartmentcitizen.R;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class InformationActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    TextView title, edtBirthDay;
+public class InformationActivity extends AppCompatActivity {
 
     private final int DAY_OF_MONTH_INDEX = 0;
     private final int MONTH_INDEX = 1;
     private final int YEAR_INDEX = 2;
+    TextView title, edtBirthDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class InformationActivity extends AppCompatActivity {
         setUpView();
     }
 
-    public void setUpView(){
+    public void setUpView() {
         title = findViewById(R.id.label_title_standard);
         title.setText(R.string.information_activity_title);
 
