@@ -52,6 +52,8 @@
     <string name="information_desc_item3">Thông tin thành viên gia đình.</string>
     <string name="information_title_item4">Hoạt động</string>
     <string name="information_desc_item4">Hoạt động của gia đình bạn.</string>
+    <string name="information_title_item6">Quét mã QR</string>
+    <string name="information_desc_item6">Quét mã thành viên nhanh chóng.</string>
 
     <!-- wallet activity -->
     <string name="wallet_title_money_in_wallet">Số dư trong ví</string>
