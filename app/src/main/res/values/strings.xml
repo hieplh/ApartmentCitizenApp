@@ -32,6 +32,9 @@
     <string name="dashboard_survey_title">Khảo sát</string>
     <string name="dashboard_survey_desc">Góp phần nâng cao chất lượng cuộc sống của bạn.</string>
 
+    <!-- post -->
+    <string name="post_time">08/12/2019</string>
+
     <!-- item_list_button1_1 -->
     <string name="information_title_item1">Ví của tôi</string>
     <string name="information_desc_item1">Thanh toán dễ dàng, không dùng tiền mặt.</string>

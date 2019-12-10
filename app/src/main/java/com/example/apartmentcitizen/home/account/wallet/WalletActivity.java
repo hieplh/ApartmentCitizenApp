@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 
 public class WalletActivity extends AppCompatActivity {
 
-    CardView walletCardView;
+    View walletCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
