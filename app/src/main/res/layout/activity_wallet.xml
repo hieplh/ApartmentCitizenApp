@@ -9,11 +9,19 @@
     android:background="@drawable/gradient_wallet"
     tools:context=".home.account.wallet.WalletActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:translationY="-30dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <RelativeLayout
-            android:id="@+id/card_wallet"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
-            android:layout_marginTop="-30dp"
+            android:layout_height="match_parent"
             android:background="@color/gray_reg_frame"
             android:gravity="center">
 
@@ -50,11 +58,14 @@
 
         </RelativeLayout>
 
+    </androidx.cardview.widget.CardView>
+
     <LinearLayout
+        android:translationY="-10dp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:background="@drawable/background_card_wallet"
@@ -80,6 +91,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/logo_money_in_wallet"/>
+
 
             <TextView
                 android:id="@+id/text_money_in_wallet"
@@ -171,6 +183,7 @@
 
         </LinearLayout>
 
+
         <RelativeLayout
             android:background="@drawable/button_wallet_state"
             android:layout_width="320dp"
@@ -190,7 +203,6 @@
                 android:textColor="@color/black"/>
 
         </RelativeLayout>
-
         <RelativeLayout
             android:background="@drawable/button_wallet_state"
             android:layout_width="320dp"

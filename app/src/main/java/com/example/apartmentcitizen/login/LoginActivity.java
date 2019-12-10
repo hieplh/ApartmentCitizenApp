@@ -15,9 +15,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.HomeActivity;
+import com.example.apartmentcitizen.HomeActivity;
 import com.example.apartmentcitizen.network.LoginService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.register.RegisterActivity;
@@ -33,6 +34,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.gson.annotations.SerializedName;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,8 +87,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser user = mAuth.getCurrentUser();
         String checkedEmail = sharedPreferences.getString(getString(R.string.key_email), null);
 
-        if (checkedEmail != null && checkedEmail.equals(user.getEmail())) {
-            updateUI(SUCCESS);
+        if (checkedEmail != null && user != null) {
+            if (checkedEmail.equals(user.getEmail())) {
+                updateUI(SUCCESS);
+            }
         } else {
             updateUI(FAIL);
         }
@@ -149,17 +153,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             call.enqueue(new Callback<Login>() {
                                 @Override
                                 public void onResponse(Call<Login> call, Response<Login> response) {
-                                    Log.d(TAG, "onResponse: " + response.body().getSuccess());
-                                    if (response.body().getSuccess()) {
+                                    if (response.isSuccessful()) {
                                         updateUI(SUCCESS);
                                     } else {
+                                        Toast.makeText(LoginActivity.this, getString(R.string.login_failed_error), Toast.LENGTH_LONG)
+                                                .show();
                                         updateUI(FAIL);
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<Login> call, Throwable t) {
-
+                                    Log.d(TAG, "onFailure: " + t.getMessage());
+                                    t.printStackTrace();
                                 }
                             });
                         } else {
@@ -182,6 +188,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case FAIL:
                 progressBar.setVisibility(View.GONE);
                 break;
+        }
+    }
+
+    public class Login {
+        @SerializedName("success")
+        private String success;
+
+        @SerializedName("message")
+        private String message;
+
+        public String getSuccess() {
+            return success;
+        }
+
+        public void setSuccess(String success) {
+            this.success = success;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
         }
     }
 }

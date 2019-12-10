@@ -1,52 +1,39 @@
 package com.example.apartmentcitizen.home.account;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
-import com.example.apartmentcitizen.home.account.information.InformationActivity;
-import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
+import com.example.apartmentcitizen.component.CardAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class AccountFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2;
-    List<ButtonCard1DTO> listCard1, listCard2;
-
-    public AccountFragment() {
-
-    }
+    List<ButtonCardDTO> listCard1, listCard2;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listCard1 = new ArrayList<>();
-        listCard1.add(new ButtonCard1DTO(R.drawable.background_my_wallet_trans,R.string.information_title_item1,R.string.information_desc_item1));
-        listCard1.add(new ButtonCard1DTO(R.drawable.background_information_trans,R.string.information_title_item2,R.string.information_desc_item2));
-        listCard1.add(new ButtonCard1DTO(R.drawable.background_my_wall_trans, R.string.information_title_item5, R.string.information_desc_item5));
+        listCard1.add(new ButtonCardDTO(R.drawable.background_my_wallet_trans, R.string.information_title_item1, R.string.information_desc_item1));
+        listCard1.add(new ButtonCardDTO(R.drawable.background_information_trans, R.string.information_title_item2, R.string.information_desc_item2));
+        listCard1.add(new ButtonCardDTO(R.drawable.background_my_wall_trans, R.string.information_title_item5, R.string.information_desc_item5));
 
         //
         listCard2 = new ArrayList<>();
-        listCard2.add(new ButtonCard1DTO(R.drawable.background_member_trans,R.string.information_title_item3, R.string.information_desc_item3));
-        listCard2.add(new ButtonCard1DTO(R.drawable.background_family_activities_trans,R.string.information_title_item4, R.string.information_desc_item4));
+        listCard2.add(new ButtonCardDTO(R.drawable.background_member_trans, R.string.information_title_item3, R.string.information_desc_item3));
+        listCard2.add(new ButtonCardDTO(R.drawable.background_family_activities_trans, R.string.information_title_item4, R.string.information_desc_item4));
     }
 
     @Override
@@ -68,74 +55,7 @@ public class AccountFragment extends Fragment {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView2.setLayoutManager(layoutManager2);
 
-
         return view;
-    }
-
-
-
-}
-
-class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
-    Context context;
-    List<ButtonCard1DTO> listCard;
-
-
-    public CardAdapter(Context context, List<ButtonCard1DTO> listCard) {
-        this.context = context;
-        this.listCard = listCard;
-    }
-
-    @NonNull
-    @Override
-    public CardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_button, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final CardAdapter.ViewHolder holder, final int position) {
-        holder.txtTitle.setText(listCard.get(position).getTitle());
-        holder.txtDesc.setText(listCard.get(position).getDesc());
-        holder.imgBackground.setImageResource(listCard.get(position).getImgPath());
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if(listCard.get(position).getTitle()==R.string.information_title_item1){
-                    intent = new Intent(context, WalletActivity.class);
-                    context.startActivity(intent);
-                }
-                if(listCard.get(position).getTitle()==R.string.information_title_item2){
-                    intent = new Intent(context, InformationActivity.class);
-                    context.startActivity(intent);
-                }
-                if(listCard.get(position).getTitle()==R.string.information_title_item3){
-                    intent = new Intent(context, FamilyInformationActivity.class);
-                    context.startActivity(intent);
-                }
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return listCard.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgBackground;
-        TextView txtTitle, txtDesc;
-        CardView parentLayout;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imgBackground = itemView.findViewById(R.id.img_item_list);
-            txtTitle = itemView.findViewById(R.id.title_item_list);
-            txtDesc = itemView.findViewById(R.id.desc_item_list);
-            parentLayout = itemView.findViewById(R.id.list_card_item);
-        }
     }
 }
 
