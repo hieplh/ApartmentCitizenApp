@@ -36,6 +36,4 @@ public class ButtonCardDTO implements Serializable {
     public void setDesc(int desc) {
         this.desc = desc;
     }
-
-
 }

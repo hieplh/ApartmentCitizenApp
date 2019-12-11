@@ -1,13 +1,5 @@
 package com.example.apartmentcitizen.login;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,8 +9,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.HomeActivity;
+import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.network.LoginService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.register.RegisterActivity;
@@ -34,7 +26,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.gson.annotations.SerializedName;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         retrofit = RetrofitInstance.getRetrofitInstance();
 
-        sharedPreferences = getSharedPreferences(getString(R.string.shared_email), MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         progressBar = findViewById(R.id.progress_circular);
@@ -154,10 +153,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 @Override
                                 public void onResponse(Call<Login> call, Response<Login> response) {
                                     if (response.isSuccessful()) {
+                                        Log.d("SHARED", "User: " + response.body().getHouse().getHouseId());
+                                        updateSharedPreference(response.body());
                                         updateUI(SUCCESS);
                                     } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.login_failed_error), Toast.LENGTH_LONG)
+                                        Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG)
                                                 .show();
+
+                                        mAuth.signOut();
+                                        mGoogleSignInClient.signOut();
+
                                         updateUI(FAIL);
                                     }
                                 }
@@ -191,27 +196,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public class Login {
-        @SerializedName("success")
-        private String success;
+    private void updateSharedPreference(Login user) {
+        sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-        @SerializedName("message")
-        private String message;
+        editor.putString(getString(R.string.key_email), user.getEmail());
+        editor.putString(getString(R.string.key_first_name), user.getFirstName());
+        editor.putString(getString(R.string.key_last_name), user.getLastName());
+        editor.putString(getString(R.string.key_cif), user.getCifNumber());
+        editor.putString(getString(R.string.key_phone), user.getPhoneNo());
+        editor.putString(getString(R.string.key_cif_image), user.getCifImage());
+        editor.putString(getString(R.string.key_profile_image), user.getProfileImage());
 
-        public String getSuccess() {
-            return success;
-        }
+        editor.putString(getString(R.string.key_birthdate), user.getDateOfBirth() != null ? user.getDateOfBirth() : null);
+        editor.putString(getString(R.string.key_create_date), user.getCreateDate() != null ? user.getCreateDate() : null);
+        editor.putString(getString(R.string.key_last_modified), user.getLastModified() != null ? user.getLastModified() : null);
 
-        public void setSuccess(String success) {
-            this.success = success;
-        }
+        editor.putInt(getString(R.string.key_house_id), user.getHouse().getHouseId());
+        editor.putInt(getString(R.string.key_role_id), user.getRole());
+        editor.putInt(getString(R.string.key_gender), user.getGender());
+        editor.putInt(getString(R.string.key_family), user.getFamilyLevel());
 
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
+        editor.commit();
     }
 }

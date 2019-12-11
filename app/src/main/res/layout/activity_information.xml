@@ -394,6 +394,7 @@
         </TableLayout>
 
         <Button
+            android:id="@+id/update_info_btn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
@@ -410,6 +411,7 @@
             android:textSize="15sp" />
 
         <Button
+            android:id="@+id/exit_info_form_btn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
@@ -424,7 +426,8 @@
             android:text="@string/button_cancel"
             android:textAllCaps="false"
             android:textColor="@color/wallet_gradient1"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:onClick="exitInfoForm"/>
 
 
     </LinearLayout>

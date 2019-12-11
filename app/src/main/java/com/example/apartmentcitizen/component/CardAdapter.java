@@ -1,5 +1,6 @@
 package com.example.apartmentcitizen.component;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.apartmentcitizen.HomeActivity;
+import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.account.AccountFragment;
 import com.example.apartmentcitizen.home.account.ButtonCardDTO;
 import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
 import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.List;
 
@@ -21,13 +26,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+
     Context context;
+    Activity activity;
     List<ButtonCardDTO> listCard;
+    int index;
 
-
-    public CardAdapter(Context context, List<ButtonCardDTO> listCard) {
+    public CardAdapter(Context context, Activity activity, List<ButtonCardDTO> listCard, int index) {
         this.context = context;
+        this.activity = activity;
         this.listCard = listCard;
+        this.index = index;
     }
 
     @NonNull
@@ -45,18 +54,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                if (listCard.get(position).getTitle() == R.string.information_title_item1) {
-                    intent = new Intent(context, WalletActivity.class);
-                    context.startActivity(intent);
-                }
-                if (listCard.get(position).getTitle() == R.string.information_title_item2) {
-                    intent = new Intent(context, InformationActivity.class);
-                    context.startActivity(intent);
-                }
-                if (listCard.get(position).getTitle() == R.string.information_title_item3) {
-                    intent = new Intent(context, FamilyInformationActivity.class);
-                    context.startActivity(intent);
+                if (index == 1) {
+                    switch (listCard.get(position).getTitle()) {
+                        case R.string.information_title_item1:
+                            context.startActivity(new Intent(context, WalletActivity.class));
+                            break;
+                        case R.string.information_title_item2:
+                            context.startActivity(new Intent(context, InformationActivity.class));
+                            break;
+                        case R.string.information_title_item3:
+                            context.startActivity(new Intent(context, FamilyInformationActivity.class));
+                            break;
+                    }
+                } else {
+                    switch (listCard.get(position).getTitle()) {
+                        case R.string.information_title_item6:
+                            IntentIntegrator integrator = new IntentIntegrator(activity);
+                            integrator.setOrientationLocked(false);
+                            integrator.initiateScan();
+                            break;
+                    }
                 }
             }
         });
