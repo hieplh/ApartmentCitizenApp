@@ -1,11 +1,14 @@
 package com.example.apartmentcitizen;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -35,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     TextView lbTitle;
+    RelativeLayout headerHome;
+    Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +51,17 @@ public class HomeActivity extends AppCompatActivity {
 
     //set up View
     public void setupView() {
-//        headerHome = findViewById(R.id.header_home);
+        window = getWindow();
+        headerHome = findViewById(R.id.header_home);
         lbTitle = findViewById(R.id.label_title);
         btnLogOut = findViewById(R.id.button_log_out);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navDashBoard);
         lbTitle.setText(R.string.home_label_nav_dashboard);
+        lbTitle.setTextColor(Color.WHITE);
+        headerHome.setBackgroundResource(R.color.blue1);
+        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
+        btnLogOut.setVisibility(View.INVISIBLE);
         loadFragment(new DashboardFragment());
         mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -59,24 +70,36 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navTrans:
                         lbTitle.setText(R.string.home_label_nav_transaction);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
                         btnLogOut.setVisibility(View.INVISIBLE);
                         fragment = new TransactionFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navDashBoard:
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
                         lbTitle.setText(R.string.home_label_nav_dashboard);
+                        lbTitle.setTextColor(Color.WHITE);
+                        headerHome.setBackgroundResource(R.color.blue1);
                         btnLogOut.setVisibility(View.INVISIBLE);
                         fragment = new DashboardFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navNoti:
                         lbTitle.setText(R.string.home_label_nav_notification);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
                         btnLogOut.setVisibility(View.INVISIBLE);
                         fragment = new NotificationFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navAcc:
                         lbTitle.setText(R.string.home_label_nav_me);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
                         btnLogOut.setVisibility(View.VISIBLE);
                         fragment = new AccountFragment();
                         loadFragment(fragment);
@@ -88,6 +111,8 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
+
+
 
     @Override
     public void onBackPressed() {
