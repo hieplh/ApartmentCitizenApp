@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
+import com.google.gson.annotations.SerializedName;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -85,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         bundle.putString(getString(R.string.bundle_key_email), email.trim());
         bundle.putString(getString(R.string.bundle_key_firstname), firstName.trim());
         bundle.putString(getString(R.string.bundle_key_lastname), lastName.trim());
+        bundle.putString(getString(R.string.bundle_key_birthdate), birthdate);
         bundle.putString(getString(R.string.bundle_key_phone), phone.trim());
         bundle.putString(getString(R.string.bundle_key_country), country.trim());
         bundle.putString(getString(R.string.bundle_key_job), job.trim());
@@ -97,5 +99,29 @@ public class RegisterActivity extends AppCompatActivity {
                 .replace(R.id.frame_layout_register_activity, registerImage)
                 .addToBackStack(FRAGMENT_INFO_TAG)
                 .commit();
+    }
+
+    public class RegisterResponse {
+        @SerializedName("success")
+        private String success;
+
+        @SerializedName("message")
+        private String message;
+
+        public String getSuccess() {
+            return success;
+        }
+
+        public void setSuccess(String success) {
+            this.success = success;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     }
 }

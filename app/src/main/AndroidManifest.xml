@@ -19,11 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.dashboard.newsfeed.NewsfeedActivity"></activity>
-        <activity android:name=".home.account.familymember.FamilyInformationActivity" />
-        <activity android:name=".home.account.information.InformationActivity" />
-        <activity android:name=".home.account.wallet.WalletActivity" />
-        <activity android:name=".register.RegisterActivity" /> <!-- <activity android:name=".information.InformationActivity"></activity> -->
+         <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <service
             android:name=".service.FirebaseService"
             android:exported="false">
@@ -40,7 +36,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation"/>
+        <activity android:name=".home.dashboard.newsfeed.NewsfeedActivity" />
+        <activity android:name=".home.account.familymember.FamilyInformationActivity" />
+        <activity android:name=".home.account.information.InformationActivity" />
+        <activity android:name=".home.account.wallet.WalletActivity" />
+        <activity android:name=".register.RegisterActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

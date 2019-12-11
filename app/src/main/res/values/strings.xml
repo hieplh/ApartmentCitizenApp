@@ -146,20 +146,39 @@
     <string name="register_phone">phone</string>
     <string name="register_country">country</string>
     <string name="register_job">job</string>
-    <string name="register_identity_card_number">identity_card_number</string>
+    <string name="register_cif">identity_card_number</string>
     <string name="register_gender">gender</string>
     <string name="register_relationship">relationship</string>
-    <string name="register_avatar">avatar_path_image</string>
-    <string name="register_cif">cif_path_image</string>
+    <string name="register_path_avatar">avatar_path_image</string>
+    <string name="register_path_cif">cif_path_image</string>
 
     <!-- Notice -->
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
 
     <!-- Shared Preferences -->
-    <string name="shared_email">email_loged_shared</string>
+    <string name="shared_info">info_loged_shared</string>
     <string name="key_email">email</string>
+    <string name="key_phone">phone</string>
+    <string name="key_role_id">role</string>
+    <string name="key_house_id">house</string>
+    <string name="key_profile_image">profile_image</string>
+    <string name="key_birthdate">birthdate</string>
+    <string name="key_cif">cif</string>
+    <string name="key_cif_image">cif_image</string>
+    <string name="key_gender">gender</string>
+    <string name="key_job">job</string>
+    <string name="key_home">home</string>
+    <string name="key_first_name">first_name</string>
+    <string name="key_last_name">last_name</string>
+    <string name="key_create_date">create_date</string>
+    <string name="key_last_modified">last_modified</string>
+    <string name="key_family">family</string>
 
     <!-- error -->
-    <string name="login_failed_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>
+    <string name="login_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>
+    <string name="register_error">Đăng ký thất bại.\n Vui lòng kiểm tra lại kết nối mạng</string>
+
+    <!-- success -->
+    <string name="register_success">Đăng ký thành công</string>
 </resources>

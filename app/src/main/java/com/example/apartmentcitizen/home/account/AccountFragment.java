@@ -1,9 +1,12 @@
 package com.example.apartmentcitizen.home.account;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.CardAdapter;
@@ -15,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 public class AccountFragment extends Fragment {
 
@@ -42,16 +44,26 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_info), Context.MODE_PRIVATE);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(sharedPreferences.getString(getString(R.string.key_last_name), ""));
+        if (!sharedPreferences.getString(getString(R.string.key_last_name), "").equals("")) {
+            sb.append(" ");
+        }
+        sb.append(sharedPreferences.getString(getString(R.string.key_first_name), ""));
+        ((TextView) view.findViewById(R.id.label_fullname_account)).setText(sb.toString());
+
         //set up recyclerView1
         recyclerView1 = view.findViewById(R.id.list_button_1);
-        CardAdapter adapter = new CardAdapter(getContext(), listCard1);
+        CardAdapter adapter = new CardAdapter(getContext(), getActivity(), listCard1, 1);
         recyclerView1.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView1.setLayoutManager(layoutManager);
 
         //set up recyclerView2
         recyclerView2 = view.findViewById(R.id.list_button_2);
-        CardAdapter adapter2 = new CardAdapter(getContext(), listCard2);
+        CardAdapter adapter2 = new CardAdapter(getContext(), getActivity(), listCard2, 2);
         recyclerView2.setAdapter(adapter2);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView2.setLayoutManager(layoutManager2);

@@ -27,6 +27,10 @@ public class InformationActivity extends AppCompatActivity {
         setUpView();
     }
 
+    public void exitInfoForm(View view) {
+        finish();
+    }
+
     public void setUpView() {
         title = findViewById(R.id.label_title_standard);
         title.setText(R.string.information_activity_title);

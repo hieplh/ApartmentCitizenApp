@@ -95,7 +95,7 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 permission = new Permission(getContext(), getActivity());
                 permission.grantCameraPermission();
                 new FilePicker.Builder()
-                        .maxSelect(2)
+                        .maxSelect(1)
                         .typesOf(FilePicker.TYPE_IMAGE)
                         .start(this, CIF_REQUEST_CODE);
                 break;
@@ -127,14 +127,14 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 + getString(R.string.register_birthdate) + ":" + birthdate + "\n"
                 + getString(R.string.register_country) + ":" + country + "\n"
                 + getString(R.string.register_job) + ":" + job + "\n"
-                + getString(R.string.register_identity_card_number) + ":" + cif + "\n"
+                + getString(R.string.register_cif) + ":" + cif + "\n"
                 + getString(R.string.register_gender) + ":" + gender + "\n"
                 + getString(R.string.register_relationship) + ":" + relationship);
-        sb.append("\n" + getString(R.string.register_avatar) + ":");
+        sb.append("\n" + getString(R.string.register_path_avatar) + ":");
         if (pathImageAvatar != null) {
             sb.append(pathImageAvatar[0]);
         }
-        sb.append("\n" + getString(R.string.register_cif) + ":");
+        sb.append("\n" + getString(R.string.register_path_cif) + ":");
         if (pathImageCIF != null) {
             boolean flag = false;
             for (String path : pathImageCIF) {
