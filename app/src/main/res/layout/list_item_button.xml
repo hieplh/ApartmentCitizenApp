@@ -29,7 +29,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:fontFamily="@font/telex"
                 android:padding="10dp"
                 android:layout_marginTop="45dp"
                 />
@@ -41,7 +40,6 @@
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:paddingLeft="10dp"
-                android:fontFamily="@font/telex"
                 android:layout_marginTop="100dp"
                 android:textStyle="bold"/>
 

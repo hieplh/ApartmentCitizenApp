@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.account.ButtonCardDTO;
+import com.example.apartmentcitizen.home.account.AccountObject;
 import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
 import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
@@ -22,10 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     Context context;
-    List<ButtonCardDTO> listCard;
+    List<AccountObject> listCard;
 
 
-    public CardAdapter(Context context, List<ButtonCardDTO> listCard) {
+    public CardAdapter(Context context, List<AccountObject> listCard) {
         this.context = context;
         this.listCard = listCard;
     }

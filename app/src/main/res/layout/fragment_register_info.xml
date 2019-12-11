@@ -31,7 +31,8 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/register_label_email"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_email"
@@ -56,7 +57,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_fullname"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_last_name"
@@ -96,7 +98,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_gender"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <RadioGroup
                 android:id="@+id/gender_radio_group"
@@ -110,7 +113,7 @@
                     android:id="@+id/male_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/end_gradient"
+                    android:buttonTint="@color/purple"
                     android:checked="true"
                     android:fontFamily="@font/telex"
                     android:text="@string/register_select1_gender"
@@ -122,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:buttonTint="@color/end_gradient"
+                    android:buttonTint="@color/purple"
                     android:checked="false"
                     android:fontFamily="@font/telex"
                     android:text="@string/register_select2_gender"
@@ -139,7 +142,8 @@
                 android:text="@string/register_label_birthday"
                 android:fontFamily="@font/telex"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/edit_register_birthday"
@@ -164,7 +168,8 @@
                 android:text="@string/register_label_phone"
                 android:fontFamily="@font/telex"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_phone"
@@ -189,7 +194,8 @@
                 android:text="@string/register_label_country"
                 android:fontFamily="@font/telex"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_country"
@@ -214,7 +220,8 @@
                 android:text="@string/register_label_job"
                 android:fontFamily="@font/telex"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_job"
@@ -239,14 +246,15 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_relationship"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <Spinner
                 android:id="@+id/spinner_relationship"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_register_state"
-                android:backgroundTint="@color/end_gradient"
+                android:backgroundTint="@color/purple"
                 android:popupBackground="@color/gray_holder_login"
                 android:spinnerMode="dropdown" />
 
@@ -259,7 +267,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/register_label_identity_card"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/edit_register_identity_card_number"

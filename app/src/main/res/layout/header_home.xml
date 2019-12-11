@@ -24,15 +24,16 @@
         android:visibility="invisible"
         android:layout_alignEnd="@+id/label_title"
         android:layout_marginRight="15dp"
-        android:gravity="bottom"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        android:paddingBottom="14dp"
+        android:layout_marginTop="15dp"
+        android:textSize="15sp"
         android:layout_width="100dp"
-        android:layout_height="65dp"
-        android:textColor="@color/end_gradient"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/button_logout"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/purple_deep"
         android:background="@color/no_color"
         android:onClick="logoutAccount"
-        android:text="Đăng xuất"/>
+        android:text="@string/information_button_logout"/>
 
 </RelativeLayout>

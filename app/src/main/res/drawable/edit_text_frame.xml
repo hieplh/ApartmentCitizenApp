@@ -2,7 +2,6 @@
 <shape android:shape="rectangle"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/white"/>
-    <stroke
-        android:width="0.2dp"
-        android:color="@color/gray_holder_login"/>
+    <stroke android:color="@color/purple"
+        android:width="0.05dp"/>
 </shape>

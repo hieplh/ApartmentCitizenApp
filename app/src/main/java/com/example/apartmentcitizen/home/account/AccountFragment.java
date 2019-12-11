@@ -20,21 +20,21 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AccountFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2;
-    List<ButtonCardDTO> listCard1, listCard2;
+    List<AccountObject> listCard1, listCard2;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listCard1 = new ArrayList<>();
-        listCard1.add(new ButtonCardDTO(R.drawable.background_my_wallet, R.string.information_title_item1, R.string.information_desc_item1));
-        listCard1.add(new ButtonCardDTO(R.drawable.background_information, R.string.information_title_item2, R.string.information_desc_item2));
-        listCard1.add(new ButtonCardDTO(R.drawable.background_my_wall, R.string.information_title_item5, R.string.information_desc_item5));
+        listCard1.add(new AccountObject(R.drawable.background_my_wallet, R.string.information_title_item1, R.string.information_desc_item1));
+        listCard1.add(new AccountObject(R.drawable.background_information, R.string.information_title_item2, R.string.information_desc_item2));
+        listCard1.add(new AccountObject(R.drawable.background_my_wall, R.string.information_title_item5, R.string.information_desc_item5));
 
         //
         listCard2 = new ArrayList<>();
-        listCard2.add(new ButtonCardDTO(R.drawable.background_scan_qr, R.string.information_title_item6, R.string.information_desc_item6));
-        listCard2.add(new ButtonCardDTO(R.drawable.background_member, R.string.information_title_item3, R.string.information_desc_item3));
-        listCard2.add(new ButtonCardDTO(R.drawable.background_family_activities, R.string.information_title_item4, R.string.information_desc_item4));
+        listCard2.add(new AccountObject(R.drawable.background_scan_qr, R.string.information_title_item6, R.string.information_desc_item6));
+        listCard2.add(new AccountObject(R.drawable.background_member, R.string.information_title_item3, R.string.information_desc_item3));
+        listCard2.add(new AccountObject(R.drawable.background_family_activities, R.string.information_title_item4, R.string.information_desc_item4));
     }
 
     @Override

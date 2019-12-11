@@ -13,17 +13,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.home.dashboard.ButtonCard2DTO;
+import com.example.apartmentcitizen.home.dashboard.DashboardObject;
 import com.example.apartmentcitizen.home.dashboard.newsfeed.NewsfeedActivity;
 
 import java.util.List;
 
 public class CardDashboardAdapter extends RecyclerView.Adapter<CardDashboardAdapter.ViewHolder>{
     Context context;
-    List<ButtonCard2DTO> listButton;
+    List<DashboardObject> listButton;
 
 
-    public CardDashboardAdapter(Context context, List<ButtonCard2DTO> listButton) {
+    public CardDashboardAdapter(Context context, List<DashboardObject> listButton) {
         this.context = context;
         this.listButton = listButton;
     }

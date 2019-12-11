@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-           <gradient android:startColor="@color/wallet_gradient1"
-            android:endColor="@color/wallet_gradient3"
-            android:centerColor="@color/wallet_gradient2"
-            android:angle="45"/>
+           <gradient android:startColor="@color/white"
+               android:centerColor="@color/purple_mid"
+               android:endColor="@color/purple_deep"
+               android:angle="315"/>
             <corners android:radius="10dp"/>
 
         </shape>

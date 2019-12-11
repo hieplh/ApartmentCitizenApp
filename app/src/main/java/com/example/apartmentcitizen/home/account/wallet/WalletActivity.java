@@ -3,6 +3,7 @@ package com.example.apartmentcitizen.home.account.wallet;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
@@ -10,10 +11,12 @@ import com.example.apartmentcitizen.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 public class WalletActivity extends AppCompatActivity {
 
     View walletCardView;
+    Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class WalletActivity extends AppCompatActivity {
     }
 
     public void setUpView() {
+        window = getWindow();
+        window.setNavigationBarColor(ContextCompat.getColor(WalletActivity.this, R.color.purple));
+        window.setStatusBarColor(ContextCompat.getColor(WalletActivity.this, R.color.blue1));
         ViewTreeObserver treeObserver = findViewById(R.id.constraint_layout_wallet_activity).getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

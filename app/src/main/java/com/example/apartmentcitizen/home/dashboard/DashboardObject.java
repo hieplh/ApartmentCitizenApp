@@ -2,16 +2,16 @@ package com.example.apartmentcitizen.home.dashboard;
 
 import java.io.Serializable;
 
-public class ButtonCard2DTO implements Serializable {
+public class DashboardObject implements Serializable {
     private int banner;
     private int logo;
     private int title;
     private int desc;
 
-    public ButtonCard2DTO() {
+    public DashboardObject() {
     }
 
-    public ButtonCard2DTO(int banner, int logo, int title, int desc) {
+    public DashboardObject(int banner, int logo, int title, int desc) {
         this.banner = banner;
         this.logo = logo;
         this.title = title;

@@ -11,8 +11,8 @@
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <stroke
-                android:width="0.2dp"
-                android:color="@color/gray_holder_login"/>
+                android:width="0.05dp"
+                android:color="@color/purple"/>
         </shape>
     </item>
 </selector>
