@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.dashboard.ButtonCard2DTO;
+import com.example.apartmentcitizen.home.dashboard.newsfeed.NewsfeedActivity;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class CardDashboardAdapter extends RecyclerView.Adapter<CardDashboardAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardDashboardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardDashboardAdapter.ViewHolder holder, final int position) {
         holder.title.setText(listButton.get(position).getTitle());
         holder.desc.setText(listButton.get(position).getDesc());
         holder.banner.setImageResource(listButton.get(position).getBanner());
@@ -44,7 +45,10 @@ public class CardDashboardAdapter extends RecyclerView.Adapter<CardDashboardAdap
             @Override
             public void onClick(View v) {
                 Intent intent;
-                //do sth
+                if (listButton.get(position).getTitle()==R.string.dashboard_newsfeed_title){
+                    intent = new Intent(context, NewsfeedActivity.class);
+                    context.startActivity(intent);
+                }
             }
         });
     }

@@ -33,6 +33,7 @@
     <string name="dashboard_survey_desc">Góp phần nâng cao chất lượng cuộc sống của bạn.</string>
 
     <!-- post -->
+    <string name="title_newsfeed">Bảng tin</string>
     <string name="post_time">08/12/2019</string>
     <string name="post_desc">Xin chào cô chú xin chào các bạn.</string>
     <string name="post_count_like">123</string>

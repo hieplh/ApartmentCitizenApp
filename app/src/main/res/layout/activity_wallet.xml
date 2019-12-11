@@ -6,23 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_wallet"
+    android:background="@drawable/gradient_background"
     tools:context=".home.account.wallet.WalletActivity">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_wallet"
-        android:layout_width="match_parent"
-        android:layout_height="290dp"
-        android:translationY="-30dp"
-        app:cardCornerRadius="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+    
         <RelativeLayout
+            android:id="@+id/card_wallet"
+            android:translationY="-20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/gray_reg_frame"
+            android:layout_height="250dp"
             android:gravity="center">
 
             <ImageView
@@ -58,7 +49,6 @@
 
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:translationY="-10dp"

@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <gradient android:startColor="@color/purple"
-        android:endColor="@color/wallet_gradient1"
-        android:centerColor="@color/wallet_gradient2"
-        android:angle="45"/>
+        android:endColor="@color/blue1"
+        android:centerColor="@color/blue2"
+        android:angle="90"/>
 
 </shape>
