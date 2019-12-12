@@ -20,7 +20,7 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     RecyclerView recyclerView;
-    List<ButtonCard2DTO> listCardButton;
+    List<DashboardObject> listCardButton;
 
     public DashboardFragment() {
     }
@@ -30,10 +30,10 @@ public class DashboardFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         listCardButton = new ArrayList<>();
-        listCardButton.add(new ButtonCard2DTO(R.drawable.banner_newsfeed, R.drawable.logo_newsfeed_resize, R.string.dashboard_newsfeed_title,R.string.dashboard_newsfeed_desc));
-        listCardButton.add(new ButtonCard2DTO(R.drawable.banner_nearby_service, R.drawable.logo_service_nearby_resize, R.string.dashboard_service_nearby_title,R.string.dashboard_service_nearby_desc));
-        listCardButton.add(new ButtonCard2DTO(R.drawable.banner_fix_service, R.drawable.logo_fix_service_resize, R.string.dashboard_fix_title,R.string.dashboard_fix_desc));
-        listCardButton.add(new ButtonCard2DTO(R.drawable.banner_survey, R.drawable.logo_survey_resize, R.string.dashboard_survey_title,R.string.dashboard_survey_desc));
+        listCardButton.add(new DashboardObject(R.drawable.banner_newsfeed, R.drawable.logo_newsfeed_resize, R.string.dashboard_newsfeed_title,R.string.dashboard_newsfeed_desc));
+        listCardButton.add(new DashboardObject(R.drawable.banner_nearby_service, R.drawable.logo_service_nearby_resize, R.string.dashboard_service_nearby_title,R.string.dashboard_service_nearby_desc));
+        listCardButton.add(new DashboardObject(R.drawable.banner_fix_service, R.drawable.logo_fix_service_resize, R.string.dashboard_fix_title,R.string.dashboard_fix_desc));
+        listCardButton.add(new DashboardObject(R.drawable.banner_survey, R.drawable.logo_survey_resize, R.string.dashboard_survey_title,R.string.dashboard_survey_desc));
     }
 
     @Override

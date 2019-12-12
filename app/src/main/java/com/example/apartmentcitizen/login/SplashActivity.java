@@ -1,10 +1,12 @@
 package com.example.apartmentcitizen.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 
 import com.example.apartmentcitizen.R;
 
@@ -17,13 +19,18 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window = getWindow();
+        window.setNavigationBarColor(ContextCompat.getColor(SplashActivity.this, R.color.purple));
         EasySplashScreen config = new EasySplashScreen(SplashActivity.this)
                 .withFullScreen()
                 .withTargetActivity(LoginActivity.class)
                 .withSplashTimeOut(SPLASH_TIME)
-                .withLogo(R.drawable.logo_apartment)
-                .withBackgroundColor(Color.parseColor("#FFFFFF"));
+                .withLogo(R.drawable.logo_aht)
+                .withAfterLogoText("ATH Apartment")
+                .withBackgroundResource(R.drawable.background_splash);
 
+        config.getAfterLogoTextView().setTextSize(30);
+        config.getAfterLogoTextView().setPadding(20,20,20,20);
         View splashScreen = config.create();
         setContentView(splashScreen);
 

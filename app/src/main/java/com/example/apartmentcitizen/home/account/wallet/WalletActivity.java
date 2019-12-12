@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 public class WalletActivity extends AppCompatActivity {
 
     View walletCardView;
+    Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class WalletActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.text_money_in_wallet))
                 .setText(handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
 
+        window = getWindow();
+        window.setNavigationBarColor(ContextCompat.getColor(WalletActivity.this, R.color.purple));
+        window.setStatusBarColor(ContextCompat.getColor(WalletActivity.this, R.color.blue1));
         ViewTreeObserver treeObserver = findViewById(R.id.constraint_layout_wallet_activity).getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="true"
-        android:color="@color/end_gradient"/>
+        android:color="@color/purple"/>
     <item
         android:state_checked="false"
         android:color="@color/gray_unselect_icon" />

@@ -8,6 +8,8 @@
     <string name="login_hint_edit_password">Mật khẩu</string>
     <string name="login_button_login">Đăng nhập</string>
     <string name="login_button_register">Đăng kí tài khoản</string>
+    <string name="login_google">Google</string>
+    <string name="login_facebook">Facebook</string>
 
     <!-- home activity-->
     <string name="home_label_nav_transaction">Giao dịch</string>
@@ -21,6 +23,7 @@
     <string name="information_label_individual">Cá nhân</string>
     <string name="information_label_family">Gia đình</string>
     <string name="information_label_wall">Tường</string>
+    <string name="information_button_logout">Đăng xuất</string>
 
     <!-- item_list_button2 -->
     <string name="dashboard_newsfeed_title">Mạng xã hội</string>
@@ -120,11 +123,11 @@
     <string name="register_label_phone">Số điện thoại</string>
     <string name="register_edit_phone">10 chữ số</string>
     <string name="register_label_country">Nguyên quán</string>
-    <string name="register_edit_country">Nguyên quán</string>
+    <string name="register_edit_country">Ví dụ: Hà Nội</string>
     <string name="register_label_job">Nghề nghiệp</string>
     <string name="register_edit_job">Ví dụ: Công nhân viên chức</string>
     <string name="register_label_relationship">Quan hệ với chủ hộ*</string>
-    <string name="register_label_identity_card">Số chứng minh thư/Thẻ căn cước*</string>
+    <string name="register_label_identity_card">CMND*</string>
     <string name="register_edit_identity_card">Số chứng minh thư/Thẻ căn cước</string>
     <string name="register_button_next">Tiếp</string>
 

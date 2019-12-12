@@ -2,12 +2,12 @@ package com.example.apartmentcitizen.home.account;
 
 import java.io.Serializable;
 
-public class ButtonCardDTO implements Serializable {
+public class AccountObject implements Serializable {
     private int title;
     private int desc;
     private int imgPath;
 
-    public ButtonCardDTO(int imgPath, int title, int desc) {
+    public AccountObject(int imgPath, int title, int desc) {
         this.imgPath = imgPath;
         this.title = title;
         this.desc = desc;

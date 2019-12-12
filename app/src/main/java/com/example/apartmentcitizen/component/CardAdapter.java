@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.example.apartmentcitizen.HomeActivity;
 import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.account.AccountObject;
+
 import com.example.apartmentcitizen.home.account.AccountFragment;
-import com.example.apartmentcitizen.home.account.ButtonCardDTO;
+
 import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
 import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
@@ -28,11 +30,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     Context context;
+
     Activity activity;
-    List<ButtonCardDTO> listCard;
+    List<AccountObject> listCard;
     int index;
 
-    public CardAdapter(Context context, Activity activity, List<ButtonCardDTO> listCard, int index) {
+    public CardAdapter(Context context, Activity activity, List<AccountObject> listCard, int index) {
         this.context = context;
         this.activity = activity;
         this.listCard = listCard;

@@ -1,10 +1,20 @@
 package com.example.apartmentcitizen.login;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -42,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private final String SUCCESS = "true";
     private final String FAIL = "false";
 
+    Window window;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
     Button sign_in_google_btn;
@@ -57,7 +68,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        window = getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(LoginActivity.this, R.color.blue1));
+        window.setNavigationBarColor(ContextCompat.getColor(LoginActivity.this, R.color.purple));
         retrofit = RetrofitInstance.getRetrofitInstance();
 
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
