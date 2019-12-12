@@ -1,8 +1,9 @@
 package com.example.apartmentcitizen.register;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,12 +14,13 @@ import android.widget.TextView;
 
 import com.example.apartmentcitizen.R;
 import com.google.gson.annotations.SerializedName;
-import com.google.zxing.BarcodeFormat;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import de.hdodenhof.circleimageview.CircleImageView;
+import vn.semicolon.filepicker.FilePicker;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -26,12 +28,17 @@ public class RegisterActivity extends AppCompatActivity {
     public final String FRAGMENT_INFO_TAG = "fragment_info";
     public final String FRAGMENT_IMAGE_TAG = "fragment_image";
 
+    public final int AVATAR_REQUEST_CODE = 100;
+    public final int CIF_REQUEST_CODE = 101;
+
     FragmentManager fm;
     Fragment registerInfo, registerImage;
 
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
     RadioGroup genderGroup;
+
+    String[] pathImageAvatar, pathImageCIF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,28 @@ public class RegisterActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.edit_register_country)).setText(country);
         ((EditText) findViewById(R.id.edit_register_job)).setText(job);
         ((EditText) findViewById(R.id.edit_register_identity_card_number)).setText(cif);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == AVATAR_REQUEST_CODE) {
+            pathImageAvatar = FilePicker.Companion.getResult(data);
+
+            CircleImageView imageView = findViewById(R.id.image_profile_register);
+
+            Bitmap bitmap = BitmapFactory.decodeFile(pathImageAvatar[0]);
+            bitmap.setWidth(imageView.getWidth());
+            bitmap.setHeight(imageView.getHeight());
+
+            imageView.setImageBitmap(bitmap);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        }
+
+        if (requestCode == CIF_REQUEST_CODE) {
+            pathImageCIF = FilePicker.Companion.getResult(data);
+        }
     }
 
     public void clickToNextRegister(View view) {

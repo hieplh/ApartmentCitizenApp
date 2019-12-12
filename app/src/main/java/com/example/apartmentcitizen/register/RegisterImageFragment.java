@@ -22,15 +22,13 @@ import vn.semicolon.filepicker.FilePicker;
 
 public class RegisterImageFragment extends Fragment implements View.OnClickListener {
 
-    final int AVATAR_REQUEST_CODE = 100;
-    final int CIF_REQUEST_CODE = 101;
+    public final int AVATAR_REQUEST_CODE = 100;
+    public final int CIF_REQUEST_CODE = 101;
 
     Permission permission;
 
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
-
-    String[] pathImageAvatar, pathImageCIF;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,17 +62,6 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         view.findViewById(R.id.generate_qrcode_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_avatar_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_cif_btn).setOnClickListener(this);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AVATAR_REQUEST_CODE) {
-            pathImageAvatar = FilePicker.Companion.getResult(data);
-        }
-        if (requestCode == CIF_REQUEST_CODE) {
-            pathImageCIF = FilePicker.Companion.getResult(data);
-        }
     }
 
     @Override
@@ -130,22 +117,6 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 + getString(R.string.register_cif) + ":" + cif + "\n"
                 + getString(R.string.register_gender) + ":" + gender + "\n"
                 + getString(R.string.register_relationship) + ":" + relationship);
-        sb.append("\n" + getString(R.string.register_path_avatar) + ":");
-        if (pathImageAvatar != null) {
-            sb.append(pathImageAvatar[0]);
-        }
-        sb.append("\n" + getString(R.string.register_path_cif) + ":");
-        if (pathImageCIF != null) {
-            boolean flag = false;
-            for (String path : pathImageCIF) {
-                if (flag) {
-                    sb.append(",");
-                } else {
-                    flag = true;
-                }
-                sb.append(path);
-            }
-        }
         return sb.toString();
     }
 

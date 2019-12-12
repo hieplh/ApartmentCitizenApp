@@ -213,6 +213,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString(getString(R.string.key_last_modified), user.getLastModified() != null ? user.getLastModified() : null);
 
         editor.putInt(getString(R.string.key_house_id), user.getHouse().getHouseId());
+        editor.putInt(getString(R.string.key_house_money), (int)user.getHouse().getCurrentMoney());
         editor.putInt(getString(R.string.key_role_id), user.getRole());
         editor.putInt(getString(R.string.key_gender), user.getGender());
         editor.putInt(getString(R.string.key_family), user.getFamilyLevel());

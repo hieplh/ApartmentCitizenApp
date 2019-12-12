@@ -56,17 +56,15 @@ public class AccountFragment extends Fragment {
 
         //set up recyclerView1
         recyclerView1 = view.findViewById(R.id.list_button_1);
-        CardAdapter adapter = new CardAdapter(getContext(), getActivity(), listCard1, 1);
-        recyclerView1.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView1.setLayoutManager(layoutManager);
+        CardAdapter adapter1 = new CardAdapter(getContext(), getActivity(), listCard1, 1);
+        recyclerView1.setAdapter(adapter1);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         //set up recyclerView2
         recyclerView2 = view.findViewById(R.id.list_button_2);
         CardAdapter adapter2 = new CardAdapter(getContext(), getActivity(), listCard2, 2);
         recyclerView2.setAdapter(adapter2);
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView2.setLayoutManager(layoutManager2);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         return view;
     }

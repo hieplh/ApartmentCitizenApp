@@ -159,6 +159,7 @@
     <string name="key_phone">phone</string>
     <string name="key_role_id">role</string>
     <string name="key_house_id">house</string>
+    <string name="key_house_money">house_money</string>
     <string name="key_profile_image">profile_image</string>
     <string name="key_birthdate">birthdate</string>
     <string name="key_cif">cif</string>

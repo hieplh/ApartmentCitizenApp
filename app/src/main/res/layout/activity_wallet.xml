@@ -82,7 +82,6 @@
                 android:layout_marginRight="20dp"
                 android:src="@drawable/logo_money_in_wallet"/>
 
-
             <TextView
                 android:id="@+id/text_money_in_wallet"
                 android:layout_marginTop="30dp"

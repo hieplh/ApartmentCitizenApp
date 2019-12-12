@@ -50,7 +50,7 @@ public class HouseLogin {
         this.ownerId = ownerId;
     }
 
-    public double getCurrentMoney() {
+    public double   getCurrentMoney() {
         return currentMoney;
     }
 
