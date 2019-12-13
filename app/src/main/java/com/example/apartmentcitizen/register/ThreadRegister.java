@@ -1,5 +1,7 @@
 package com.example.apartmentcitizen.register;
 
+import android.util.Log;
+
 import com.example.apartmentcitizen.image.UploadImage;
 import com.example.apartmentcitizen.network.UserService;
 
@@ -32,21 +34,25 @@ public class ThreadRegister implements Runnable{
             userService = retrofit.create(UserService.class);
             call = userService.checkPresentEmail(email);
 
-            while (flag) {
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            uploadImage(email, pathImage[0], type);
-                            flag = false;
+            try {
+                while (flag) {
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                uploadImage(email, pathImage[0], type);
+                                flag = false;
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                Log.d("THREAD", "run: " + e.getMessage());
             }
         }
     }

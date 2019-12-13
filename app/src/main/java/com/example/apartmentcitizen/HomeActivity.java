@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -115,6 +116,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
+            Log.d("QR", "onActivityResult: " + result.getContents());
             if (result.getContents() == null) {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             } else {
@@ -285,52 +287,17 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterActivity.RegisterResponse> call, Response<RegisterActivity.RegisterResponse> response) {
                 if (response.isSuccessful()) {
-                    if (user.getCifImage() != null) {
-                        uploadImageToServer(user.getEmail(), user.getCifImage());
-                    }
-                    if (user.getProfileImage() != null) {
-                        uploadImageToServer(user.getEmail(), user.getProfileImage());
-                    }
                     if (flag) {
-                        Toast.makeText(getBaseContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getBaseContext(), getString(R.string.register_error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, getString(R.string.register_error), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterActivity.RegisterResponse> call, Throwable t) {
-                Toast.makeText(getBaseContext(), getString(R.string.register_error), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void uploadImageToServer(String email, String filePath) {
-        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
-
-        UserService service = retrofit.create(UserService.class);
-
-        File file = new File(filePath);
-
-        RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
-
-        MultipartBody.Part part = MultipartBody.Part.createFormData("upload", file.getName(), fileRequestBody);
-
-        RequestBody desc = RequestBody.create(MediaType.parse("text/plain"), "image-type");
-
-        Call call = service.uploadImageProfile(email, part, desc);
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-//                Toast.makeText(getContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                flag = true;
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-//                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, getString(R.string.register_error), Toast.LENGTH_SHORT).show();
             }
         });
     }

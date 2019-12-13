@@ -75,8 +75,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                         case R.string.information_title_item6:
                             IntentIntegrator integrator = new IntentIntegrator(activity);
                             integrator.setOrientationLocked(false);
-                            integrator.setCameraId(0);
-                            integrator.setRequestCode(Permission.CAMERA);
                             integrator.initiateScan();
                             break;
                     }
