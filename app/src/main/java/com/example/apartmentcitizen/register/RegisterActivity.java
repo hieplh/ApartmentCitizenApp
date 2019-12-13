@@ -1,27 +1,26 @@
 package com.example.apartmentcitizen.register;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
 import com.google.gson.annotations.SerializedName;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import de.hdodenhof.circleimageview.CircleImageView;
 import vn.semicolon.filepicker.FilePicker;
-
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,8 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
     RadioGroup genderGroup;
-
-    String[] pathImageAvatar, pathImageCIF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +69,27 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        registerImage.onActivityResult(requestCode, resultCode, data);
+    }
 
-        if (requestCode == AVATAR_REQUEST_CODE) {
-            pathImageAvatar = FilePicker.Companion.getResult(data);
-
-            CircleImageView imageView = findViewById(R.id.image_profile_register);
-
-            Bitmap bitmap = BitmapFactory.decodeFile(pathImageAvatar[0]);
-            bitmap.setWidth(imageView.getWidth());
-            bitmap.setHeight(imageView.getHeight());
-
-            imageView.setImageBitmap(bitmap);
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        }
-
-        if (requestCode == CIF_REQUEST_CODE) {
-            pathImageCIF = FilePicker.Companion.getResult(data);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case AVATAR_REQUEST_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    new FilePicker.Builder()
+                            .maxSelect(1)
+                            .typesOf(FilePicker.TYPE_IMAGE)
+                            .start(this, AVATAR_REQUEST_CODE);
+                break;
+            case CIF_REQUEST_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    new FilePicker.Builder()
+                            .maxSelect(1)
+                            .typesOf(FilePicker.TYPE_IMAGE)
+                            .start(this, CIF_REQUEST_CODE);
+                break;
         }
     }
 

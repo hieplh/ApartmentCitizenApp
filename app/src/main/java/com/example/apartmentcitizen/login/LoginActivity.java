@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 @Override
                                 public void onResponse(Call<Login> call, Response<Login> response) {
                                     if (response.isSuccessful()) {
-                                        Log.d("SHARED", "User: " + response.body().getHouse().getHouseId());
+                                        Log.d("SHARED", "User: " + response.body().getEmail());
                                         updateSharedPreference(response.body());
                                         updateUI(SUCCESS);
                                     } else {
@@ -197,7 +197,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(String response) {
         switch (response) {
             case SUCCESS:
-                editor.putString(getString(R.string.key_email), response);
                 editor.commit();
 
                 startActivity(new Intent(this, HomeActivity.class));
@@ -213,6 +212,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        editor.putInt(getString(R.string.key_user_id), user.getUserId());
+
         editor.putString(getString(R.string.key_email), user.getEmail());
         editor.putString(getString(R.string.key_first_name), user.getFirstName());
         editor.putString(getString(R.string.key_last_name), user.getLastName());
@@ -220,6 +221,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString(getString(R.string.key_phone), user.getPhoneNo());
         editor.putString(getString(R.string.key_cif_image), user.getCifImage());
         editor.putString(getString(R.string.key_profile_image), user.getProfileImage());
+        editor.putString(getString(R.string.key_house_name), user.getHouse().getHouseName());
+        editor.putString(getString(R.string.key_home), user.getHomeTown());
+        editor.putString(getString(R.string.key_job), user.getJob());
 
         editor.putString(getString(R.string.key_birthdate), user.getDateOfBirth() != null ? user.getDateOfBirth() : null);
         editor.putString(getString(R.string.key_create_date), user.getCreateDate() != null ? user.getCreateDate() : null);

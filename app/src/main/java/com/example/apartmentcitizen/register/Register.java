@@ -2,8 +2,6 @@ package com.example.apartmentcitizen.register;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Register {
     @SerializedName("email")
     private String email;

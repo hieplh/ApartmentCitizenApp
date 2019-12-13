@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.image.UploadImage;
+import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.permission.Permission;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
@@ -18,6 +21,8 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Retrofit;
 import vn.semicolon.filepicker.FilePicker;
 
 public class RegisterImageFragment extends Fragment implements View.OnClickListener {
@@ -25,15 +30,14 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
     public final int AVATAR_REQUEST_CODE = 100;
     public final int CIF_REQUEST_CODE = 101;
 
-    Permission permission;
-
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    CircleImageView imageView;
+
+    String[] pathImageAvatar, pathImageCIF;
+
+    Retrofit retrofit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +63,10 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         ((TextView) view.findViewById(R.id.label_email_register)).setText(email);
         ((TextView) view.findViewById(R.id.label_fullname_register)).setText(lastName + " " + firstName);
 
+        imageView = view.findViewById(R.id.image_profile_register);
+
+        retrofit = RetrofitInstance.getRetrofitInstance();
+
         view.findViewById(R.id.generate_qrcode_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_avatar_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_cif_btn).setOnClickListener(this);
@@ -66,26 +74,54 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        boolean flag;
         switch (v.getId()) {
             case R.id.generate_qrcode_btn:
                 generateQrcode(v.getRootView());
+
+                Thread threadAvatar = new Thread(new ThreadRegister(retrofit, pathImageAvatar, email, UploadImage.PROFILE));
+                threadAvatar.start();
+
+                Thread threadCif = new Thread(new ThreadRegister(retrofit, pathImageCIF, email, UploadImage.CIF));
+                threadCif.start();
                 break;
             case R.id.upload_avatar_btn:
-                permission = new Permission(getContext(), getActivity());
-                permission.grantReadExternalStoratePermission();
-                new FilePicker.Builder()
-                        .maxSelect(1)
-                        .typesOf(FilePicker.TYPE_IMAGE)
-                        .start(this, AVATAR_REQUEST_CODE);
+                flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(AVATAR_REQUEST_CODE);
+                pickImageOnGranted(AVATAR_REQUEST_CODE, flag);
                 break;
             case R.id.upload_cif_btn:
-                permission = new Permission(getContext(), getActivity());
-                permission.grantCameraPermission();
-                new FilePicker.Builder()
-                        .maxSelect(1)
-                        .typesOf(FilePicker.TYPE_IMAGE)
-                        .start(this, CIF_REQUEST_CODE);
+                flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(CIF_REQUEST_CODE);
+                pickImageOnGranted(CIF_REQUEST_CODE, flag);
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case AVATAR_REQUEST_CODE:
+                pathImageAvatar = FilePicker.Companion.getResult(data);
+
+                Glide.with(this)
+                        .load(FilePicker.Companion.getResult(data)[0])
+                        .override(imageView.getWidth(), imageView.getHeight())
+                        .fitCenter()
+                        .into(imageView);
+                break;
+            case CIF_REQUEST_CODE:
+                pathImageCIF = FilePicker.Companion.getResult(data);
+                break;
+        }
+    }
+
+    private void pickImageOnGranted(int requestCode, boolean flag) {
+        if (flag) {
+            new FilePicker.Builder()
+                    .maxSelect(1)
+                    .typesOf(FilePicker.TYPE_IMAGE)
+                    .start(this, requestCode);
         }
     }
 
@@ -119,6 +155,4 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 + getString(R.string.register_relationship) + ":" + relationship);
         return sb.toString();
     }
-
-
 }

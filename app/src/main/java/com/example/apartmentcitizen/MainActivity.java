@@ -13,8 +13,9 @@ import android.widget.Toast;
 
 import com.example.apartmentcitizen.component.DecorationRecyclerview;
 import com.example.apartmentcitizen.component.LoadImageAdapter;
+import com.example.apartmentcitizen.image.LoadImage;
 import com.example.apartmentcitizen.login.LoginActivity;
-import com.example.apartmentcitizen.network.LoadImageService;
+import com.example.apartmentcitizen.network.PostImageService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UploadMultipartImageService;
 import com.example.apartmentcitizen.service.FirebaseService;
@@ -25,7 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.gson.annotations.SerializedName;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         subscribeTopics(BILL_HOUSE);
 
         recyclerView = findViewById(R.id.image_recyclerview_main_activity);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2 , GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.addItemDecoration(new DecorationRecyclerview(20));
     }
@@ -107,18 +107,18 @@ public class MainActivity extends AppCompatActivity {
 
         retrofit = RetrofitInstance.getRetrofitInstance();
 
-        LoadImageService loadImageService = retrofit.create(LoadImageService.class);
-        Call<PathImage> call = loadImageService.getPathImage();
-        call.enqueue(new Callback<PathImage>() {
+        PostImageService loadImageService = retrofit.create(PostImageService.class);
+        Call<LoadImage> call = loadImageService.getPathImage();
+        call.enqueue(new Callback<LoadImage>() {
             @Override
-            public void onResponse(Call<PathImage> call, Response<PathImage> response) {
+            public void onResponse(Call<LoadImage> call, Response<LoadImage> response) {
                 ArrayList<String> list = initPathImageList(response.body().getPath());
                 adapter = new LoadImageAdapter(MainActivity.this, list);
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<PathImage> call, Throwable t) {
+            public void onFailure(Call<LoadImage> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Load image failed!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -138,9 +138,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
+        if (result != null) {
             Log.d("QR", "Content: " + result.getContents());
-            if(result.getContents() == null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
@@ -229,18 +229,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadImageFromServer(View view) {
-        LoadImageService loadImageService = retrofit.create(LoadImageService.class);
-        Call<PathImage> call = loadImageService.getPathImage();
-        call.enqueue(new Callback<PathImage>() {
+        PostImageService loadImageService = retrofit.create(PostImageService.class);
+        Call<LoadImage> call = loadImageService.getPathImage();
+        call.enqueue(new Callback<LoadImage>() {
             @Override
-            public void onResponse(Call<PathImage> call, Response<PathImage> response) {
+            public void onResponse(Call<LoadImage> call, Response<LoadImage> response) {
                 ArrayList<String> list = initPathImageList(response.body().getPath());
                 adapter = new LoadImageAdapter(MainActivity.this, list);
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<PathImage> call, Throwable t) {
+            public void onFailure(Call<LoadImage> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Load image failed!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -262,18 +262,5 @@ public class MainActivity extends AppCompatActivity {
             list.add(x);
         }
         return list;
-    }
-
-    public class PathImage {
-        @SerializedName("path")
-        private String[] path;
-
-        public String[] getPath() {
-            return path;
-        }
-
-        public void setPath(String[] path) {
-            this.path = path;
-        }
     }
 }

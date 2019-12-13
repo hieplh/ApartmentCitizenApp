@@ -158,10 +158,12 @@
 
     <!-- Shared Preferences -->
     <string name="shared_info">info_loged_shared</string>
+    <string name="key_user_id">user_id</string>
     <string name="key_email">email</string>
     <string name="key_phone">phone</string>
     <string name="key_role_id">role</string>
     <string name="key_house_id">house</string>
+    <string name="key_house_name">house_name</string>
     <string name="key_house_money">house_money</string>
     <string name="key_profile_image">profile_image</string>
     <string name="key_birthdate">birthdate</string>
@@ -179,7 +181,14 @@
     <!-- error -->
     <string name="login_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>
     <string name="register_error">Đăng ký thất bại.\n Vui lòng kiểm tra lại kết nối mạng</string>
+    <string name="update_data_error">Cập nhật thất bại.\n Vui lòng kiểm tra lại dữ liệu</string>
+    <string name="update_network_error">Cập nhật thất bại.\n Vui lòng kiểm tra lại kết nối mạng</string>
+    <string name="update_avatar_fail">Cập nhật avatar thất bại</string>
+    <string name="update_cif_fail">Cập nhật cmnd thất bại</string>
 
     <!-- success -->
     <string name="register_success">Đăng ký thành công</string>
+    <string name="update_success">Cập nhật thành công</string>
+    <string name="update_avatar_success">Cập nhật avatar thành công</string>
+    <string name="update_cif_success">Cập nhật cmnd thành công</string>
 </resources>
