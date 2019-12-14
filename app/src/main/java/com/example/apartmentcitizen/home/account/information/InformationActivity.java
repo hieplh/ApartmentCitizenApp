@@ -319,7 +319,7 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        UploadImage uploadImage = new UploadImage(this);
+        UploadImage uploadImage = new UploadImage();
         uploadImage.uploadImageToServer(email.getText().toString(), pathImage[0], UploadImage.PROFILE);
     }
 }

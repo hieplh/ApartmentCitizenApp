@@ -1,7 +1,9 @@
 package com.example.apartmentcitizen.register;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +15,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.network.RetrofitInstance;
-import com.example.apartmentcitizen.network.UserService;
+import com.example.apartmentcitizen.image.UploadImage;
 import com.example.apartmentcitizen.permission.Permission;
+import com.example.apartmentcitizen.service.FirebaseService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -23,29 +28,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 import vn.semicolon.filepicker.FilePicker;
 
 public class RegisterImageFragment extends Fragment implements View.OnClickListener {
 
     public final int AVATAR_REQUEST_CODE = 100;
     public final int CIF_REQUEST_CODE = 101;
-
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
-
     CircleImageView imageView;
-
     String[] pathImageAvatar, pathImageCIF;
-
-    Retrofit retrofit;
-    UserService service;
-
-    boolean checkEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,8 +65,6 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
 
         imageView = view.findViewById(R.id.image_profile_register);
 
-        retrofit = RetrofitInstance.getRetrofitInstance();
-
         view.findViewById(R.id.generate_qrcode_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_avatar_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_cif_btn).setOnClickListener(this);
@@ -87,13 +77,9 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
             case R.id.generate_qrcode_btn:
                 generateQrcode(v.getRootView());
 
-                service = retrofit.create(UserService.class);
-                Call<ResponseBody> call = service.checkPresentEmail(email);
-
-                while (!checkEmail) {
-                    requestCheckEmailPresent(email, call);
+                if (uploadImageForRegister()) {
+                    subscribeUploadImageFirebase();
                 }
-
                 break;
             case R.id.upload_avatar_btn:
                 flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(AVATAR_REQUEST_CODE);
@@ -166,10 +152,43 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         return sb.toString();
     }
 
-    private void requestCheckEmailPresent(final String email, Call<ResponseBody> call) {
-        ThreadRegister threadRegister = new ThreadRegister(email);
-        if (threadRegister.doInBackground(call) == null) {
-            requestCheckEmailPresent(email, call);
+    private void subscribeUploadImageFirebase() {
+        String editEmail = email.substring(0, email.lastIndexOf("@gmail.com"));
+
+        FirebaseMessaging.getInstance().subscribeToTopic(editEmail)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+                        } else {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+                        }
+                    }
+                });
+    }
+
+    private boolean uploadImageForRegister() {
+        boolean flag = false;
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(getString(R.string.shared_register), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (pathImageAvatar != null) {
+            editor.putString(getString(R.string.key_register_email), email);
+            editor.putString(getString(R.string.key_register_avatar), UploadImage.PROFILE);
+            editor.putString(getString(R.string.key_register_avatar_path), pathImageAvatar[0]);
+            flag = true;
         }
+
+        if (pathImageCIF != null) {
+            editor.putString(getString(R.string.key_register_email), email);
+            editor.putString(getString(R.string.key_register_cif), UploadImage.CIF);
+            editor.putString(getString(R.string.key_register_cif_path), pathImageCIF[0]);
+            flag = true;
+        }
+
+        editor.commit();
+        return flag;
     }
 }

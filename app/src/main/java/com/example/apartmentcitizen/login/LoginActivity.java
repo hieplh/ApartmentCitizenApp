@@ -15,6 +15,7 @@ import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.network.LoginService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.register.RegisterActivity;
+import com.example.apartmentcitizen.service.FirebaseService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -190,6 +192,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (response) {
             case SUCCESS:
                 editor.commit();
+
+                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.register_house_topic))
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+                                } else {
+                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+                                }
+                            }
+                        });
+
+                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_for_all_house))
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+                                } else {
+                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+                                }
+                            }
+                        });
 
                 startActivity(new Intent(this, HomeActivity.class));
                 finish();

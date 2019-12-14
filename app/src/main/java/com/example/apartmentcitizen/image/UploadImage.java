@@ -25,14 +25,7 @@ public class UploadImage implements Callback{
 
     final String TAG = "INFO";
 
-    Context context;
-
     public  UploadImage() {
-
-    }
-
-    public UploadImage(Context context) {
-        this.context = context;
     }
 
     public void uploadImageToServer(String email, String filePath, String type) {
@@ -61,14 +54,17 @@ public class UploadImage implements Callback{
     @Override
     public void onResponse(Call call, Response response) {
         if (response.isSuccessful()) {
-            Log.d(TAG, "AVATAR: " + context.getString(R.string.update_avatar_success));
-            Log.d(TAG, "CIF: " + context.getString(R.string.update_cif_success));
+            Log.d(TAG, "AVATAR: " + "Cập nhật avatar thành công");
+            Log.d(TAG, "CIF: " + "Cập nhật cif thành công");
+        } else {
+            Log.d(TAG, "AVATAR: " + "cập nhật avatar thất bại");
+            Log.d(TAG, "CIF: " + "cập nhật cif thất bại");
         }
     }
 
     @Override
     public void onFailure(Call call, Throwable t) {
-        Log.d(TAG, "AVATAR: " + context.getString(R.string.update_avatar_fail));
-        Log.d(TAG, "CIF: " + context.getString(R.string.update_avatar_fail));
+        Log.d(TAG, "FAILURE: " + "cập nhật avatar thất bại");
+        Log.d(TAG, "FAILURE: " + "cập nhật cif thất bại");
     }
 }

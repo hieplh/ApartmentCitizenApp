@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -12,16 +13,19 @@ import android.util.Log;
 
 import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.image.UploadImage;
+import com.example.apartmentcitizen.register.RegisterImageFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
-
 public class FirebaseService extends FirebaseMessagingService {
     public static final String TAG = "NOTIFICATION";
 
+    SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate() {
@@ -40,6 +44,33 @@ public class FirebaseService extends FirebaseMessagingService {
         Log.d(TAG, "Notification Localization Key: " + remoteMessage.getNotification().getBodyLocalizationKey());
         Log.d(TAG, "Notification Title: " + remoteMessage.getNotification().getTitle());
         Log.d(TAG, "Notification Channel Id: " + remoteMessage.getNotification().getChannelId());
+
+        if (remoteMessage.getNotification().getTitle().equals("Register")) {
+            String body = remoteMessage.getNotification().getBody();
+            UploadImage uploadImage;
+            try {
+                sharedPreferences = getSharedPreferences(getString(R.string.shared_register), MODE_PRIVATE);
+
+                String email = sharedPreferences.getString(getString(R.string.key_register_email), null);
+                String avatar = sharedPreferences.getString(getString(R.string.key_register_avatar), null);
+                String avatarPath = sharedPreferences.getString(getString(R.string.key_register_avatar_path), null);
+                String cif = sharedPreferences.getString(getString(R.string.key_register_cif), null);
+                String cifPath = sharedPreferences.getString(getString(R.string.key_register_cif_path), null);
+
+                if (avatar != null) {
+                    uploadImage = new UploadImage();
+                    uploadImage.uploadImageToServer(email, avatarPath, avatar);
+                }
+
+                if (cif != null) {
+                    uploadImage = new UploadImage();
+                    uploadImage.uploadImageToServer(email, cifPath, cif);
+                }
+            } finally {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(body.substring(0, body.lastIndexOf("@gmail.com")));
+            }
+            return;
+        }
 
         sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
     }

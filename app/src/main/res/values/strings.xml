@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">AHT Apartment</string>
     <string name="default_notification_channel_id">Bills</string>
-    <string name="bill_house_topic">Bill</string>
+    <string name="topic_for_all_house">AHTAPARTMENT</string>
+    <string name="register_house_topic">register</string>
 
     <!-- login activity-->
     <string name="login_hint_edit_username">Tên đăng nhập</string>
@@ -165,7 +166,7 @@
     <string name="notice_register_1">Lưu ý: Các field có dấu (*) bắt buộc người dùng phải nhập chính xác để hoàn thành các bước đăng kí sau.</string>
     <string name="notice_register_2">Lưu ý: Để tạo được mã QR Code, người dùng phải quét Chứng minh thư/Thẻ căn cước.</string>
 
-    <!-- Shared Preferences -->
+    <!-- Shared Preferences info-->
     <string name="shared_info">info_loged_shared</string>
     <string name="key_user_id">user_id</string>
     <string name="key_email">email</string>
@@ -186,6 +187,14 @@
     <string name="key_create_date">create_date</string>
     <string name="key_last_modified">last_modified</string>
     <string name="key_family">family</string>
+
+    <!-- Shared Preferences info-->
+    <string name="shared_register">register_shared</string>
+    <string name="key_register_email">key_register_email</string>
+    <string name="key_register_avatar">key_register_avatar</string>
+    <string name="key_register_avatar_path">key_register_avatar_path</string>
+    <string name="key_register_cif">key_register_cif</string>
+    <string name="key_register_cif_path">key_register_cif_path</string>
 
     <!-- error -->
     <string name="login_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>

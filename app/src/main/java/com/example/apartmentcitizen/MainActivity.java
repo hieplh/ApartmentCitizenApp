@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     private void subscribeTopics(int topic) {
         switch (topic) {
             case BILL_HOUSE:
-                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.bill_house_topic))
+                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.register_house_topic))
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
