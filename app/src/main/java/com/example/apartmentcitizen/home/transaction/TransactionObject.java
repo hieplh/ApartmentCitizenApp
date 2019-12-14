@@ -82,4 +82,6 @@ public class TransactionObject implements Serializable {
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
+
+
 }

@@ -46,7 +46,7 @@
     <TextView
         android:id="@+id/transaction_title"
         android:gravity="bottom"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:textSize="13sp"
@@ -58,16 +58,28 @@
 
 
     <TextView
+    android:id="@+id/transaction_time"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:textSize="10sp"
+    android:textColor="@color/purple_deep"
+    android:paddingLeft="15dp"
+    android:paddingRight="30dp"
+    android:layout_marginBottom="10dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignLeft="@+id/space_frame"
+    android:text="Lúc 20:30"/>
+
+    <TextView
         android:id="@+id/transactor"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:textSize="10sp"
-        android:textColor="@color/purple_deep"
-        android:paddingLeft="15dp"
-        android:paddingRight="30dp"
-        android:layout_marginBottom="15dp"
+        android:textColor="@color/gray_holder_login"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/space_frame"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="right"
         android:text="Nguyen Duy Anh"/>
 
 

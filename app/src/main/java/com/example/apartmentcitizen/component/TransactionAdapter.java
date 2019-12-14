@@ -35,8 +35,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     List<TransactionObject> listTransaction;
     Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
     FullnameObject fullnameObj;
-    //SimpleDateFormat format = new SimpleDateFormat();
-    Date now;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date d;
+    String[] arrTime1, arrTime2;
+
 
     public TransactionAdapter(Context context, List<TransactionObject> listTransaction) {
         this.context = context;
@@ -60,7 +63,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.wallet_gradient3));
         }
         holder.amount.setText(listTransaction.get(position).getAmount() + "");
-        getFullName(listTransaction.get(position).getTransactorId(), holder.transactor);
+        setFullName(listTransaction.get(position).getTransactorId(), holder.transactor);
+        setTimeForTransaction(listTransaction.get(position).getCreatedDate(), holder.day, holder.month, holder.time);
 
     }
 
@@ -69,7 +73,21 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return listTransaction.size();
     }
 
-    public void getFullName(int id, final TextView txtFullname) {
+    public void setTimeForTransaction(String pattern, TextView day, TextView month, TextView time){
+        try{
+            d = sdf.parse(pattern);
+            String formattedTime = output.format(d);
+            arrTime1 = formattedTime.split("-");
+            month.setText("Th " + arrTime1[1]);
+            arrTime2 = arrTime1[2].split(" ");
+            day.setText(arrTime2[0]);
+            time.setText("Lúc " + arrTime2[1]);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setFullName(int id, final TextView txtFullname) {
         LoadFullnameByIdService loadFullnameByIdService = retrofit.create(LoadFullnameByIdService.class);
         Call<FullnameObject> callFullname = loadFullnameByIdService.getFullnameById(id);
         callFullname.enqueue(new Callback<FullnameObject>() {
@@ -87,11 +105,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView day, month, title, transactor, amount;
+        TextView day, month, time, title, transactor, amount;
         RelativeLayout parentView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            time = itemView.findViewById(R.id.transaction_time);
             day = itemView.findViewById(R.id.transaction_day);
             month = itemView.findViewById(R.id.transaction_month);
             title = itemView.findViewById(R.id.transaction_title);
