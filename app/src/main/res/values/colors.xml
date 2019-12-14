@@ -29,4 +29,6 @@
     <color name="orange">#FCB664</color>
     <color name="blue_facebook">#1877F2</color>
     <color name="red_google">#DC4E41</color>
+    <color name="purple_strong">#972EFE</color>
+    <color name="blue_strong">#0D72FF</color>
 </resources>

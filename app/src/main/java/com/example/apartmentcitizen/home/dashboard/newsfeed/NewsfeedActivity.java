@@ -53,8 +53,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                                  recyclerView.setAdapter(adapter);
                                  LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
                                  recyclerView.setLayoutManager(layoutManager);
-                                 Toast.makeText(NewsfeedActivity.this, listPost.get(0).getUser().getLastName(), Toast.LENGTH_LONG).show();
-                             }
+                                 }
 
                              @Override
                              public void onFailure(Call<List<PostDTO>> call, Throwable t) {

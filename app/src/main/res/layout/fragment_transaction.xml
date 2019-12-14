@@ -1,16 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_reg_frame"
     tools:context=".home.transaction.TransactionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Transaction Fragment"
-        android:textColor="@color/black"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <RelativeLayout
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/gradient_transaction">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/information_label_housecode"
+                    android:fontFamily="@font/poly"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/information_label_fullname"
+                    android:fontFamily="@font/poly"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="23dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày 13 tháng 12 năm 2019"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poly"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="45dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/button_access_wallet"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Truy cập ví"
+                    android:drawableTint="@color/white"
+                    android:drawableRight="@drawable/icon_next_resize"
+                    android:textSize="13sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/wallet_money_in_wallet"
+                    android:textSize="25sp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/button_transaction"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_alignParentBottom="true"
+                android:translationY="-30dp">
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_reg_frame"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_holder_login"
+                    android:text="Trong tháng"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red_google"
+                    android:gravity="center"
+                    android:text="Chi tiêu"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="28dp"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/wallet_gradient3"
+                    android:text="Nạp tiền"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="28dp"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="2000000"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="13sp"
+                    />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:text="8000000"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="13sp"
+                    />
+            </RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/button_login"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/purple_deep"
+                android:text="Lịch sử hoá đơn"
+                android:stateListAnimator="@null"
+                android:textAllCaps="false"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giao dịch gần đây"
+                android:textColor="@color/black"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:textSize="25sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/list_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+</ScrollView>
