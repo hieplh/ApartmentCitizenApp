@@ -67,7 +67,13 @@ public class FirebaseService extends FirebaseMessagingService {
                     uploadImage.uploadImageToServer(email, cifPath, cif);
                 }
             } finally {
-                FirebaseMessaging.getInstance().unsubscribeFromTopic(body.substring(0, body.lastIndexOf("@gmail.com")));
+                int end;
+                if (body.lastIndexOf("@gmail.com") != -1) {
+                    end = body.lastIndexOf("@gmail.com");
+                } else {
+                    end = body.lastIndexOf("@fpt.edu.vn");
+                }
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(body.substring(0, end));
             }
             return;
         }
