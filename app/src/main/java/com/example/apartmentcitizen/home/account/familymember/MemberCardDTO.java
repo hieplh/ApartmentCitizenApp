@@ -1,11 +1,28 @@
 package com.example.apartmentcitizen.home.account.familymember;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class MemberCardDTO implements Serializable {
 
+    @SerializedName("userId")
     public int id;
-    public String firstName, lastName, relation, email, phoneNo, birthday, urlImg;
+    @SerializedName("firstName")
+    public String firstName;
+    @SerializedName("lastName")
+    public String lastName;
+    @SerializedName("familyLevel")
+    public String relation;
+    @SerializedName("email")
+    public String email;
+    @SerializedName("phoneNo")
+    public String phoneNo;
+    @SerializedName("dateOfBirth")
+    public String birthday;
+    @SerializedName("profileImage")
+    public String urlImg;
 
     public MemberCardDTO() {
     }

@@ -24,13 +24,14 @@
         <TableRow>
 
             <TextView
+                android:id="@+id/txtHouseName"
                 android:layout_height="60dp"
                 android:background="@drawable/label_house_code_gradient"
                 android:fontFamily="@font/telex"
                 android:gravity="center"
                 android:text="@string/information_label_housecode"
                 android:textColor="@color/end_gradient"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="20dp"
@@ -38,27 +39,29 @@
                 android:fontFamily="@font/telex"
                 android:text="@string/house_code_block_title"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txtBlock"
                 android:fontFamily="@font/telex"
                 android:text="@string/house_code_block"
                 android:textColor="@color/start_gradient"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="20dp"
                 android:fontFamily="@font/telex"
                 android:text="@string/house_code_floor_title"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txtFloor"
                 android:fontFamily="@font/telex"
                 android:gravity="right"
                 android:text="@string/house_code_floor"
                 android:textColor="@color/start_gradient"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
         </TableRow>
 
@@ -66,6 +69,7 @@
     </TableLayout>
 
     <TextView
+        android:id="@+id/txtNumberOfUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="6dp"

@@ -34,17 +34,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="130dp"
             android:fontFamily="@font/poly"
             android:text="@string/information_label_fullname"
             android:textColor="@color/gray_holder_login"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/text_card_house_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="160dp"
+            android:fontFamily="@font/poly"
+            android:text="@string/information_label_housecode"
+            android:textColor="@color/gray_holder_login"
+            android:textSize="14sp" />
+
         <ImageView
             android:layout_width="40dp"
             android:layout_height="35dp"
             android:layout_marginLeft="250dp"
-            android:layout_marginTop="143dp"
+            android:layout_marginTop="133dp"
             android:background="@drawable/card_chip_img" />
 
     </RelativeLayout>
