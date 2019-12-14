@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class TransactionFragment extends Fragment {
     TextView txtCurDate, txtSpend, txtRecharge, txtMoneyInWallet, txtFullname, txtHouseCode;
     String arrDate[];
     int month, countSpend = 0, countRecharge = 0, count = 0;
+    Button btnHistory;
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class TransactionFragment extends Fragment {
         txtCurDate = view.findViewById(R.id.transaction_current_date);
         txtSpend = view.findViewById(R.id.transaction_spend_in_month);
         txtRecharge = view.findViewById(R.id.transaction_recharge_in_month);
+        btnHistory = view.findViewById(R.id.history_bill_button);
 
 
         LoadTransactionByHouseIdService loadTransactionByHouseIdService = retrofit.create(LoadTransactionByHouseIdService.class);
@@ -59,12 +62,15 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onResponse(Call<List<TransactionObject>> call, Response<List<TransactionObject>> response) {
                 listTransaction = response.body();
+                int curMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+                int curDay = Calendar.getInstance().get(Calendar.DATE);
+                int curYear =Calendar.getInstance().get(Calendar.YEAR);
+                txtCurDate.setText("Ngày " + curDay + " tháng " + curMonth + " năm " + curYear);
 
 
                 for (TransactionObject obj: listTransaction) {
                     arrDate = obj.getCreatedDate().split("-");
                     month = Integer.parseInt(arrDate[1]);
-                    int curMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
                     if( month == curMonth){
                         count++;
                         Toast.makeText(view.getContext(), count+"", Toast.LENGTH_LONG).show();

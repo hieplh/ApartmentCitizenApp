@@ -150,6 +150,7 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/history_bill_button"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="30dp"
