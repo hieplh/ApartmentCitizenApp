@@ -1,6 +1,8 @@
 package com.example.apartmentcitizen.home.transaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -42,6 +44,7 @@ public class TransactionFragment extends Fragment {
     String arrDate[];
     int month, countSpend = 0, countRecharge = 0;
     Button btnHistory;
+    SharedPreferences sharedPreferences;
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -54,6 +57,9 @@ public class TransactionFragment extends Fragment {
         recyclerView = view.findViewById(R.id.list_transaction);
         retrofit = RetrofitInstance.getRetrofitInstance();
 
+        txtFullname = view.findViewById(R.id.transaction_account_name);
+        txtHouseCode = view.findViewById(R.id.transaction_house_code);
+        txtMoneyInWallet = view.findViewById(R.id.transaction_money_in_wallet);
         txtCurDate = view.findViewById(R.id.transaction_current_date);
         txtSpend = view.findViewById(R.id.transaction_spend_in_month);
         txtRecharge = view.findViewById(R.id.transaction_recharge_in_month);
@@ -74,30 +80,33 @@ public class TransactionFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        sharedPreferences = this.getContext().getSharedPreferences(getString(R.string.shared_info), Context.MODE_PRIVATE);
+        txtFullname.setText(sharedPreferences.getString(getString(R.string.key_last_name), "") + " " + sharedPreferences.getString(getString(R.string.key_first_name), ""));
+        int houseid = sharedPreferences.getInt(getString(R.string.key_house_id), 0);
         LoadTransactionByHouseIdService loadTransactionByHouseIdService = retrofit.create(LoadTransactionByHouseIdService.class);
-        Call<List<TransactionObject>> callTransaction = loadTransactionByHouseIdService.getTransactionByHouseId(6);
+        Call<List<TransactionObject>> callTransaction = loadTransactionByHouseIdService.getTransactionByHouseId(houseid);
         callTransaction.enqueue(new Callback<List<TransactionObject>>() {
             @Override
             public void onResponse(Call<List<TransactionObject>> call, Response<List<TransactionObject>> response) {
                 listTransaction = response.body();
                 int curMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
                 int curDay = Calendar.getInstance().get(Calendar.DATE);
-                int curYear =Calendar.getInstance().get(Calendar.YEAR);
+                int curYear = Calendar.getInstance().get(Calendar.YEAR);
                 txtCurDate.setText("Ngày " + curDay + " tháng " + curMonth + " năm " + curYear);
-
-                for (TransactionObject obj: listTransaction) {
+                for (TransactionObject obj : listTransaction) {
                     arrDate = obj.getCreatedDate().split("-");
                     month = Integer.parseInt(arrDate[1]);
-                    if( month == curMonth){
-                            if(obj.getStatus()==0){
-                                    countSpend += obj.getAmount();
-                                    txtSpend.setText(Digit.handleDigit(countSpend+""));
-                            }else if(obj.getStatus()==1){
-                                    countRecharge += obj.getAmount();
-                                    txtRecharge.setText(Digit.handleDigit(countRecharge+""));
-                            }
+                    if (month == curMonth) {
+                        if (obj.getStatus() == 0) {
+                            countSpend += obj.getAmount();
+                            txtSpend.setText(Digit.handleDigit(countSpend + ""));
+                        } else if (obj.getStatus() == 1) {
+                            countRecharge += obj.getAmount();
+                            txtRecharge.setText(Digit.handleDigit(countRecharge + ""));
+                        }
                     }
+                    txtHouseCode.setText(obj.getHouse().getHouseName());
+                    txtMoneyInWallet.setText(obj.getHouse().getCurrentMoney());
                 }
 
                 TransactionAdapter adapter = new TransactionAdapter(view.getContext(), listTransaction);
