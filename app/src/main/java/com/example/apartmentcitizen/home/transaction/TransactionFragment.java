@@ -36,7 +36,7 @@ public class TransactionFragment extends Fragment {
     List<TransactionObject> listTransaction = new ArrayList<>();
     TextView txtCurDate, txtSpend, txtRecharge, txtMoneyInWallet, txtFullname, txtHouseCode;
     String arrDate[];
-    int month, countSpend = 0, countRecharge = 0, count = 0;
+    int month, countSpend = 0, countRecharge = 0;
     Button btnHistory;
 
     public TransactionFragment() {
@@ -66,14 +66,10 @@ public class TransactionFragment extends Fragment {
                 int curDay = Calendar.getInstance().get(Calendar.DATE);
                 int curYear =Calendar.getInstance().get(Calendar.YEAR);
                 txtCurDate.setText("Ngày " + curDay + " tháng " + curMonth + " năm " + curYear);
-
-
                 for (TransactionObject obj: listTransaction) {
                     arrDate = obj.getCreatedDate().split("-");
                     month = Integer.parseInt(arrDate[1]);
                     if( month == curMonth){
-                        count++;
-                        Toast.makeText(view.getContext(), count+"", Toast.LENGTH_LONG).show();
                             if(obj.getStatus()==0){
                                     countSpend += obj.getAmount();
                                     txtSpend.setText(countSpend+"");
