@@ -1,5 +1,6 @@
 package com.example.apartmentcitizen.home.transaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.TransactionAdapter;
+import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
 import com.example.apartmentcitizen.network.LoadTransactionByHouseIdService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 
@@ -33,8 +35,8 @@ public class TransactionFragment extends Fragment {
 
     RecyclerView recyclerView;
     Retrofit retrofit;
-    List<TransactionObject> listTransaction = new ArrayList<>();
-    TextView txtCurDate, txtSpend, txtRecharge, txtMoneyInWallet, txtFullname, txtHouseCode;
+    List<TransactionObject> listTransaction;
+    TextView txtCurDate, txtSpend, txtRecharge, txtMoneyInWallet, txtFullname, txtHouseCode, btnAccessWallet;
     String arrDate[];
     int month, countSpend = 0, countRecharge = 0;
     Button btnHistory;
@@ -54,6 +56,14 @@ public class TransactionFragment extends Fragment {
         txtSpend = view.findViewById(R.id.transaction_spend_in_month);
         txtRecharge = view.findViewById(R.id.transaction_recharge_in_month);
         btnHistory = view.findViewById(R.id.history_bill_button);
+        btnAccessWallet = view.findViewById(R.id.button_access_wallet);
+        btnAccessWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), WalletActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         LoadTransactionByHouseIdService loadTransactionByHouseIdService = retrofit.create(LoadTransactionByHouseIdService.class);
