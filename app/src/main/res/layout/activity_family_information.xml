@@ -24,6 +24,7 @@
         <TableRow>
 
             <TextView
+                android:id="@+id/txtHouseName"
                 android:layout_height="60dp"
                 android:background="@drawable/label_house_code_gradient"
                 android:fontFamily="@font/telex"
@@ -41,6 +42,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/txtBlock"
                 android:fontFamily="@font/telex"
                 android:text="@string/house_code_block"
                 android:textColor="@color/start_gradient"
@@ -54,6 +56,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/txtFloor"
                 android:fontFamily="@font/telex"
                 android:gravity="right"
                 android:text="@string/house_code_floor"
@@ -66,6 +69,7 @@
     </TableLayout>
 
     <TextView
+        android:id="@+id/txtNumberOfUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="6dp"

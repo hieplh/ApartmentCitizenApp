@@ -66,9 +66,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                         case R.string.information_title_item2:
                             context.startActivity(new Intent(context, InformationActivity.class));
                             break;
-                        case R.string.information_title_item3:
-                            context.startActivity(new Intent(context, FamilyInformationActivity.class));
-                            break;
                     }
                 } else {
                     switch (listCard.get(position).getTitle()) {
@@ -76,6 +73,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                             IntentIntegrator integrator = new IntentIntegrator(activity);
                             integrator.setOrientationLocked(false);
                             integrator.initiateScan();
+                            break;
+                        case R.string.information_title_item3:
+                            context.startActivity(new Intent(context, FamilyInformationActivity.class));
                             break;
                     }
                 }

@@ -1,9 +1,12 @@
 package com.example.apartmentcitizen.network;
 
+import com.example.apartmentcitizen.home.account.familymember.MemberCardDTO;
 import com.example.apartmentcitizen.home.account.information.Information;
 import com.example.apartmentcitizen.image.LoadImage;
 import com.example.apartmentcitizen.register.Register;
 import com.example.apartmentcitizen.register.RegisterActivity;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,4 +41,8 @@ public interface UserService {
 
     @GET("users/email/{email}")
     Call<ResponseBody> checkPresentEmail(@Path("email") String email);
+
+    @GET("users/houses/7")
+    Call<List<MemberCardDTO>> getUserByHouseId();
+
 }

@@ -18,7 +18,9 @@
         android:icon="@drawable/logo_apartment_login"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
          <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <service
             android:name=".service.FirebaseService"
