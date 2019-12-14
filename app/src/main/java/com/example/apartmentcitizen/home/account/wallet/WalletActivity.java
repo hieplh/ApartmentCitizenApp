@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
+import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.R;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class WalletActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.text_card_fullname)).setText(sb.toString());
 
         ((TextView) findViewById(R.id.text_money_in_wallet))
-                .setText(handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+                .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
 
         window = getWindow();
         window.setNavigationBarColor(ContextCompat.getColor(WalletActivity.this, R.color.purple));
@@ -72,32 +73,5 @@ public class WalletActivity extends AppCompatActivity {
     public void clickToShowHistoryTrans(View view) {
     }
 
-    private String handleDigit(String digit) {
-        StringBuilder result = new StringBuilder();
-        List<String> list = new ArrayList<>();
-        int length = digit.length();
 
-        if (length <= 3) {
-            return digit;
-        } else {
-            int start = length;
-            int end = start - 3 >= 0 ? start - 3 : 0;
-            boolean flag = false;
-
-            do {
-                if (flag) {
-                    start = end;
-                    end = start - 3 > 0 ? start - 3 : 0;
-                    list.add(",");
-                } else {
-                    flag = true;
-                }
-                list.add(digit.substring(end, start));
-            } while (end > 0);
-        }
-        for (int i = list.size() - 1; i >= 0; i--) {
-            result.append(list.get(i));
-        }
-        return result.toString();
-    }
 }

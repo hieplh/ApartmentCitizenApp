@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.TransactionAdapter;
+import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
+import com.example.apartmentcitizen.home.transaction.receipt.HistoryReceiptActivity;
 import com.example.apartmentcitizen.network.LoadTransactionByHouseIdService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 
@@ -65,6 +67,13 @@ public class TransactionFragment extends Fragment {
             }
         });
 
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), HistoryReceiptActivity.class);
+                startActivity(intent);
+            }
+        });
 
         LoadTransactionByHouseIdService loadTransactionByHouseIdService = retrofit.create(LoadTransactionByHouseIdService.class);
         Call<List<TransactionObject>> callTransaction = loadTransactionByHouseIdService.getTransactionByHouseId(6);
@@ -83,10 +92,10 @@ public class TransactionFragment extends Fragment {
                     if( month == curMonth){
                             if(obj.getStatus()==0){
                                     countSpend += obj.getAmount();
-                                    txtSpend.setText(countSpend+"");
+                                    txtSpend.setText(Digit.handleDigit(countSpend+""));
                             }else if(obj.getStatus()==1){
                                     countRecharge += obj.getAmount();
-                                    txtRecharge.setText(countRecharge+"");
+                                    txtRecharge.setText(Digit.handleDigit(countRecharge+""));
                             }
                     }
                 }

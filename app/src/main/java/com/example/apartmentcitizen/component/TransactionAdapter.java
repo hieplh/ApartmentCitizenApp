@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.home.transaction.FullnameObject;
 import com.example.apartmentcitizen.home.transaction.TransactionObject;
 import com.example.apartmentcitizen.network.LoadFullnameByIdService;
@@ -62,7 +63,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         } else {
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.wallet_gradient3));
         }
-        holder.amount.setText(listTransaction.get(position).getAmount() + "");
+        holder.amount.setText(Digit.handleDigit(listTransaction.get(position).getAmount() + ""));
         setFullName(listTransaction.get(position).getTransactorId(), holder.transactor);
         setTimeForTransaction(listTransaction.get(position).getCreatedDate(), holder.day, holder.month, holder.time);
 
@@ -94,7 +95,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onResponse(Call<FullnameObject> call, Response<FullnameObject> response) {
                 fullnameObj = response.body();
-                //Toast.makeText(context, fullnameObj.getLastName(), Toast.LENGTH_LONG).show();
                 txtFullname.setText(fullnameObj.getLastName() + " " + fullnameObj.getFirstName());
             }
 
