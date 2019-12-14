@@ -154,6 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="30dp"
+            android:translationY="-10dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/button_login"
             android:stateListAnimator="@null"
@@ -173,7 +174,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_transaction"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:isScrollContainer="false"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
 
