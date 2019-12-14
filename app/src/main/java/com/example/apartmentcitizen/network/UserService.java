@@ -33,11 +33,11 @@ public interface UserService {
 
     @Multipart
     @PUT("users/profileImage/{email}")
-    Call<ResponseBody> uploadImageProfile(@Path("email") String email, @Part MultipartBody.Part file, @Part("name") RequestBody requestBody);
+    Call<ResponseBody> uploadImageProfile(@Path("email") String email, @Part MultipartBody.Part file, @Part("file") RequestBody requestBody);
 
     @Multipart
     @PUT("users/idImage/{email}")
-    Call<ResponseBody> uploadImageCif(@Path("email") String email, @Part MultipartBody.Part file, @Part("name") RequestBody requestBody);
+    Call<ResponseBody> uploadImageCif(@Path("email") String email, @Part MultipartBody.Part file, @Part("file") RequestBody requestBody);
 
     @GET("users/email/{email}")
     Call<ResponseBody> checkPresentEmail(@Path("email") String email);

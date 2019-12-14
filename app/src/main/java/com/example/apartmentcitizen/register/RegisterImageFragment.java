@@ -75,11 +75,11 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         boolean flag;
         switch (v.getId()) {
             case R.id.generate_qrcode_btn:
-                generateQrcode(v.getRootView());
-
                 if (uploadImageForRegister()) {
                     subscribeUploadImageFirebase();
                 }
+
+                generateQrcode(v.getRootView());
                 break;
             case R.id.upload_avatar_btn:
                 flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(AVATAR_REQUEST_CODE);
@@ -153,9 +153,14 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
     }
 
     private void subscribeUploadImageFirebase() {
-        String editEmail = email.substring(0, email.lastIndexOf("@gmail.com"));
+        int end;
+        if (email.lastIndexOf("@gmail.com") != -1) {
+            end = email.lastIndexOf("@gmail.com");
+        } else {
+            end = email.lastIndexOf("@fpt.edu.vn");
+        }
 
-        FirebaseMessaging.getInstance().subscribeToTopic(editEmail)
+        FirebaseMessaging.getInstance().subscribeToTopic(email.substring(0, end))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
