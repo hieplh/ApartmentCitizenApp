@@ -66,6 +66,7 @@ public class TransactionFragment extends Fragment {
                 int curDay = Calendar.getInstance().get(Calendar.DATE);
                 int curYear =Calendar.getInstance().get(Calendar.YEAR);
                 txtCurDate.setText("Ngày " + curDay + " tháng " + curMonth + " năm " + curYear);
+
                 for (TransactionObject obj: listTransaction) {
                     arrDate = obj.getCreatedDate().split("-");
                     month = Integer.parseInt(arrDate[1]);
@@ -79,6 +80,7 @@ public class TransactionFragment extends Fragment {
                             }
                     }
                 }
+
                 TransactionAdapter adapter = new TransactionAdapter(view.getContext(), listTransaction);
                 recyclerView.setAdapter(adapter);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -88,7 +90,6 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onFailure(Call<List<TransactionObject>> call, Throwable t) {
                 Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-
             }
         });
 
