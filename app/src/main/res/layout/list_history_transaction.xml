@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:id="@+id/transaction_item"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="80dp"
+    android:background="@drawable/transaction_list_card"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/transaction_day"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="13"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:fontFamily="@font/poly"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        />
+
+    <TextView
+        android:id="@+id/transaction_month"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="Th 12"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/purple_deep"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="12dp"
+        />
+
+    <ImageView
+        android:id="@+id/space_frame"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/gray_reg_frame"
+        android:layout_marginLeft="70dp"/>
+
+    <TextView
+        android:id="@+id/transaction_title"
+        android:gravity="bottom"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:paddingLeft="15dp"
+        android:paddingRight="70dp"
+        android:layout_alignLeft="@+id/space_frame"
+        android:text="Nap tien"/>
+
+
+    <TextView
+    android:id="@+id/transaction_time"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:textSize="10sp"
+    android:textColor="@color/purple_deep"
+    android:paddingLeft="15dp"
+    android:paddingRight="30dp"
+    android:layout_marginBottom="10dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignLeft="@+id/space_frame"
+    android:text="Lúc 20:30"/>
+
+    <TextView
+        android:id="@+id/transactor"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="10sp"
+        android:textColor="@color/gray_holder_login"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="right"
+        android:text="Nguyen Duy Anh"/>
+
+
+    <TextView
+        android:id="@+id/transaction_amount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right|center"
+        android:textSize="15sp"
+        android:paddingRight="10dp"
+        android:textColor="@color/wallet_gradient3"
+        android:text="2000000"/>
+
+
+
+
+</RelativeLayout>

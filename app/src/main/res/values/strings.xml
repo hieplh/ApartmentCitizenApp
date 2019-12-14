@@ -11,6 +11,15 @@
     <string name="login_google">Google</string>
     <string name="login_facebook">Facebook</string>
 
+    <!-- transaction fragment -->
+    <string name="transaction_access_wallet">Truy cập ví</string>
+    <string name="transaction_label_in_month">Trong tháng</string>
+    <string name="transaction_label_spend">Chi tiêu</string>
+    <string name="transaction_label_recharge">Nạp tiền</string>
+    <string name="transaction_label_history_bill">Lịch sử hoá đơn</string>
+    <string name="transaction_label_recently">Giao dịch gần đây</string>
+
+
     <!-- home activity-->
     <string name="home_label_nav_transaction">Giao dịch</string>
     <string name="home_label_nav_dashboard">Trung tâm</string>

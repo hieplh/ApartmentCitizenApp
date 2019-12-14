@@ -50,9 +50,18 @@ public class NewsfeedActivity extends AppCompatActivity {
         callPost.enqueue(new Callback<List<PostDTO>>() {
                              @Override
                              public void onResponse(Call<List<PostDTO>> call, Response<List<PostDTO>> response) {
+
+                                 listPost = response.body();
+                                 PostAdapter adapter = new PostAdapter(NewsfeedActivity.this,  listPost);
+                                 recyclerView.setAdapter(adapter);
+                                 LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
+                                 recyclerView.setLayoutManager(layoutManager);
+
                                  initPost(response.body());
                                  Toast.makeText(NewsfeedActivity.this, response.body().get(0).getUser().getLastName(), Toast.LENGTH_LONG).show();
-                             }
+                                 }
+
+
 
                              @Override
                              public void onFailure(Call<List<PostDTO>> call, Throwable t) {
