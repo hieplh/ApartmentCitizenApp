@@ -1,15 +1,18 @@
 package com.example.apartmentcitizen.home.account.information;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -29,8 +32,11 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +66,7 @@ public class InformationActivity extends AppCompatActivity {
     EditText email, cif, career, domicile, phone;
     RadioGroup radioGroupGender;
     RadioButton gender;
+    Button pickAvatar;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -80,20 +87,34 @@ public class InformationActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Permission.READ_EXTERNAL_STORAGE) {
-            new FilePicker.Builder()
-                    .maxSelect(1)
-                    .typesOf(FilePicker.TYPE_IMAGE)
-                    .start(this, AVATAR_REQUEST_CODE);
-        }
 
         if (requestCode == AVATAR_REQUEST_CODE) {
             pathImage = FilePicker.Companion.getResult(data);
         }
     }
 
-    public void updateInfoAvatar(View view) {
-        new Permission(this, this).grantReadExternalStoratePermission(Permission.READ_EXTERNAL_STORAGE);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == Permission.READ_EXTERNAL_STORAGE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                new FilePicker.Builder()
+                        .maxSelect(1)
+                        .typesOf(FilePicker.TYPE_IMAGE)
+                        .start(this, AVATAR_REQUEST_CODE);
+            }
+        }
+    }
+
+    public void updateInfoAvatar() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permission.READ_EXTERNAL_STORAGE);
+        } else {
+            new FilePicker.Builder()
+                    .maxSelect(1)
+                    .typesOf(FilePicker.TYPE_IMAGE)
+                    .start(this, AVATAR_REQUEST_CODE);
+        }
     }
 
     public void exitInfoForm(View view) {
@@ -144,6 +165,14 @@ public class InformationActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        pickAvatar = findViewById(R.id.update_avatar_btn);
+        pickAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateInfoAvatar();
+            }
+        });
     }
 
     private void setUpView() {
@@ -169,7 +198,7 @@ public class InformationActivity extends AppCompatActivity {
             gender = findViewById(R.id.female_radio_info);
         }
         gender.setSelected(true);
-        Log.d("INFO", "Email: " + sharedPreferences.getString(getString(R.string.key_email), ""));
+
         email.setText(sharedPreferences.getString(getString(R.string.key_email), ""));
         cif.setText(sharedPreferences.getString(getString(R.string.key_cif), ""));
         career.setText(sharedPreferences.getString(getString(R.string.key_job), ""));

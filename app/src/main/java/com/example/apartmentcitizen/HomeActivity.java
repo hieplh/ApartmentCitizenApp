@@ -38,7 +38,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.File;
 import java.util.StringTokenizer;
 
 import androidx.annotation.NonNull;
@@ -46,10 +45,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import androidx.fragment.app.FragmentManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,6 +53,16 @@ import retrofit2.Retrofit;
 
 
 public class HomeActivity extends AppCompatActivity {
+
+    final int ACCOUNT = R.id.navAcc;
+    final int DASHBOARD = R.id.navDashBoard;
+    final int NOTIFICATION = R.id.navNoti;
+    final int TRANSACTION = R.id.navTrans;
+
+    final String ACCOUNT_TAG = "ACCOUNT";
+    final String DASHBOARD_TAG = "DASHBOARD";
+    final String NOTIFICATION_TAG = "NOTIFICATION";
+    final String TRANSACTION_TAG = "TRANSACTION";
 
     final String EMAIL = "email";
     final String CIF = "identity_card_number";
@@ -79,6 +85,9 @@ public class HomeActivity extends AppCompatActivity {
     RelativeLayout headerHome;
     Window window;
 
+    FragmentManager fm;
+    Fragment account, dashboard, notification, transaction;
+
     SharedPreferences sharedPreferences;
     boolean flag;
 
@@ -87,7 +96,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        fm = getSupportFragmentManager();
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), Context.MODE_PRIVATE);
+
+        initView();
 
         setupView();
     }
@@ -136,69 +148,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    //set up View
-    public void setupView() {
-        window = getWindow();
-        headerHome = findViewById(R.id.header_home);
-        lbTitle = findViewById(R.id.label_title);
-        btnLogOut = findViewById(R.id.button_log_out);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navDashBoard);
-        lbTitle.setText(R.string.home_label_nav_dashboard);
-        lbTitle.setTextColor(Color.WHITE);
-        headerHome.setBackgroundResource(R.color.blue1);
-        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
-        btnLogOut.setVisibility(View.INVISIBLE);
-        loadFragment(new DashboardFragment());
-        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment;
-                switch (item.getItemId()) {
-                    case R.id.navTrans:
-                        lbTitle.setText(R.string.home_label_nav_transaction);
-                        lbTitle.setTextColor(Color.BLACK);
-                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
-                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
-                        btnLogOut.setVisibility(View.INVISIBLE);
-                        fragment = new TransactionFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.navDashBoard:
-                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
-                        lbTitle.setText(R.string.home_label_nav_dashboard);
-                        lbTitle.setTextColor(Color.WHITE);
-                        headerHome.setBackgroundResource(R.color.blue1);
-                        btnLogOut.setVisibility(View.INVISIBLE);
-                        fragment = new DashboardFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.navNoti:
-                        lbTitle.setText(R.string.home_label_nav_notification);
-                        lbTitle.setTextColor(Color.BLACK);
-                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
-                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
-                        btnLogOut.setVisibility(View.INVISIBLE);
-                        fragment = new NotificationFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.navAcc:
-                        lbTitle.setText(R.string.home_label_nav_me);
-                        lbTitle.setTextColor(Color.BLACK);
-                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
-                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
-                        btnLogOut.setVisibility(View.VISIBLE);
-                        fragment = new AccountFragment();
-                        loadFragment(fragment);
-                        return true;
-                }
-                return false;
-            }
-        };
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-    }
-
     public void logoutAccount(View view) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
@@ -219,11 +168,113 @@ public class HomeActivity extends AppCompatActivity {
                 });
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private void initView() {
+        window = getWindow();
+
+        headerHome = findViewById(R.id.header_home);
+
+        lbTitle = findViewById(R.id.label_title);
+
+        btnLogOut = findViewById(R.id.button_log_out);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.navDashBoard);
+
+        lbTitle.setText(R.string.home_label_nav_dashboard);
+
+        lbTitle.setTextColor(Color.WHITE);
+
+        headerHome.setBackgroundResource(R.color.blue1);
+
+        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
+
+        btnLogOut.setVisibility(View.INVISIBLE);
+
+        loadFragment(new DashboardFragment(), DASHBOARD);
+    }
+
+    //set up View
+    private void setupView() {
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case TRANSACTION:
+                        lbTitle.setText(R.string.home_label_nav_transaction);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
+                        btnLogOut.setVisibility(View.INVISIBLE);
+
+                        loadFragment(transaction, TRANSACTION);
+                        return true;
+                    case DASHBOARD:
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.blue1));
+                        lbTitle.setText(R.string.home_label_nav_dashboard);
+                        lbTitle.setTextColor(Color.WHITE);
+                        headerHome.setBackgroundResource(R.color.blue1);
+                        btnLogOut.setVisibility(View.INVISIBLE);
+
+                        loadFragment(dashboard, DASHBOARD);
+                        return true;
+                    case NOTIFICATION:
+                        lbTitle.setText(R.string.home_label_nav_notification);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
+                        btnLogOut.setVisibility(View.INVISIBLE);
+
+                        loadFragment(notification, NOTIFICATION);
+                        return true;
+                    case ACCOUNT:
+                        lbTitle.setText(R.string.home_label_nav_me);
+                        lbTitle.setTextColor(Color.BLACK);
+                        headerHome.setBackgroundResource(R.color.gray_reg_frame);
+                        window.setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.gray_reg_frame));
+                        btnLogOut.setVisibility(View.VISIBLE);
+
+                        loadFragment(account, ACCOUNT);
+                        return true;
+                }
+                return false;
+            }
+        };
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void loadFragment(Fragment fragment, int type) {
+        switch (type) {
+            case ACCOUNT:
+                fragment = fm.findFragmentByTag(ACCOUNT_TAG);
+                if (fragment == null) {
+                    fragment = new AccountFragment();
+                }
+                break;
+            case DASHBOARD:
+                fragment = fm.findFragmentByTag(DASHBOARD_TAG);
+                if (fragment == null) {
+                    fragment = new DashboardFragment();
+                }
+                break;
+            case NOTIFICATION:
+                fragment = fm.findFragmentByTag(NOTIFICATION_TAG);
+                if (fragment == null) {
+                    fragment = new NotificationFragment();
+                }
+                break;
+            case TRANSACTION:
+                fragment = fm.findFragmentByTag(TRANSACTION_TAG);
+                if (fragment == null) {
+                    fragment = new TransactionFragment();
+                }
+                break;
+        }
+
+        fm.beginTransaction()
+                .replace(R.id.frame_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private Register parseUser(String user) {

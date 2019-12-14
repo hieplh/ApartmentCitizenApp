@@ -2,9 +2,7 @@ package com.example.apartmentcitizen.home.account;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,7 @@ import com.example.apartmentcitizen.network.RetrofitInstance;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +30,11 @@ public class AccountFragment extends Fragment {
     RecyclerView recyclerView1, recyclerView2;
     List<AccountObject> listCard1, listCard2;
 
+    SharedPreferences sharedPreferences;
     Retrofit retrofit;
+
+    CardAdapter adapter1, adapter2;
+    View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +55,24 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        return view;
+    }
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_info), Context.MODE_PRIVATE);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        this.view = view;
+
+        sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_info), Context.MODE_PRIVATE);
+
+        recyclerView1 = view.findViewById(R.id.list_button_1);
+        recyclerView2 = view.findViewById(R.id.list_button_2);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
         Glide.with(getContext())
                 .load(RetrofitInstance.BASE_URL
@@ -62,7 +81,7 @@ public class AccountFragment extends Fragment {
                         + sharedPreferences.getString(getString(R.string.key_profile_image), "null"))
                 .error(getResources().getDrawable(R.drawable.image_avatar_default))
                 .fitCenter()
-                .into(((CircleImageView)view.findViewById(R.id.avatar_account)));
+                .into(((CircleImageView) view.findViewById(R.id.avatar_account)));
 
         ((Button) view.findViewById(R.id.house_name_account))
                 .setText(sharedPreferences.getString(getString(R.string.key_house_name), "A-1-101"));
@@ -75,19 +94,13 @@ public class AccountFragment extends Fragment {
         sb.append(sharedPreferences.getString(getString(R.string.key_first_name), ""));
         ((TextView) view.findViewById(R.id.label_fullname_account)).setText(sb.toString());
 
-        //set up recyclerView1
-        recyclerView1 = view.findViewById(R.id.list_button_1);
-        CardAdapter adapter1 = new CardAdapter(getContext(), getActivity(), listCard1, 1);
-        recyclerView1.setAdapter(adapter1);
+        adapter1 = new CardAdapter(getContext(), getActivity(), listCard1, 1);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView1.setAdapter(adapter1);
 
-        //set up recyclerView2
-        recyclerView2 = view.findViewById(R.id.list_button_2);
-        CardAdapter adapter2 = new CardAdapter(getContext(), getActivity(), listCard2, 2);
-        recyclerView2.setAdapter(adapter2);
+        adapter2 = new CardAdapter(getContext(), getActivity(), listCard2, 2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-
-        return view;
+        recyclerView2.setAdapter(adapter2);
     }
 }
 

@@ -115,9 +115,7 @@
                     android:text="@string/information_activity_desc_relation"
                     android:textColor="@color/end_gradient"
                     android:textSize="15sp" />
-
             </TableRow>
-
         </TableLayout>
 
         <Button
@@ -130,7 +128,6 @@
             android:background="@drawable/background_card_wallet"
             android:drawableRight="@drawable/icon_next_resize"
             android:fontFamily="@font/telex"
-            android:onClick="updateInfoAvatar"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:stateListAnimator="@null"

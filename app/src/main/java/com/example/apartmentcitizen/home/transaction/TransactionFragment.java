@@ -36,7 +36,7 @@ public class TransactionFragment extends Fragment {
     List<TransactionObject> listTransaction = new ArrayList<>();
     TextView txtCurDate, txtSpend, txtRecharge, txtMoneyInWallet, txtFullname, txtHouseCode;
     String arrDate[];
-    int month, countSpend = 0, countRecharge = 0, count = 0;
+    int month, countSpend = 0, countRecharge = 0;
     Button btnHistory;
 
     public TransactionFragment() {
@@ -67,13 +67,10 @@ public class TransactionFragment extends Fragment {
                 int curYear =Calendar.getInstance().get(Calendar.YEAR);
                 txtCurDate.setText("Ngày " + curDay + " tháng " + curMonth + " năm " + curYear);
 
-
                 for (TransactionObject obj: listTransaction) {
                     arrDate = obj.getCreatedDate().split("-");
                     month = Integer.parseInt(arrDate[1]);
                     if( month == curMonth){
-                        count++;
-                        Toast.makeText(view.getContext(), count+"", Toast.LENGTH_LONG).show();
                             if(obj.getStatus()==0){
                                     countSpend += obj.getAmount();
                                     txtSpend.setText(countSpend+"");
@@ -83,6 +80,7 @@ public class TransactionFragment extends Fragment {
                             }
                     }
                 }
+
                 TransactionAdapter adapter = new TransactionAdapter(view.getContext(), listTransaction);
                 recyclerView.setAdapter(adapter);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -92,7 +90,6 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onFailure(Call<List<TransactionObject>> call, Throwable t) {
                 Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-
             }
         });
 

@@ -1,15 +1,13 @@
 package com.example.apartmentcitizen.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
 import com.example.apartmentcitizen.R;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import gr.net.maroulis.library.EasySplashScreen;
 
 public class SplashActivity extends AppCompatActivity {
@@ -30,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
                 .withBackgroundResource(R.drawable.background_splash);
 
         config.getAfterLogoTextView().setTextSize(30);
-        config.getAfterLogoTextView().setPadding(20,20,20,20);
+        config.getAfterLogoTextView().setPadding(20, 20, 20, 20);
         View splashScreen = config.create();
         setContentView(splashScreen);
 

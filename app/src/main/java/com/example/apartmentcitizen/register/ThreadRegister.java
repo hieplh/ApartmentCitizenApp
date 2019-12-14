@@ -1,64 +1,38 @@
 package com.example.apartmentcitizen.register;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.apartmentcitizen.image.UploadImage;
-import com.example.apartmentcitizen.network.UserService;
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
-public class ThreadRegister implements Runnable{
+public class ThreadRegister extends AsyncTask<Call<ResponseBody>, Void, String> {
 
-    Retrofit retrofit;
-    String[] pathImage;
-    String email, type;
-    boolean flag = true;
+    private String email;
 
-    UserService userService;
-    Call<ResponseBody> call;
-
-    public ThreadRegister(Retrofit retrofit, String[] pathImage, String email, String type) {
-        this.retrofit = retrofit;
-        this.pathImage = pathImage;
+    public ThreadRegister(String email) {
         this.email = email;
-        this.type = type;
     }
 
     @Override
-    public void run() {
-        if (pathImage != null) {
-            userService = retrofit.create(UserService.class);
-            call = userService.checkPresentEmail(email);
+    protected String doInBackground(Call<ResponseBody>... calls) {
+        Call<ResponseBody> call = calls[calls.length - 1];
 
-            try {
-                while (flag) {
-                    call.enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if (response.isSuccessful()) {
-                                uploadImage(email, pathImage[0], type);
-                                flag = false;
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                        }
-                    });
-                }
-            } catch (Exception e) {
-                Log.d("THREAD", "run: " + e.getMessage());
-            }
+        Response<ResponseBody> response = null;
+        try {
+            response = call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    private void uploadImage(String email, String path, String type) {
-        UploadImage uploadImage = new UploadImage();
-        uploadImage.uploadImageToServer(email, path, type);
+        if (response.isSuccessful()) {
+            Log.d("REGISTER", "RESPONSE: " + email + " has been existed");
+            return response.message();
+        } else {
+            Log.d("REGISTER", "RESPONSE: " + email + " not available");
+        }
+        return null;
     }
 }
