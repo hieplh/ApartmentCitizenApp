@@ -2,8 +2,8 @@ package com.example.apartmentcitizen;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +23,7 @@ import com.example.apartmentcitizen.home.transaction.TransactionFragment;
 import com.example.apartmentcitizen.login.LoginActivity;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UserService;
+import com.example.apartmentcitizen.permission.Permission;
 import com.example.apartmentcitizen.register.HouseRegister;
 import com.example.apartmentcitizen.register.Register;
 import com.example.apartmentcitizen.register.RegisterActivity;
@@ -38,9 +39,6 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.io.File;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import androidx.annotation.NonNull;
@@ -118,11 +116,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
+            Log.d("QR", "onActivityResult: " + result.getContents());
             if (result.getContents() == null) {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             } else {
                 Register user = parseUser(result.getContents());
                 registerNewUser(user);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == Permission.CAMERA) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -266,7 +275,6 @@ public class HomeActivity extends AppCompatActivity {
         }
         register.setRole(new RoleRegister(4));
         register.setStatus(1);
-        Log.d("SHARED", "parseUser: " + Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_id), -1)));
         register.setHouse(new HouseRegister(sharedPreferences.getInt(getString(R.string.key_house_id), -1)));
         return register;
     }
@@ -279,52 +287,17 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterActivity.RegisterResponse> call, Response<RegisterActivity.RegisterResponse> response) {
                 if (response.isSuccessful()) {
-                    if (user.getCifImage() != null) {
-                        uploadImageToServer(user.getCifImage());
-                    }
-                    if (user.getProfileImage() != null) {
-                        uploadImageToServer(user.getProfileImage());
-                    }
                     if (flag) {
-                        Toast.makeText(getBaseContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getBaseContext(), getString(R.string.register_error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, getString(R.string.register_error), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterActivity.RegisterResponse> call, Throwable t) {
-                Toast.makeText(getBaseContext(), getString(R.string.register_error), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void uploadImageToServer(String filePath) {
-        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
-
-        UserService service = retrofit.create(UserService.class);
-
-        File file = new File(filePath);
-
-        RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
-
-        MultipartBody.Part part = MultipartBody.Part.createFormData("upload", file.getName(), fileRequestBody);
-
-        RequestBody desc = RequestBody.create(MediaType.parse("text/plain"), "image-type");
-
-        Call call = service.uploadImage(part, desc);
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-//                Toast.makeText(getContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                flag = true;
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-//                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, getString(R.string.register_error), Toast.LENGTH_SHORT).show();
             }
         });
     }

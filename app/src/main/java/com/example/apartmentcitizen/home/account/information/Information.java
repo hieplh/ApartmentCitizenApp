@@ -1,34 +1,27 @@
-package com.example.apartmentcitizen.login;
+package com.example.apartmentcitizen.home.account.information;
 
+import com.example.apartmentcitizen.register.HouseRegister;
+import com.example.apartmentcitizen.register.RoleRegister;
 import com.google.gson.annotations.SerializedName;
 
-public class Login {
-    @SerializedName("userId")
-    private int userId;
-
+public class Information {
     @SerializedName("email")
     private String email;
 
     @SerializedName("phoneNo")
     private String phoneNo;
 
-    @SerializedName("roleId")
-    private int role;
+    @SerializedName("role")
+    private RoleRegister role;
 
     @SerializedName("house")
-    private HouseLogin house;
-
-    @SerializedName("profileImage")
-    private String profileImage;
+    private HouseRegister house;
 
     @SerializedName("dateOfBirth")
     private String dateOfBirth;
 
     @SerializedName("idNumber")
     private String cifNumber;
-
-    @SerializedName("idImage")
-    private String cifImage;
 
     @SerializedName("gender")
     private int gender;
@@ -57,14 +50,6 @@ public class Login {
     @SerializedName("status")
     private int status;
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -81,28 +66,20 @@ public class Login {
         this.phoneNo = phoneNo;
     }
 
-    public int getRole() {
+    public RoleRegister getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(RoleRegister role) {
         this.role = role;
     }
 
-    public HouseLogin getHouse() {
+    public HouseRegister getHouse() {
         return house;
     }
 
-    public void setHouse(HouseLogin house) {
+    public void setHouse(HouseRegister house) {
         this.house = house;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 
     public String getDateOfBirth() {
@@ -119,14 +96,6 @@ public class Login {
 
     public void setCifNumber(String cifNumber) {
         this.cifNumber = cifNumber;
-    }
-
-    public String getCifImage() {
-        return cifImage;
-    }
-
-    public void setCifImage(String cifImage) {
-        this.cifImage = cifImage;
     }
 
     public int getGender() {
@@ -200,4 +169,5 @@ public class Login {
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

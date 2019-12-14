@@ -46,8 +46,7 @@ public class CardDashboardAdapter extends RecyclerView.Adapter<CardDashboardAdap
             public void onClick(View v) {
                 Intent intent;
                 if (listButton.get(position).getTitle()==R.string.dashboard_newsfeed_title){
-                    intent = new Intent(context, NewsfeedActivity.class);
-                    context.startActivity(intent);
+                    context.startActivity(new Intent(context, NewsfeedActivity.class));
                 }
             }
         });

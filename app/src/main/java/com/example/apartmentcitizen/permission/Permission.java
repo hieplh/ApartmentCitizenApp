@@ -10,6 +10,9 @@ import androidx.core.content.ContextCompat;
 
 public class Permission {
 
+    public static int READ_EXTERNAL_STORAGE = 1000;
+    public static int CAMERA = 1001;
+
     private Context context;
     private Activity activity;
 
@@ -18,16 +21,17 @@ public class Permission {
         this.activity = activity;
     }
 
-    public void grantReadExternalStoratePermission() {
+    public boolean grantReadExternalStoratePermission(int requestCode) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
+            return false;
         }
+        return true;
     }
 
-    public void grantCameraPermission() {
+    public void grantCameraPermission(int requestCode) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 1000);
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, requestCode);
         }
-
     }
 }

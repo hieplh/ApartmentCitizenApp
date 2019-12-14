@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar_account"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -29,6 +30,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/house_name_account"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"

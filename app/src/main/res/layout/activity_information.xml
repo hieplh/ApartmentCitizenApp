@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/gray_reg_frame"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray_reg_frame">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,10 +11,10 @@
         android:orientation="vertical">
 
         <include
+            layout="@layout/header_standard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            layout="@layout/header_standard" />
+            android:layout_marginTop="20dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -39,6 +39,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/label_fullname_info"
                     android:fontFamily="@font/telex"
                     android:text="@string/information_label_fullname"
                     android:textColor="@color/end_gradient"
@@ -59,6 +60,7 @@
                     android:textSize="15sp" />
 
                 <Button
+                    android:id="@+id/label_housename_info"
                     android:layout_height="30dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/label_house_code_gradient"
@@ -85,6 +87,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/label_owner_info"
                     android:fontFamily="@font/telex"
                     android:text="@string/information_activity_desc_householder"
                     android:textColor="@color/end_gradient"
@@ -107,6 +110,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/label_relationship_with_owner_info"
                     android:fontFamily="@font/telex"
                     android:text="@string/information_activity_desc_relation"
                     android:textColor="@color/end_gradient"
@@ -117,6 +121,7 @@
         </TableLayout>
 
         <Button
+            android:id="@+id/update_avatar_btn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
@@ -125,6 +130,7 @@
             android:background="@drawable/background_card_wallet"
             android:drawableRight="@drawable/icon_next_resize"
             android:fontFamily="@font/telex"
+            android:onClick="updateInfoAvatar"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:stateListAnimator="@null"
@@ -132,8 +138,6 @@
             android:textAllCaps="false"
             android:textColor="@color/end_gradient"
             android:textSize="15sp" />
-
-
         <TableLayout
 
             android:layout_width="match_parent"
@@ -159,22 +163,23 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/infor_edit_text_email"
+                    android:id="@+id/edit_email_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
-                    android:fontFamily="@font/telex"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/register2_label_email"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
-
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/register2_label_email"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
             </TableRow>
 
             <TableRow
@@ -192,22 +197,23 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/infor_edit_text_identity_card"
+                    android:id="@+id/edit_cif_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
-                    android:fontFamily="@font/telex"
-                    android:inputType="number"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/information_activity_desc_identity_card"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_activity_desc_identity_card"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
 
             </TableRow>
 
@@ -227,10 +233,10 @@
 
 
                 <RadioGroup
-                    android:layout_marginRight="5dp"
                     android:id="@+id/gender_radio_group_info"
                     android:layout_width="200dp"
                     android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
                     android:gravity="left"
                     android:orientation="horizontal">
@@ -260,6 +266,7 @@
                 </RadioGroup>
 
             </TableRow>
+
             <TableRow
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
@@ -275,23 +282,24 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/infor_edit_text_birth_date"
+                    android:id="@+id/edit_birth_date_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
-                    android:fontFamily="@font/telex"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/information_activity_desc_birthday"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_activity_desc_birthday"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
 
             </TableRow>
+
             <TableRow
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
@@ -307,23 +315,26 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/infor_edit_text_job"
+                    android:id="@+id/edit_text_job_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
-                    android:fontFamily="@font/telex"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/information_activity_desc_job"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_activity_desc_job"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
 
             </TableRow>
+
             <TableRow
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
@@ -339,21 +350,23 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/infor_edit_text_country"
+                    android:id="@+id/edit_domicile_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:background="@color/white"
-                    android:fontFamily="@font/telex"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/information_activity_desc_country"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_activity_desc_country"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
 
             </TableRow>
 
@@ -372,23 +385,23 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/infor_edit_text_phone_number"
+                    android:id="@+id/edit_phone_number_info"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:background="@color/white"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/telex"
-                    android:hint="@string/register_button_birthday"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/end_gradient"
-                    android:text="@string/information_activity_desc_phone_number"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"
+                    android:background="@color/white"
+                    android:drawableRight="@drawable/icon_edit_resize"
                     android:drawableTint="@color/end_gradient"
-                    android:drawableRight="@drawable/icon_edit_resize"/>
-
+                    android:fontFamily="@font/telex"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_button_birthday"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/information_activity_desc_phone_number"
+                    android:textColor="@color/end_gradient"
+                    android:textSize="15sp" />
             </TableRow>
         </TableLayout>
 
@@ -401,6 +414,7 @@
             android:layout_marginRight="15dp"
             android:background="@drawable/background_card_wallet"
             android:fontFamily="@font/telex"
+            android:onClick="updateInfoUser"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:stateListAnimator="@null"
@@ -414,25 +428,19 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/background_card_wallet"
             android:fontFamily="@font/telex"
+            android:onClick="exitInfoForm"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:stateListAnimator="@null"
             android:text="@string/information_activity_button_cancel"
             android:textAllCaps="false"
             android:textColor="@color/wallet_gradient1"
-            android:textSize="15sp"
-            android:onClick="exitInfoForm"/>
-
-
+            android:textSize="15sp" />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
-
-
-
-

@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.image.UploadImage;
+import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.permission.Permission;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
@@ -18,24 +21,23 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Retrofit;
 import vn.semicolon.filepicker.FilePicker;
 
 public class RegisterImageFragment extends Fragment implements View.OnClickListener {
 
-    final int AVATAR_REQUEST_CODE = 100;
-    final int CIF_REQUEST_CODE = 101;
-
-    Permission permission;
+    public final int AVATAR_REQUEST_CODE = 100;
+    public final int CIF_REQUEST_CODE = 101;
 
     String email, lastName, firstName, birthdate;
     String phone, country, job, cif, gender, relationship;
 
+    CircleImageView imageView;
+
     String[] pathImageAvatar, pathImageCIF;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    Retrofit retrofit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,44 +63,65 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         ((TextView) view.findViewById(R.id.label_email_register)).setText(email);
         ((TextView) view.findViewById(R.id.label_fullname_register)).setText(lastName + " " + firstName);
 
+        imageView = view.findViewById(R.id.image_profile_register);
+
+        retrofit = RetrofitInstance.getRetrofitInstance();
+
         view.findViewById(R.id.generate_qrcode_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_avatar_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_cif_btn).setOnClickListener(this);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AVATAR_REQUEST_CODE) {
-            pathImageAvatar = FilePicker.Companion.getResult(data);
-        }
-        if (requestCode == CIF_REQUEST_CODE) {
-            pathImageCIF = FilePicker.Companion.getResult(data);
+    public void onClick(View v) {
+        boolean flag;
+        switch (v.getId()) {
+            case R.id.generate_qrcode_btn:
+                generateQrcode(v.getRootView());
+
+                Thread threadAvatar = new Thread(new ThreadRegister(retrofit, pathImageAvatar, email, UploadImage.PROFILE));
+                threadAvatar.start();
+
+                Thread threadCif = new Thread(new ThreadRegister(retrofit, pathImageCIF, email, UploadImage.CIF));
+                threadCif.start();
+                break;
+            case R.id.upload_avatar_btn:
+                flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(AVATAR_REQUEST_CODE);
+                pickImageOnGranted(AVATAR_REQUEST_CODE, flag);
+                break;
+            case R.id.upload_cif_btn:
+                flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(CIF_REQUEST_CODE);
+                pickImageOnGranted(CIF_REQUEST_CODE, flag);
+                break;
         }
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.generate_qrcode_btn:
-                generateQrcode(v.getRootView());
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case AVATAR_REQUEST_CODE:
+                pathImageAvatar = FilePicker.Companion.getResult(data);
+
+                Glide.with(this)
+                        .load(FilePicker.Companion.getResult(data)[0])
+                        .override(imageView.getWidth(), imageView.getHeight())
+                        .fitCenter()
+                        .into(imageView);
                 break;
-            case R.id.upload_avatar_btn:
-                permission = new Permission(getContext(), getActivity());
-                permission.grantReadExternalStoratePermission();
-                new FilePicker.Builder()
-                        .maxSelect(1)
-                        .typesOf(FilePicker.TYPE_IMAGE)
-                        .start(this, AVATAR_REQUEST_CODE);
+            case CIF_REQUEST_CODE:
+                pathImageCIF = FilePicker.Companion.getResult(data);
                 break;
-            case R.id.upload_cif_btn:
-                permission = new Permission(getContext(), getActivity());
-                permission.grantCameraPermission();
-                new FilePicker.Builder()
-                        .maxSelect(1)
-                        .typesOf(FilePicker.TYPE_IMAGE)
-                        .start(this, CIF_REQUEST_CODE);
-                break;
+        }
+    }
+
+    private void pickImageOnGranted(int requestCode, boolean flag) {
+        if (flag) {
+            new FilePicker.Builder()
+                    .maxSelect(1)
+                    .typesOf(FilePicker.TYPE_IMAGE)
+                    .start(this, requestCode);
         }
     }
 
@@ -130,24 +153,6 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 + getString(R.string.register_cif) + ":" + cif + "\n"
                 + getString(R.string.register_gender) + ":" + gender + "\n"
                 + getString(R.string.register_relationship) + ":" + relationship);
-        sb.append("\n" + getString(R.string.register_path_avatar) + ":");
-        if (pathImageAvatar != null) {
-            sb.append(pathImageAvatar[0]);
-        }
-        sb.append("\n" + getString(R.string.register_path_cif) + ":");
-        if (pathImageCIF != null) {
-            boolean flag = false;
-            for (String path : pathImageCIF) {
-                if (flag) {
-                    sb.append(",");
-                } else {
-                    flag = true;
-                }
-                sb.append(path);
-            }
-        }
         return sb.toString();
     }
-
-
 }

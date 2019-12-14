@@ -1,30 +1,34 @@
 package com.example.apartmentcitizen.register;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
 import com.google.gson.annotations.SerializedName;
-import com.google.zxing.BarcodeFormat;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
+import de.hdodenhof.circleimageview.CircleImageView;
+import vn.semicolon.filepicker.FilePicker;
 
 public class RegisterActivity extends AppCompatActivity {
 
     public final String FRAGMENT_INFO_TAG = "fragment_info";
     public final String FRAGMENT_IMAGE_TAG = "fragment_image";
+
+    public final int AVATAR_REQUEST_CODE = 100;
+    public final int CIF_REQUEST_CODE = 101;
 
     FragmentManager fm;
     Fragment registerInfo, registerImage;
@@ -60,6 +64,33 @@ public class RegisterActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.edit_register_country)).setText(country);
         ((EditText) findViewById(R.id.edit_register_job)).setText(job);
         ((EditText) findViewById(R.id.edit_register_identity_card_number)).setText(cif);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        registerImage.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case AVATAR_REQUEST_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    new FilePicker.Builder()
+                            .maxSelect(1)
+                            .typesOf(FilePicker.TYPE_IMAGE)
+                            .start(this, AVATAR_REQUEST_CODE);
+                break;
+            case CIF_REQUEST_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    new FilePicker.Builder()
+                            .maxSelect(1)
+                            .typesOf(FilePicker.TYPE_IMAGE)
+                            .start(this, CIF_REQUEST_CODE);
+                break;
+        }
     }
 
     public void clickToNextRegister(View view) {

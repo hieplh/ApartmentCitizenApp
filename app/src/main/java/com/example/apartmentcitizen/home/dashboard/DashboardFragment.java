@@ -28,6 +28,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         listCardButton = new ArrayList<>();
         listCardButton.add(new DashboardObject(R.drawable.banner_newsfeed, R.drawable.logo_newsfeed_resize, R.string.dashboard_newsfeed_title,R.string.dashboard_newsfeed_desc));
         listCardButton.add(new DashboardObject(R.drawable.banner_nearby_service, R.drawable.logo_service_nearby_resize, R.string.dashboard_service_nearby_title,R.string.dashboard_service_nearby_desc));
@@ -40,11 +41,13 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        recyclerView = view.findViewById(R.id.card_button_dashboard);
+
         CardDashboardAdapter adapter = new CardDashboardAdapter(getContext(), listCardButton);
+
+        recyclerView = view.findViewById(R.id.card_button_dashboard);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+
         return view;
     }
 

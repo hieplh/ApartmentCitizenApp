@@ -19,6 +19,7 @@ import com.example.apartmentcitizen.home.account.AccountFragment;
 import com.example.apartmentcitizen.home.account.familymember.FamilyInformationActivity;
 import com.example.apartmentcitizen.home.account.information.InformationActivity;
 import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
+import com.example.apartmentcitizen.permission.Permission;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.txtTitle.setText(listCard.get(position).getTitle());
         holder.txtDesc.setText(listCard.get(position).getDesc());
         holder.imgBackground.setImageResource(listCard.get(position).getImgPath());
