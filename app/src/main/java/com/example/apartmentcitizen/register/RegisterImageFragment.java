@@ -4,6 +4,7 @@ package com.example.apartmentcitizen.register;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
-import com.example.apartmentcitizen.image.UploadImage;
 import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.example.apartmentcitizen.network.UserService;
 import com.example.apartmentcitizen.permission.Permission;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
@@ -22,6 +23,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import vn.semicolon.filepicker.FilePicker;
 
@@ -38,6 +43,9 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
     String[] pathImageAvatar, pathImageCIF;
 
     Retrofit retrofit;
+    UserService service;
+
+    boolean checkEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,11 +87,13 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
             case R.id.generate_qrcode_btn:
                 generateQrcode(v.getRootView());
 
-                Thread threadAvatar = new Thread(new ThreadRegister(retrofit, pathImageAvatar, email, UploadImage.PROFILE));
-                threadAvatar.start();
+                service = retrofit.create(UserService.class);
+                Call<ResponseBody> call = service.checkPresentEmail(email);
 
-                Thread threadCif = new Thread(new ThreadRegister(retrofit, pathImageCIF, email, UploadImage.CIF));
-                threadCif.start();
+                while (!checkEmail) {
+                    requestCheckEmailPresent(email, call);
+                }
+
                 break;
             case R.id.upload_avatar_btn:
                 flag = new Permission(getContext(), getActivity()).grantReadExternalStoratePermission(AVATAR_REQUEST_CODE);
@@ -154,5 +164,12 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 + getString(R.string.register_gender) + ":" + gender + "\n"
                 + getString(R.string.register_relationship) + ":" + relationship);
         return sb.toString();
+    }
+
+    private void requestCheckEmailPresent(final String email, Call<ResponseBody> call) {
+        ThreadRegister threadRegister = new ThreadRegister(email);
+        if (threadRegister.doInBackground(call) == null) {
+            requestCheckEmailPresent(email, call);
+        }
     }
 }

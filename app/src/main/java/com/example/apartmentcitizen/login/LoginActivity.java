@@ -1,14 +1,5 @@
 package com.example.apartmentcitizen.login;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,6 +31,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -225,12 +217,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString(getString(R.string.key_home), user.getHomeTown());
         editor.putString(getString(R.string.key_job), user.getJob());
 
-        editor.putString(getString(R.string.key_birthdate), user.getDateOfBirth() != null ? user.getDateOfBirth() : null);
-        editor.putString(getString(R.string.key_create_date), user.getCreateDate() != null ? user.getCreateDate() : null);
-        editor.putString(getString(R.string.key_last_modified), user.getLastModified() != null ? user.getLastModified() : null);
+        editor.putString(getString(R.string.key_birthdate), user.getDateOfBirth());
+        editor.putString(getString(R.string.key_create_date), user.getCreateDate());
+        editor.putString(getString(R.string.key_last_modified), user.getLastModified());
 
         editor.putInt(getString(R.string.key_house_id), user.getHouse().getHouseId());
-        editor.putInt(getString(R.string.key_house_money), (int)user.getHouse().getCurrentMoney());
+        editor.putInt(getString(R.string.key_house_money), (int) user.getHouse().getCurrentMoney());
         editor.putInt(getString(R.string.key_role_id), user.getRole());
         editor.putInt(getString(R.string.key_gender), user.getGender());
         editor.putInt(getString(R.string.key_family), user.getFamilyLevel());
