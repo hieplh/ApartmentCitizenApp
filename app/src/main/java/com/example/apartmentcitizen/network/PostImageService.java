@@ -1,6 +1,9 @@
 package com.example.apartmentcitizen.network;
 
+import com.example.apartmentcitizen.home.dashboard.newsfeed.PostImageDTO;
 import com.example.apartmentcitizen.image.LoadImage;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -19,5 +22,8 @@ public interface PostImageService {
 
     @GET("postImages/imagesall")
     Call<LoadImage> getPathImage();
+
+    @GET("postImages")
+    Call<List<PostImageDTO>> getAllPostImage();
 
 }
