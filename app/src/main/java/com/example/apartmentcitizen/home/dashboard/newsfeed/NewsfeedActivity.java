@@ -56,11 +56,11 @@ public class NewsfeedActivity extends AppCompatActivity {
                                  recyclerView.setAdapter(adapter);
                                  LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
                                  recyclerView.setLayoutManager(layoutManager);
-                                 }
 
                                  initPost(response.body());
                                  Toast.makeText(NewsfeedActivity.this, response.body().get(0).getUser().getLastName(), Toast.LENGTH_LONG).show();
-                             }
+                                 }
+
 
 
                              @Override
