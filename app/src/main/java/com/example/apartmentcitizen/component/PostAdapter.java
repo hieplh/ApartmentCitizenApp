@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,21 +15,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.home.dashboard.newsfeed.PostDTO;
+import com.example.apartmentcitizen.home.dashboard.newsfeed.PostImageDTO;
+import com.example.apartmentcitizen.network.PostImageService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     Context context;
     List<PostDTO> listPost;
     boolean isPress = false;
+    Retrofit retrofit;
 
     public PostAdapter(Context context, List<PostDTO> listPost) {
         this.context = context;
         this.listPost = listPost;
+        retrofit = RetrofitInstance.getRetrofitInstance();
     }
 
     @NonNull
@@ -45,12 +60,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         } else {
             Glide.with(context)
                     .load(RetrofitInstance.BASE_URL + RetrofitInstance.VERSION_API
-                            + RetrofitInstance.GET_POSTIMAGE_IMAGE + listPost.get(position))
-//                .override(500, 500)
+                            + RetrofitInstance.GET_USER_IMAGE + listPost.get(position).getUser().getProfileImage())
                     .into(holder.imgAvatar);
         }
         holder.txtFullname.setText(listPost.get(position).getUser().getLastName() + " " + listPost.get(position).getUser().getFirstName());
-        holder.txtTime.setText(listPost.get(position).getCreatedDate());
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(Locale.getDefault()).withZone(ZoneId.systemDefault());
+        LocalDate date = LocalDate.parse(listPost.get(position).getCreatedDate(), inputFormatter);
+        String formattedDate = outputFormatter.format(date);
+        holder.txtTime.setText(formattedDate);
         if (listPost.get(position).getDesc() == null || listPost.get(position).getDesc().isEmpty()) {
             holder.txtDesc.setVisibility(View.GONE);
         } else {
@@ -60,15 +78,42 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isPress){
+                if (isPress) {
                     v.setBackgroundResource(R.drawable.button_unlike);
-                    isPress=false;
-                }else{
+                    isPress = false;
+                } else {
                     v.setBackgroundResource(R.drawable.button_liked);
                     isPress = true;
                 }
             }
         });
+        //get post image list
+        final int postId = listPost.get(position).getPostId();
+        PostImageService postImageService = retrofit.create(PostImageService.class);
+        Call<List<PostImageDTO>> callPostImage = postImageService.getAllPostImage();
+        callPostImage.enqueue(new Callback<List<PostImageDTO>>() {
+            @Override
+            public void onResponse(Call<List<PostImageDTO>> call, Response<List<PostImageDTO>> response) {
+                List<PostImageDTO> imageDTOList = response.body();
+                for (PostImageDTO postImageDTO : imageDTOList) {
+                    if (postImageDTO.getPost().getPostId() == postId) {
+                        if (postImageDTO.getImageUrl() == null || postImageDTO.getImageUrl().isEmpty()) {
+                            holder.imgPost.setVisibility(View.INVISIBLE);
+                        } else {
+                            Glide.with(context)
+                                    .load(RetrofitInstance.BASE_URL + RetrofitInstance.VERSION_API
+                                            + RetrofitInstance.GET_POSTIMAGE_IMAGE + postImageDTO.getImageUrl())
+                                    .into(holder.imgPost);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<PostImageDTO>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        
     }
 
     @Override

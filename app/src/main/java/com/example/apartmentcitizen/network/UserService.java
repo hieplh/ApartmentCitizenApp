@@ -42,7 +42,7 @@ public interface UserService {
     @GET("users/email/{email}")
     Call<ResponseBody> checkPresentEmail(@Path("email") String email);
 
-    @GET("users/houses/7")
-    Call<List<MemberCardDTO>> getUserByHouseId();
+    @GET("users/houses/{houseId}")
+    Call<List<MemberCardDTO>> getUserByHouseId(@Path("houseId") int id);
 
 }

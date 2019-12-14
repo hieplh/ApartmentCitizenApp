@@ -52,8 +52,9 @@ public class FamilyInformationActivity extends AppCompatActivity {
         block.setText(houseInfo[0]);
         floor = findViewById(R.id.txtFloor);
         floor.setText(houseInfo[1]);
+        int houseId = sharedPreferences.getInt(getString(R.string.key_house_id), 0);
         UserService userService = retrofit.create(UserService.class);
-        Call<List<MemberCardDTO>> callFamilyMember = userService.getUserByHouseId();
+        Call<List<MemberCardDTO>> callFamilyMember = userService.getUserByHouseId(houseId);
         callFamilyMember.enqueue(new Callback<List<MemberCardDTO>>() {
             @Override
             public void onResponse(Call<List<MemberCardDTO>> call, Response<List<MemberCardDTO>> response) {

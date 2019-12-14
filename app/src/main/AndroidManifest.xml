@@ -20,8 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-         <!-- <activity android:name=".information.InformationActivity"></activity> -->
+        <activity android:name=".home.dashboard.newsfeed.CommmentActivity"></activity>
+        <activity android:name=".home.transaction.receipt.HistoryReceiptActivity" /> <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <service
             android:name=".service.FirebaseService"
             android:exported="false">
@@ -38,9 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"
+        <activity
+            android:name=".HomeActivity"
             android:screenOrientation="portrait"
-            tools:replace="screenOrientation"/>
+            tools:replace="screenOrientation" />
         <activity android:name=".home.dashboard.newsfeed.NewsfeedActivity" />
         <activity android:name=".home.account.familymember.FamilyInformationActivity" />
         <activity android:name=".home.account.information.InformationActivity" />
