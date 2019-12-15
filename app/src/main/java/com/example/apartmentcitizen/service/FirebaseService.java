@@ -11,10 +11,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
-import com.example.apartmentcitizen.MainActivity;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.image.UploadImage;
-import com.example.apartmentcitizen.register.RegisterImageFragment;
+import com.example.apartmentcitizen.login.LoginActivity;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -46,10 +45,13 @@ public class FirebaseService extends FirebaseMessagingService {
         Log.d(TAG, "Notification Channel Id: " + remoteMessage.getNotification().getChannelId());
 
         if (remoteMessage.getNotification().getTitle().equals("Register")) {
-            String body = remoteMessage.getNotification().getBody();
             UploadImage uploadImage;
             try {
+                StringBuilder sb = new StringBuilder();
+                sb.append(remoteMessage.getNotification().getBody() + " was registered.");
+
                 sharedPreferences = getSharedPreferences(getString(R.string.shared_register), MODE_PRIVATE);
+                boolean flag = false;
 
                 String email = sharedPreferences.getString(getString(R.string.key_register_email), null);
                 String avatar = sharedPreferences.getString(getString(R.string.key_register_avatar), null);
@@ -60,25 +62,51 @@ public class FirebaseService extends FirebaseMessagingService {
                 if (avatar != null) {
                     uploadImage = new UploadImage();
                     uploadImage.uploadImageToServer(email, avatarPath, avatar);
+
+                    sb.append("\n");
+                    sb.append(getString(R.string.update_avatar_success));
+                    flag = true;
+                }
+
+                if (!flag) {
+                    sb.append("\n");
+                    sb.append(getString(R.string.update_avatar_fail));
                 }
 
                 if (cif != null) {
                     uploadImage = new UploadImage();
                     uploadImage.uploadImageToServer(email, cifPath, cif);
+
+                    sb.append("\n");
+                    sb.append(getString(R.string.update_cif_success));
+                    flag = true;
                 }
+
+                if (!flag) {
+                    sb.append("\n");
+                    sb.append(getString(R.string.update_cif_fail));
+                }
+
+                sendNotification(getString(R.string.register_notification_channel_id)
+                        , "Register"
+                        , remoteMessage.getNotification().getTitle()
+                        , sb.toString());
             } finally {
                 int end;
-                if (body.lastIndexOf("@gmail.com") != -1) {
-                    end = body.lastIndexOf("@gmail.com");
+                if (remoteMessage.getNotification().getBody().lastIndexOf("@gmail.com") != -1) {
+                    end = remoteMessage.getNotification().getBody().lastIndexOf("@gmail.com");
                 } else {
-                    end = body.lastIndexOf("@fpt.edu.vn");
+                    end = remoteMessage.getNotification().getBody().lastIndexOf("@fpt.edu.vn");
                 }
-                FirebaseMessaging.getInstance().unsubscribeFromTopic(body.substring(0, end));
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(remoteMessage.getNotification().getBody().substring(0, end));
             }
             return;
         }
 
-        sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+        sendNotification(getString(R.string.default_notification_channel_id)
+                , "All"
+                , remoteMessage.getNotification().getTitle()
+                , remoteMessage.getNotification().getBody());
     }
 
     @Override
@@ -92,19 +120,19 @@ public class FirebaseService extends FirebaseMessagingService {
         Log.d(TAG, "Refreshed token: " + s);
     }
 
-    private void sendNotification(String title, String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void sendNotification(String channelId, String channelName, String title, String messageBody) {
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String channelId = getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.logo_apartment_login)
                         .setContentTitle(title)
                         .setContentText(messageBody)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);
@@ -115,7 +143,7 @@ public class FirebaseService extends FirebaseMessagingService {
         // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(channelId,
-                    "Channel human readable title",
+                    channelName,
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }

@@ -75,9 +75,9 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
         boolean flag;
         switch (v.getId()) {
             case R.id.generate_qrcode_btn:
-                if (uploadImageForRegister()) {
-                    subscribeUploadImageFirebase();
-                }
+                uploadImageForRegister();
+
+                subscribeUploadImageFirebase();
 
                 generateQrcode(v.getRootView());
                 break;
@@ -100,12 +100,21 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
             case AVATAR_REQUEST_CODE:
                 pathImageAvatar = FilePicker.Companion.getResult(data);
 
-                Glide.with(this)
-                        .load(FilePicker.Companion.getResult(data)[0])
-                        .error(getResources().getDrawable(R.drawable.image_avatar_default))
-                        .override(imageView.getWidth(), imageView.getHeight())
-                        .fitCenter()
-                        .into(imageView);
+                if (pathImageAvatar.length != 0) {
+                    Glide.with(this)
+                            .load(pathImageAvatar[0])
+                            .error(getResources().getDrawable(R.drawable.image_avatar_default))
+                            .override(imageView.getWidth(), imageView.getHeight())
+                            .fitCenter()
+                            .into(imageView);
+                } else {
+                    Glide.with(this)
+                            .load(getResources().getDrawable(R.drawable.image_avatar_default))
+                            .override(imageView.getWidth(), imageView.getHeight())
+                            .fitCenter()
+                            .into(imageView);
+                }
+
                 break;
             case CIF_REQUEST_CODE:
                 pathImageCIF = FilePicker.Companion.getResult(data);
@@ -174,27 +183,22 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
                 });
     }
 
-    private boolean uploadImageForRegister() {
-        boolean flag = false;
-
+    private void uploadImageForRegister() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(getString(R.string.shared_register), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        if (pathImageAvatar != null) {
+        if (pathImageAvatar != null && pathImageAvatar.length != 0) {
             editor.putString(getString(R.string.key_register_email), email);
             editor.putString(getString(R.string.key_register_avatar), UploadImage.PROFILE);
             editor.putString(getString(R.string.key_register_avatar_path), pathImageAvatar[0]);
-            flag = true;
         }
 
-        if (pathImageCIF != null) {
+        if (pathImageCIF != null && pathImageCIF.length != 0) {
             editor.putString(getString(R.string.key_register_email), email);
             editor.putString(getString(R.string.key_register_cif), UploadImage.CIF);
             editor.putString(getString(R.string.key_register_cif_path), pathImageCIF[0]);
-            flag = true;
         }
 
         editor.commit();
-        return flag;
     }
 }

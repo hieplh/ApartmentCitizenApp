@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">AHT Apartment</string>
-    <string name="default_notification_channel_id">Bills</string>
+    <string name="default_notification_channel_id">AHT</string>
+    <string name="register_notification_channel_id">REGISTER</string>
+
+    <!-- topic push notification-->
     <string name="topic_for_all_house">AHTAPARTMENT</string>
     <string name="register_house_topic">register</string>
 
