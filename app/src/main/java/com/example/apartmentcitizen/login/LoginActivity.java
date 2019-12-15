@@ -67,6 +67,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         window.setNavigationBarColor(ContextCompat.getColor(LoginActivity.this, R.color.purple));
         retrofit = RetrofitInstance.getRetrofitInstance();
 
+        FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_for_all_house))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+                        } else {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+                        }
+                    }
+                });
+
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -177,6 +189,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 @Override
                                 public void onFailure(Call<Login> call, Throwable t) {
                                     Log.d(TAG, "onFailure: " + t.getMessage());
+                                    Toast.makeText(LoginActivity.this, getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
                                     t.printStackTrace();
                                 }
                             });
@@ -193,17 +206,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case SUCCESS:
                 editor.commit();
 
-                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.register_house_topic))
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
-                                } else {
-                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
-                                }
-                            }
-                        });
+//                FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.register_house_topic))
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+//                                } else {
+//                                    Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+//                                }
+//                            }
+//                        });
 
                 FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_for_all_house))
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
