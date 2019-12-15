@@ -1,10 +1,12 @@
 package com.example.apartmentcitizen.component;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,13 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apartmentcitizen.R;
+import com.example.apartmentcitizen.home.dashboard.newsfeed.CommmentActivity;
 import com.example.apartmentcitizen.home.dashboard.newsfeed.LikeDTO;
+import com.example.apartmentcitizen.home.dashboard.newsfeed.NewsfeedActivity;
 import com.example.apartmentcitizen.home.dashboard.newsfeed.PostDTO;
 import com.example.apartmentcitizen.home.dashboard.newsfeed.PostImageDTO;
+import com.example.apartmentcitizen.home.dashboard.newsfeed.UserDTO;
 import com.example.apartmentcitizen.network.CommentService;
 import com.example.apartmentcitizen.network.LoadLikeByPostIdService;
 import com.example.apartmentcitizen.network.PostImageService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.google.gson.annotations.SerializedName;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -60,6 +66,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         if (listPost.get(position).getUser().getProfileImage() == null || listPost.get(position).getUser().getProfileImage().isEmpty()) {
@@ -82,18 +89,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.txtDesc.setVisibility(View.VISIBLE);
             holder.txtDesc.setText(listPost.get(position).getDesc());
         }
-        holder.btnLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPress) {
-                    v.setBackgroundResource(R.drawable.button_unlike);
-                    isPress = false;
-                } else {
-                    v.setBackgroundResource(R.drawable.button_liked);
-                    isPress = true;
-                }
-            }
-        });
         //get post image list
         final int postId = listPost.get(position).getPostId();
         final int loginUserId = sharedPreferences.getInt(context.getString(R.string.key_user_id), 0);
@@ -122,29 +117,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-        //load  likes by postid
-        LoadLikeByPostIdService loadLikeService = retrofit.create(LoadLikeByPostIdService.class);
-        Call<List<LikeDTO>> callLike = loadLikeService.getLikeByPostId(postId);
-        callLike.enqueue(new Callback<List<LikeDTO>>() {
-            @Override
-            public void onResponse(Call<List<LikeDTO>> call, Response<List<LikeDTO>> response) {
-                List<LikeDTO> likeDTOList = response.body();
-                holder.txtCountLike.setText(likeDTOList.size() + "");
-                for (LikeDTO likeDTO : likeDTOList) {
-                    if(likeDTO.getUser().getUserId() == loginUserId){
-                        holder.btnLike.setBackgroundResource(R.drawable.button_liked);
-                        isPress = true;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<LikeDTO>> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
         //Load cmt count by postId
         CommentService commentService = retrofit.create(CommentService.class);
         Call<Integer> callCountComment = commentService.countCommentByPostId(postId);
@@ -159,6 +131,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+        holder.btnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommmentActivity.class);
+                intent.putExtra("postId", postId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -166,11 +146,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return listPost.size();
     }
 
+
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgAvatar, imgPost;
         TextView txtFullname, txtTime, txtDesc, txtCountLike, txtCountComment;
         ConstraintLayout parent;
         CircleImageView btnLike;
+        Button btnComment;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -183,7 +165,32 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             txtCountComment = itemView.findViewById(R.id.post_count_comment);
             btnLike = itemView.findViewById(R.id.post_button_like);
             parent = itemView.findViewById(R.id.list_newsfeed);
+            btnComment = itemView.findViewById(R.id.btnComment);
         }
 
+    }
+
+    public class LikeResponse {
+        @SerializedName("success")
+        private String success;
+
+        @SerializedName("message")
+        private String message;
+
+        public String getSuccess() {
+            return success;
+        }
+
+        public void setSuccess(String success) {
+            this.success = success;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     }
 }

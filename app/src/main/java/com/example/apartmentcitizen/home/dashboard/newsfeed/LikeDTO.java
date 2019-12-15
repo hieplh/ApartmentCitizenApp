@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class LikeDTO {
 
     @SerializedName("likeId")
-    private long likeId;
+    private int likeId;
 
     @SerializedName("user")
     private UserDTO user;
@@ -17,18 +17,21 @@ public class LikeDTO {
     @SerializedName("post")
     private PostDTO post;
 
-    public LikeDTO(long likeId, UserDTO user, String createdDate, PostDTO post) {
+    public LikeDTO(int likeId, UserDTO user, String createdDate, PostDTO post) {
         this.likeId = likeId;
         this.user = user;
         this.createdDate = createdDate;
         this.post = post;
     }
 
-    public long getLikeId() {
+    public LikeDTO() {
+    }
+
+    public int getLikeId() {
         return likeId;
     }
 
-    public void setLikeId(long likeId) {
+    public void setLikeId(int likeId) {
         this.likeId = likeId;
     }
 

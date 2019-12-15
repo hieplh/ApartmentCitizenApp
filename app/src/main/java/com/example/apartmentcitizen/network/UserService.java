@@ -2,6 +2,7 @@ package com.example.apartmentcitizen.network;
 
 import com.example.apartmentcitizen.home.account.familymember.MemberCardDTO;
 import com.example.apartmentcitizen.home.account.information.Information;
+import com.example.apartmentcitizen.home.account.wallet.WalletActivity;
 import com.example.apartmentcitizen.image.LoadImage;
 import com.example.apartmentcitizen.register.Register;
 import com.example.apartmentcitizen.register.RegisterActivity;
@@ -44,5 +45,9 @@ public interface UserService {
 
     @GET("users/houses/{houseId}")
     Call<List<MemberCardDTO>> getUserByHouseId(@Path("houseId") int id);
+
+    @Headers("Content-Type: application/json")
+    @PUT("houses/{houseId}/currentMoney/{currentMoney}")
+    Call<WalletActivity.WalletResponse> UpdateHouseWalletByHouseId(@Path("houseId") int houseId, @Path("currentMoney") int currentMoney);
 
 }

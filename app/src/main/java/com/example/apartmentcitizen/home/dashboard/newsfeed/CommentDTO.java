@@ -29,6 +29,9 @@ public class CommentDTO implements Serializable {
         this.post = post;
     }
 
+    public CommentDTO() {
+    }
+
     public long getCommentId() {
         return commentId;
     }
