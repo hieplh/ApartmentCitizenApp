@@ -12,4 +12,7 @@ public interface LoadLikeByPostIdService {
     @GET("likes/posts/{id}")
     Call<List<LikeDTO>> getLikeByPostId(@Path("id") int id);
 
+    @GET("likes")
+    Call<List<LikeDTO>> getAllLike();
+
 }
