@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
 
-//    public static final String BASE_URL = "http://ahtapartment.ddns.net/api/";
-        public static final String BASE_URL = "http://192.168.1.254/api/";
+    public static final String BASE_URL = "http://ahtapartment.ddns.net/api/";
+//        public static final String BASE_URL = "http://192.168.1.254/api/";
     //    public static final String BASE_URL = "http://192.168.0.112/api/";
 //    public static final String BASE_URL = "http://192.168.1.6:8080/api/";
 
