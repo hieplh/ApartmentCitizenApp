@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="15dp"
+    android:layout_marginTop="15dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cmt_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/image_avatar_default"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cmt_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/information_label_fullname"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/cmt_avatar"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cmt_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="5dp"
+        android:text="@string/post_desc"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        android:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@+id/cmt_avatar"
+        app:layout_constraintTop_toBottomOf="@id/cmt_fullname"
+        tools:layout_editor_absoluteX="44dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

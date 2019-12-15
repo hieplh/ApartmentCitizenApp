@@ -2,6 +2,7 @@ package com.example.apartmentcitizen.home.account.familymember;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.apartmentcitizen.network.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,7 +67,6 @@ public class FamilyInformationActivity extends AppCompatActivity {
                 Toast.makeText(FamilyInformationActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     public void initInfoFamily(List<MemberCardDTO> listFamilyMember) {
@@ -74,6 +75,8 @@ public class FamilyInformationActivity extends AppCompatActivity {
         familyMemberView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         familyMemberView.setLayoutManager(layoutManager);
+        adapter.notifyDataSetChanged();
 
     }
+
 }

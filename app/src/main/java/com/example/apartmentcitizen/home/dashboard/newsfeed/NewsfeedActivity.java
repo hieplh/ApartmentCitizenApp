@@ -8,12 +8,14 @@ import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.PostAdapter;
 import com.example.apartmentcitizen.network.LoadPostService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,9 +60,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                                  recyclerView.setLayoutManager(layoutManager);
 
                                  initPost(response.body());
-                                 Toast.makeText(NewsfeedActivity.this, response.body().get(0).getUser().getLastName(), Toast.LENGTH_LONG).show();
                              }
-
                              @Override
                              public void onFailure(Call<List<PostDTO>> call, Throwable t) {
                                  Toast.makeText(NewsfeedActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
@@ -71,10 +71,12 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     public void initPost(List<PostDTO> list) {
         PostAdapter adapter = new PostAdapter(NewsfeedActivity.this, list);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
+
+
 }
 
 //class PostAdapter extends RecyclerView.Adapter

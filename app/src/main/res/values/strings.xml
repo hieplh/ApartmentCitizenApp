@@ -206,6 +206,7 @@
 
     <!-- error -->
     <string name="login_error">Đăng nhập thất bại.\nVui lòng đăng ký tài khoản trước khi đăng nhập</string>
+    <string name="login_network_error">Đăng nhập thất bại.\nVui lòng kiểm tra lại kết nối mạng</string>
     <string name="register_error">Đăng ký thất bại.\n Vui lòng kiểm tra lại kết nối mạng</string>
     <string name="update_data_error">Cập nhật thất bại.\n Vui lòng kiểm tra lại dữ liệu</string>
     <string name="update_network_error">Cập nhật thất bại.\n Vui lòng kiểm tra lại kết nối mạng</string>

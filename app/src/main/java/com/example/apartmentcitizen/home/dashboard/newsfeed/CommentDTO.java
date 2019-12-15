@@ -1,12 +1,13 @@
 package com.example.apartmentcitizen.home.dashboard.newsfeed;
 
-
 import com.google.gson.annotations.SerializedName;
 
-public class LikeDTO {
+import java.io.Serializable;
 
-    @SerializedName("likeId")
-    private int likeId;
+public class CommentDTO implements Serializable {
+
+    @SerializedName("commentId")
+    private long commentId;
 
     @SerializedName("user")
     private UserDTO user;
@@ -14,25 +15,29 @@ public class LikeDTO {
     @SerializedName("createdDate")
     private String createdDate;
 
+    @SerializedName("detail")
+    private String detail;
+
     @SerializedName("post")
     private PostDTO post;
 
-    public LikeDTO(int likeId, UserDTO user, String createdDate, PostDTO post) {
-        this.likeId = likeId;
+    public CommentDTO(long commentId, UserDTO user, String createdDate, String detail, PostDTO post) {
+        this.commentId = commentId;
         this.user = user;
         this.createdDate = createdDate;
+        this.detail = detail;
         this.post = post;
     }
 
-    public LikeDTO() {
+    public CommentDTO() {
     }
 
-    public int getLikeId() {
-        return likeId;
+    public long getCommentId() {
+        return commentId;
     }
 
-    public void setLikeId(int likeId) {
-        this.likeId = likeId;
+    public void setCommentId(long commentId) {
+        this.commentId = commentId;
     }
 
     public UserDTO getUser() {
@@ -49,6 +54,14 @@ public class LikeDTO {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public PostDTO getPost() {

@@ -102,6 +102,7 @@ public class RegisterImageFragment extends Fragment implements View.OnClickListe
 
                 Glide.with(this)
                         .load(FilePicker.Companion.getResult(data)[0])
+                        .error(getResources().getDrawable(R.drawable.image_avatar_default))
                         .override(imageView.getWidth(), imageView.getHeight())
                         .fitCenter()
                         .into(imageView);
