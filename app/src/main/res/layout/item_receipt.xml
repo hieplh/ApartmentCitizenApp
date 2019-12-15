@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/item_receipt"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/item_receipt_state"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/receipt_status"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textColor="@color/gray_holder_login"
+        android:textSize="12sp"
+        android:gravity="bottom"
+        android:paddingLeft="10dp"
+        />
+    
+    <TextView
+        android:id="@+id/receipt_description"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="bottom"
+        android:fontFamily="@font/poly"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="80dp"/>
+
+    <TextView
+        android:id="@+id/receipt_publish_date"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textColor="@color/purple_deep"
+        android:textSize="12sp"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/receipt_button_access_detail"
+        android:paddingRight="10dp"
+        android:layout_centerVertical="true"
+        android:translationY="20dp"
+        android:fontFamily="@font/poly"
+        android:layout_width="match_parent"
+        android:gravity="right|bottom"
+        android:layout_height="20dp"
+        android:textColor="@color/gray_holder_login"
+        android:text="@string/receipt_access_detail"
+        android:textSize="10sp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon_receipt_type"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.5dp"-->
+<!--        android:layout_marginLeft="40dp"-->
+<!--        android:layout_marginRight="40dp"-->
+<!--        android:background="@color/purple_deep"-->
+<!--        android:layout_alignParentBottom="true"/>-->
+
+
+</RelativeLayout>

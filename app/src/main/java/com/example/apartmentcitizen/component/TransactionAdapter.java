@@ -19,10 +19,8 @@ import com.example.apartmentcitizen.home.transaction.FullnameObject;
 import com.example.apartmentcitizen.home.transaction.TransactionObject;
 import com.example.apartmentcitizen.network.LoadFullnameByIdService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
+import com.example.apartmentcitizen.handle.Time;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,10 +34,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     List<TransactionObject> listTransaction;
     Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
     FullnameObject fullnameObj;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    Date d;
-    String[] arrTime1, arrTime2;
+
 
 
     public TransactionAdapter(Context context, List<TransactionObject> listTransaction) {
@@ -65,7 +60,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
         holder.amount.setText(Digit.handleDigit(listTransaction.get(position).getAmount() + ""));
         setFullName(listTransaction.get(position).getTransactorId(), holder.transactor);
-        setTimeForTransaction(listTransaction.get(position).getCreatedDate(), holder.day, holder.month, holder.time);
+        Time.setTimeForTransaction(listTransaction.get(position).getCreatedDate(), holder.day, holder.month, holder.time);
 
     }
 
@@ -74,19 +69,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return listTransaction.size();
     }
 
-    public void setTimeForTransaction(String pattern, TextView day, TextView month, TextView time){
-        try{
-            d = sdf.parse(pattern);
-            String formattedTime = output.format(d);
-            arrTime1 = formattedTime.split("-");
-            month.setText("Th " + arrTime1[1]);
-            arrTime2 = arrTime1[2].split(" ");
-            day.setText(arrTime2[0]);
-            time.setText("Lúc " + arrTime2[1]);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-    }
 
     public void setFullName(int id, final TextView txtFullname) {
         LoadFullnameByIdService loadFullnameByIdService = retrofit.create(LoadFullnameByIdService.class);

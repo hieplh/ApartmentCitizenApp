@@ -24,8 +24,6 @@ import com.example.apartmentcitizen.home.transaction.receipt.HistoryReceiptActiv
 import com.example.apartmentcitizen.network.LoadTransactionByHouseIdService;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 
-import java.util.ArrayList;
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -106,7 +104,7 @@ public class TransactionFragment extends Fragment {
                         }
                     }
                     txtHouseCode.setText(obj.getHouse().getHouseName());
-                    txtMoneyInWallet.setText(obj.getHouse().getCurrentMoney());
+                    txtMoneyInWallet.setText(Digit.handleDigit(obj.getHouse().getCurrentMoney()));
                 }
 
                 TransactionAdapter adapter = new TransactionAdapter(view.getContext(), listTransaction);
