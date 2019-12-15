@@ -67,6 +67,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         window.setNavigationBarColor(ContextCompat.getColor(LoginActivity.this, R.color.purple));
         retrofit = RetrofitInstance.getRetrofitInstance();
 
+        FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_for_all_house))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe success");
+                        } else {
+                            Log.d(FirebaseService.TAG, "subscribe Topic: subscribe failed");
+                        }
+                    }
+                });
+
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
