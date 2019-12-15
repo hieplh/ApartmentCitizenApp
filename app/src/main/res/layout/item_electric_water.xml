@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/transaction_list_card"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TableLayout
+        android:layout_marginTop="20dp"
+        android:stretchColumns="*"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow android:paddingBottom="20dp">
+            <TextView
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/blue_strong"
+                android:text="Chỉ số cũ:  "/>
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/e_old"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:text="2,927"/>
+        </TableRow>
+        <TableRow android:paddingBottom="20dp">
+            <TextView android:paddingLeft="30dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/blue_strong"
+                android:text="Chỉ số mới: "/>
+            <TextView
+                android:id="@+id/e_new"
+                android:paddingRight="30dp"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:text="2,927"/>
+        </TableRow>
+        <TableRow android:paddingBottom="20dp">
+            <TextView android:paddingLeft="30dp"
+                android:id="@+id/unit_receipt"
+                android:gravity="center_vertical"
+                android:textColor="@color/blue_strong"
+                android:text=""/>
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/e_amount"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:text="2,927"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/purple_deep"/>
+
+    <TableLayout
+        android:layout_marginTop="20dp"
+        android:stretchColumns="*"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow android:paddingBottom="20dp">
+            <TextView
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/blue_strong"
+                android:text="Tiền: "/>
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/e_result"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:text="2,927"/>
+        </TableRow>
+        <TableRow android:paddingBottom="20dp">
+            <TextView
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/blue_strong"
+                android:text="Thuế: "/>
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/e_vat"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:text="2,927"/>
+        </TableRow>
+        <TableRow android:paddingBottom="20dp">
+            <TextView
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/blue_strong"
+                android:text="Tổng: "/>
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/e_final_result"
+                android:gravity="center_vertical|right"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="2,927"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

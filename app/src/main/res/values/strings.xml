@@ -21,6 +21,14 @@
     <string name="transaction_label_recently">Giao dịch gần đây</string>
 
 
+    <!-- receipt activity -->
+    <string name="receipt_title">Lịch sử hoá đơn</string>
+    <string name="receipt_access_detail">Thông tin chi tiết ></string>
+    <string name="receipt_status_unpaid">Chưa thanh toán</string>
+    <string name="receipt_status_pay_now">Thanh toán ngay</string>
+    <string name="receipt_status_paid">Đã thanh toán</string>
+
+
     <!-- home activity-->
     <string name="home_label_nav_transaction">Giao dịch</string>
     <string name="home_label_nav_dashboard">Trung tâm</string>

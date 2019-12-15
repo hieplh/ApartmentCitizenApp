@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home.dashboard.newsfeed.CommmentActivity"></activity>
+        <activity android:name=".home.transaction.receipt.receiptdetail.ReceiptDetailActivity"></activity>
+        <activity android:name=".home.dashboard.newsfeed.CommmentActivity" />
         <activity android:name=".home.transaction.receipt.HistoryReceiptActivity" /> <!-- <activity android:name=".information.InformationActivity"></activity> -->
         <service
             android:name=".service.FirebaseService"

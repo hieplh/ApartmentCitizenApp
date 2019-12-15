@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:stretchColumns="*"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/transaction_list_card"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow android:layout_marginTop="10dp">
+        <TextView
+            android:gravity="right"
+            android:textSize="18sp"
+            android:text="Tên dịch vụ: "
+            android:textColor="@color/blue_strong"/>
+
+        <TextView
+            android:id="@+id/receipt_name_service"
+            android:gravity="right"
+            android:paddingRight="50dp"
+            android:layout_span="2"
+            android:textSize="18sp"
+            android:text="Giặt ủi"
+            android:textColor="@color/black"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:gravity="right"
+            android:text="Loại dịch vụ: "
+            android:textColor="@color/gray_holder_login"/>
+
+        <TextView
+            android:id="@+id/receipt_type_service"
+            android:layout_span="2"
+            android:gravity="right"
+            android:paddingRight="50dp"
+            android:text="Warehouse"
+            android:textColor="@color/gray_holder_login"/>
+    </TableRow>
+
+    <TableRow android:layout_marginTop="10dp">
+        <TextView
+            android:textSize="12sp"
+            android:text="Đơn giá"
+            android:gravity="center"
+            android:textColor="@color/purple_deep"/>
+
+        <TextView
+            android:textSize="12sp"
+            android:text="Số lượng"
+            android:gravity="center"
+            android:textColor="@color/purple_deep"/>
+        <TextView
+            android:textSize="12sp"
+            android:text="Thành tiền"
+            android:gravity="center"
+            android:textColor="@color/purple_deep"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/receipt_unit_price"
+            android:textSize="18sp"
+            android:text="50000"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/receipt_quantity"
+            android:textSize="18sp"
+            android:text="4"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/receipt_total"
+            android:textSize="18sp"
+            android:text="200000"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+    </TableRow>
+
+
+
+
+</TableLayout>

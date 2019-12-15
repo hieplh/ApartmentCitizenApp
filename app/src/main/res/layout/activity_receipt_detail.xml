@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_reg_frame"
+    tools:context=".home.transaction.receipt.receiptdetail.ReceiptDetailActivity">
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        layout="@layout/header_standard"/>
+
+    <Button
+        android:id="@+id/button_receipt_pay"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAllCaps="false"
+        android:layout_height="50dp"
+        android:layout_marginTop="170dp"/>
+    
+    <TextView
+        android:paddingLeft="20dp"
+        android:id="@+id/total_all"
+        android:layout_marginTop="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/name_of_householder"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="90dp"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/poly"
+        android:paddingLeft="20dp"
+        android:text="Tên chủ hộ: Nguyễn Duy Anh"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/label_house_name"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="115dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/poly"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/receipt_detail_date"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="140dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/poly"
+        android:textColor="@color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_detail_receipt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"/>
+
+
+</RelativeLayout>
