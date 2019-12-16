@@ -1,6 +1,5 @@
 package com.example.apartmentcitizen.home.account.wallet;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,16 +13,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.R;
+
 import com.example.apartmentcitizen.home.dashboard.newsfeed.CommmentActivity;
 import com.example.apartmentcitizen.home.transaction.HouseObject;
 import com.example.apartmentcitizen.home.transaction.TransactionObject;
 import com.example.apartmentcitizen.home.transaction.receipt.receiptdetail.ReceiptDetailActivity;
 import com.example.apartmentcitizen.network.ReceiptDetailService;
+
+import com.example.apartmentcitizen.handle.Digit;
+
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UserService;
 import com.google.gson.annotations.SerializedName;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +36,6 @@ import java.util.List;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,8 +54,10 @@ public class WalletActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
+
         retrofit = RetrofitInstance.getRetrofitInstance();
         sharedPreferences = getSharedPreferences(getString(R.string.shared_info), MODE_PRIVATE);
+
         setUpView();
 
     }
@@ -67,10 +71,11 @@ public class WalletActivity extends AppCompatActivity {
             sb.append(" ");
         }
         sb.append(sharedPreferences.getString(getString(R.string.key_first_name), ""));
-        moneyInWallet = findViewById(R.id.text_money_in_wallet);
         ((TextView) findViewById(R.id.text_card_fullname)).setText(sb.toString());
-        moneyInWallet
-                .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+
+        ((TextView) findViewById(R.id.text_card_house_code)).setText(sharedPreferences.getString(getString(R.string.key_house_name), ""));
+
+        ((TextView) findViewById(R.id.text_money_in_wallet)).setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
 
         window = getWindow();
         window.setNavigationBarColor(ContextCompat.getColor(WalletActivity.this, R.color.purple));
@@ -138,6 +143,7 @@ public class WalletActivity extends AppCompatActivity {
                             }
                         });
                     }
+
                     @Override
                     public void onFailure(Call<WalletResponse> call, Throwable t) {
                         Toast.makeText(WalletActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
@@ -185,7 +191,6 @@ public class WalletActivity extends AppCompatActivity {
             this.message = message;
         }
     }
-
 
 
 }

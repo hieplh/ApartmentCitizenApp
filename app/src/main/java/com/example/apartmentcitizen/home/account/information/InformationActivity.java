@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -54,9 +53,16 @@ public class InformationActivity extends AppCompatActivity {
     public final int CHILDREN = 6;
     public final int GRANDCHILDREN = 7;
     public final int FRIEND = 8;
-
     public final int AVATAR_REQUEST_CODE = 100;
-
+    final String OWNER_String = "Chủ hộ";
+    final String PARTNER_String = "Vợ/Chồng";
+    final String PARENT_String = "Bố/Mẹ";
+    final String GRANDPA_String = "Ông/Bà";
+    final String SIBLING_String = "Anh/Chị/Em";
+    final String UNCLE_String = "Cô/Chú";
+    final String CHILDREN_String = "Con trai/Con gái";
+    final String GRANDCHILDREN_String = "Cháu trai/cháu gái";
+    final String FRIEND_String = "Bạn Bè";
     private final int DAY_OF_MONTH_INDEX = 0;
     private final int MONTH_INDEX = 1;
     private final int YEAR_INDEX = 2;
@@ -187,8 +193,50 @@ public class InformationActivity extends AppCompatActivity {
         fullname.setText(sb.toString());
 
         houseName.setText(sharedPreferences.getString(getString(R.string.key_house_name), ""));
-//        owner.setText(sharedPreferences.getString(getString(R.string.key), ""));
-//        relationshipOwner
+
+        int familyLevel = sharedPreferences.getInt(getString(R.string.key_family), -1);
+        switch (familyLevel) {
+            case OWNER:
+                owner.setText(OWNER_String);
+                relationshipOwner.setText("");
+                break;
+            case PARTNER:
+                owner.setText("");
+                relationshipOwner.setText(PARTNER_String);
+                break;
+            case PARENT:
+                owner.setText("");
+                relationshipOwner.setText(PARENT_String);
+                break;
+            case GRANDPA:
+                owner.setText("");
+                relationshipOwner.setText(GRANDPA_String);
+                break;
+            case SIBLING:
+                owner.setText("");
+                relationshipOwner.setText(SIBLING_String);
+                break;
+            case UNCLE:
+                owner.setText("");
+                relationshipOwner.setText(UNCLE_String);
+                break;
+            case CHILDREN:
+                owner.setText("");
+                relationshipOwner.setText(CHILDREN_String);
+                break;
+            case GRANDCHILDREN:
+                owner.setText("");
+                relationshipOwner.setText(GRANDCHILDREN_String);
+                break;
+            case FRIEND:
+                owner.setText("");
+                relationshipOwner.setText(FRIEND_String);
+                break;
+            default:
+                owner.setText("Không rõ");
+                relationshipOwner.setText("Không rõ");
+                break;
+        }
 
         birthdate.setText(sharedPreferences.getString(getString(R.string.key_birthdate), "01/01/1970"));
 

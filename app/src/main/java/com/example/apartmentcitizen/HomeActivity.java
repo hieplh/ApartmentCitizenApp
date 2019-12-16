@@ -90,7 +90,6 @@ public class HomeActivity extends AppCompatActivity {
     Fragment account, dashboard, notification, transaction;
 
     SharedPreferences sharedPreferences;
-    boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,9 +340,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterActivity.RegisterResponse> call, Response<RegisterActivity.RegisterResponse> response) {
                 if (response.isSuccessful()) {
-                    if (flag) {
-                        Toast.makeText(HomeActivity.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                    }
+
+                    Toast.makeText(HomeActivity.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(HomeActivity.this, getString(R.string.register_error), Toast.LENGTH_SHORT).show();
                 }

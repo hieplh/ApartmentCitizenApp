@@ -74,14 +74,21 @@ public class AccountFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Glide.with(getContext())
-                .load(RetrofitInstance.BASE_URL
-                        + RetrofitInstance.VERSION_API
-                        + RetrofitInstance.GET_USER_IMAGE
-                        + sharedPreferences.getString(getString(R.string.key_profile_image), "null"))
-                .error(getResources().getDrawable(R.drawable.image_avatar_default))
-                .fitCenter()
-                .into(((CircleImageView) view.findViewById(R.id.avatar_account)));
+        if (sharedPreferences.getString(getString(R.string.key_profile_image), null) == null) {
+            Glide.with(getContext())
+                    .load(getResources().getDrawable(R.drawable.image_avatar_default))
+                    .fitCenter()
+                    .into(((CircleImageView) view.findViewById(R.id.avatar_account)));
+        } else {
+            Glide.with(getContext())
+                    .load(RetrofitInstance.BASE_URL
+                            + RetrofitInstance.VERSION_API
+                            + RetrofitInstance.GET_USER_IMAGE
+                            + sharedPreferences.getString(getString(R.string.key_profile_image), "null"))
+                    .error(getResources().getDrawable(R.drawable.image_avatar_default))
+                    .fitCenter()
+                    .into(((CircleImageView) view.findViewById(R.id.avatar_account)));
+        }
 
         ((Button) view.findViewById(R.id.house_name_account))
                 .setText(sharedPreferences.getString(getString(R.string.key_house_name), "A-1-101"));
