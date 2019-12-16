@@ -8,23 +8,33 @@ public class HouseObject implements Serializable {
 
 
     @SerializedName("houseId")
-    private String id;
+    private int id;
 
     @SerializedName("houseName")
     private String houseName;
 
     @SerializedName("ownerId")
-    private String ownerId;
+    private int ownerId;
 
     @SerializedName("currentMoney")
-    private String currentMoney;
+    private long currentMoney;
 
+    public HouseObject(int id) {
+        this.id = id;
+    }
 
-    public String getId() {
+    public HouseObject(int id, String houseName, int ownerId, long currentMoney) {
+        this.id = id;
+        this.houseName = houseName;
+        this.ownerId = ownerId;
+        this.currentMoney = currentMoney;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,19 +46,19 @@ public class HouseObject implements Serializable {
         this.houseName = houseName;
     }
 
-    public String getOwnerId() {
+    public int getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
 
-    public String getCurrentMoney() {
+    public long getCurrentMoney() {
         return currentMoney;
     }
 
-    public void setCurrentMoney(String currentMoney) {
+    public void setCurrentMoney(long currentMoney) {
         this.currentMoney = currentMoney;
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.apartmentcitizen.HomeActivity;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.TransactionAdapter;
 import com.example.apartmentcitizen.handle.Digit;
@@ -47,6 +48,7 @@ public class TransactionFragment extends Fragment {
     public TransactionFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -104,7 +106,7 @@ public class TransactionFragment extends Fragment {
                         }
                     }
                     txtHouseCode.setText(obj.getHouse().getHouseName());
-                    txtMoneyInWallet.setText(Digit.handleDigit(obj.getHouse().getCurrentMoney()));
+                    txtMoneyInWallet.setText(Digit.handleDigit(obj.getHouse().getCurrentMoney()+""));
                 }
 
                 TransactionAdapter adapter = new TransactionAdapter(view.getContext(), listTransaction);
