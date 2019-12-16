@@ -134,16 +134,16 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/logo_his_trans" />
 
-                <TextView
-                    android:id="@+id/text_history_transaction"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:fontFamily="@font/ubuntu"
-                    android:gravity="center"
-                    android:text="@string/wallet_history_tran_value"
-                    android:textColor="@color/wallet_gradient1"
-                    android:textSize="20sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/text_history_transaction"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="35dp"-->
+<!--                    android:fontFamily="@font/ubuntu"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="@string/wallet_history_tran_value"-->
+<!--                    android:textColor="@color/wallet_gradient1"-->
+<!--                    android:textSize="20sp" />-->
 
             </RelativeLayout>
 

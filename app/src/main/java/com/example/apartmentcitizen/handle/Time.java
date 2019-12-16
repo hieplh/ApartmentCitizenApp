@@ -4,17 +4,21 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class Time {
 
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-    static SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    static SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     static Date d;
     static String[] arrTime1, arrTime2;
 
     public static void setTimeForTransaction(String pattern, TextView day, TextView month, TextView time){
+        output.getTimeZone();
         try{
             d = sdf.parse(pattern);
             String formattedTime = output.format(d);
