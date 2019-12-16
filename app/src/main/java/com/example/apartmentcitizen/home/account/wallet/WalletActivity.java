@@ -15,23 +15,20 @@ import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
 
-import com.example.apartmentcitizen.home.dashboard.newsfeed.CommmentActivity;
 import com.example.apartmentcitizen.home.transaction.HouseObject;
 import com.example.apartmentcitizen.home.transaction.TransactionObject;
 import com.example.apartmentcitizen.home.transaction.receipt.receiptdetail.ReceiptDetailActivity;
 import com.example.apartmentcitizen.network.ReceiptDetailService;
 
-import com.example.apartmentcitizen.handle.Digit;
 
+import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UserService;
 import com.google.gson.annotations.SerializedName;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -119,8 +116,10 @@ public class WalletActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt(getString(R.string.key_house_money), updatedMoney);
                         editor.apply();
-                        moneyInWallet
-                                .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+                        //Toast.makeText(WalletActivity.this, Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))), Toast.LENGTH_SHORT).show();
+                        //moneyInWallet.setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+                        //moneyInWallet
+                         //       .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
                         final TransactionObject obj = new TransactionObject();
                         obj.setAmount(inputMoney);
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -131,10 +130,12 @@ public class WalletActivity extends AppCompatActivity {
                         obj.setTransactorId(sharedPreferences.getInt(getString(R.string.key_user_id), 0 ));
                         ReceiptDetailService service = retrofit.create(ReceiptDetailService.class);
                         Call<ReceiptDetailActivity.ReceiptDetailResponse> call2 = service.createUser(obj);
-                        //final String toStr ="House amount: " + obj.getAmount() + "; createDate: " + obj.getCreatedDate() + "; houseId: " + obj.getHouse().getId() + "; TransactorId: " + obj.getTransactorId();
+                       // final String toStr ="House amount: " + obj.getAmount() + "; createDate: " + obj.getCreatedDate() + "; houseId: " + obj.getHouse().getId() + "; TransactorId: " + obj.getTransactorId();
                         call2.enqueue(new Callback<ReceiptDetailActivity.ReceiptDetailResponse>() {
                             @Override
                             public void onResponse(Call<ReceiptDetailActivity.ReceiptDetailResponse> call2, Response<ReceiptDetailActivity.ReceiptDetailResponse> response2) {
+                                finish();
+                                startActivity(getIntent());
                             }
 
                             @Override
@@ -149,7 +150,6 @@ public class WalletActivity extends AppCompatActivity {
                         Toast.makeText(WalletActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-                setUpView();
 
             }
         });

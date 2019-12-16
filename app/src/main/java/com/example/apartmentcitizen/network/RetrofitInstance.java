@@ -6,8 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
 
-    public static final String BASE_URL = "http://ahtapartment.ddns.net/api/";
+//    public static final String BASE_URL = "http://ahtapartment.ddns.net/api/";
 
+    public static final String BASE_URL = "http://192.168.1.10:8080/api/";
 
     public static final String VERSION_API = "v1/";
     public static final String GET_POSTIMAGE_IMAGE = "postImages/image/";
