@@ -46,6 +46,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -191,6 +192,8 @@ public class HomeActivity extends AppCompatActivity {
         btnLogOut.setVisibility(View.INVISIBLE);
 
         loadFragment(new DashboardFragment(), DASHBOARD);
+
+
     }
 
     //set up View

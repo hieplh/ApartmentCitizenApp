@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.apartmentcitizen.HomeActivity;
 import com.example.apartmentcitizen.R;
 import com.example.apartmentcitizen.component.ReceiptAdapter;
+import com.example.apartmentcitizen.home.transaction.TransactionFragment;
 import com.example.apartmentcitizen.network.LoadReceiptByHouseId;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 
@@ -28,12 +31,26 @@ public class HistoryReceiptActivity extends AppCompatActivity {
     Retrofit retrofit;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_receipt);
+    protected void onStart() {
+        super.onStart();
         setUpView();
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_history_receipt);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        Intent intent = new Intent(HistoryReceiptActivity.this, HomeActivity.class);
+        intent.putExtra("transaction_fr", TransactionFragment.class);
+        startActivity(intent);
+    }
 
     public void setUpView(){
         title = findViewById(R.id.label_title_standard);

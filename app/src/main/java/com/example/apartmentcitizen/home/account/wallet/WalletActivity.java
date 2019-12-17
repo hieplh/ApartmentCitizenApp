@@ -14,10 +14,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apartmentcitizen.R;
+
+import com.example.apartmentcitizen.home.transaction.HouseObject;
+import com.example.apartmentcitizen.home.transaction.TransactionObject;
+import com.example.apartmentcitizen.home.transaction.receipt.receiptdetail.ReceiptDetailActivity;
+import com.example.apartmentcitizen.network.ReceiptDetailService;
+
+
 import com.example.apartmentcitizen.handle.Digit;
 import com.example.apartmentcitizen.network.RetrofitInstance;
 import com.example.apartmentcitizen.network.UserService;
 import com.google.gson.annotations.SerializedName;
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,14 +98,14 @@ public class WalletActivity extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-        alert.setTitle("Recharge Money");
+        alert.setTitle("Nạp tiền vào ví");
         alert.setMessage("Recharge your wallet here");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(input);
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                int inputMoney = Integer.parseInt(input.getText().toString());
+                final int inputMoney = Integer.parseInt(input.getText().toString());
                 final int updatedMoney = currentMoney + inputMoney;
                 int houseId = sharedPreferences.getInt(getString(R.string.key_house_id), 0);
                 UserService userService = retrofit.create(UserService.class);
@@ -105,9 +116,33 @@ public class WalletActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt(getString(R.string.key_house_money), updatedMoney);
                         editor.apply();
-                        moneyInWallet
-                                .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
-                        Toast.makeText(WalletActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(WalletActivity.this, Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))), Toast.LENGTH_SHORT).show();
+                        //moneyInWallet.setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+                        //moneyInWallet
+                         //       .setText(Digit.handleDigit(Integer.toString(sharedPreferences.getInt(getString(R.string.key_house_money), 0))));
+                        final TransactionObject obj = new TransactionObject();
+                        obj.setAmount(inputMoney);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                        obj.setCreatedDate(sdf.format(new Date()));
+                        obj.setHouse(new HouseObject(sharedPreferences.getInt(getString(R.string.key_house_id), 0)));
+                        obj.setStatus(1);
+                        obj.setTitle("Nạp tiền vào ví");
+                        obj.setTransactorId(sharedPreferences.getInt(getString(R.string.key_user_id), 0 ));
+                        ReceiptDetailService service = retrofit.create(ReceiptDetailService.class);
+                        Call<ReceiptDetailActivity.ReceiptDetailResponse> call2 = service.createUser(obj);
+                       // final String toStr ="House amount: " + obj.getAmount() + "; createDate: " + obj.getCreatedDate() + "; houseId: " + obj.getHouse().getId() + "; TransactorId: " + obj.getTransactorId();
+                        call2.enqueue(new Callback<ReceiptDetailActivity.ReceiptDetailResponse>() {
+                            @Override
+                            public void onResponse(Call<ReceiptDetailActivity.ReceiptDetailResponse> call2, Response<ReceiptDetailActivity.ReceiptDetailResponse> response2) {
+                                finish();
+                                startActivity(getIntent());
+                            }
+
+                            @Override
+                            public void onFailure(Call<ReceiptDetailActivity.ReceiptDetailResponse> call, Throwable t) {
+                                Toast.makeText(WalletActivity.this, "NOT OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
 
                     @Override
@@ -115,7 +150,6 @@ public class WalletActivity extends AppCompatActivity {
                         Toast.makeText(WalletActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-                setUpView();
 
             }
         });

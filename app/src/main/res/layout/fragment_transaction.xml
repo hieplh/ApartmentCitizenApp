@@ -26,7 +26,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/poly"
-                android:text="@string/information_label_housecode"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -37,7 +36,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="23dp"
                 android:fontFamily="@font/poly"
-                android:text="@string/information_label_fullname"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -70,7 +68,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/wallet_money_in_wallet"
                 android:textSize="25sp" />
         </RelativeLayout>
 

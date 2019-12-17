@@ -32,16 +32,6 @@
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/name_of_householder"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginTop="90dp"
-        android:gravity="center_vertical"
-        android:fontFamily="@font/poly"
-        android:paddingLeft="20dp"
-        android:text="Tên chủ hộ: Nguyễn Duy Anh"
-        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/label_house_name"
